@@ -16,6 +16,6 @@ public interface TentativeScheduleRepository extends JpaRepository<TentativeSche
     @NonNull
     Optional<List<TentativeSchedule>> findAllByIdAndDateWorkBetween(@NonNull UUID id, @NonNull LocalDate dateStartWeek, @NonNull LocalDate dateEndWeek);
 
-    @NonNull
-    Optional<LocalDate> findByDateWorkMax(@NonNull UUID id);
+//    @NonNull
+//    Optional<LocalDate> findByDateWorkMax(@NonNull UUID id);
 }

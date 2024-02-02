@@ -19,7 +19,7 @@ import java.util.UUID;
 @Table(name = "WORK_SCHEDULES")
 public class WorkSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private UUID id;
 

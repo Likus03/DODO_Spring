@@ -19,7 +19,7 @@ import java.util.UUID;
 @Table(name = "TENTATIVE_SCHEDULES", uniqueConstraints = @UniqueConstraint(columnNames = {"DATE_WORK", "WORKER_ID"}))
 public class TentativeSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private UUID id;
 

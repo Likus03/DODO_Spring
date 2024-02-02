@@ -21,7 +21,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Table(name = "WORKERS")
 public class Worker {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private UUID id;
 

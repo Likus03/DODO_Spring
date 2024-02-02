@@ -50,7 +50,8 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
     @Transactional(readOnly = true)
     @Override
     public LocalDate getMaxDate(UUID idWorker) {
-        return tentativeScheduleRepository.findByDateWorkMax(idWorker).orElse(null);
+//        return tentativeScheduleRepository.findByDateWorkMax(idWorker).orElse(null);
+        return null;
     }
 
     @Transactional
