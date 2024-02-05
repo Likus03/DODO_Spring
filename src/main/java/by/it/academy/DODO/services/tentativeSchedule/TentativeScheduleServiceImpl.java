@@ -1,10 +1,12 @@
 package by.it.academy.DODO.services.tentativeSchedule;
 
+import by.it.academy.DODO.dto.TentativeScheduleDTO;
 import by.it.academy.DODO.entities.TentativeSchedule;
-import by.it.academy.DODO.entities.Worker;
+import by.it.academy.DODO.mappers.TentativeScheduleMapper;
 import by.it.academy.DODO.repositories.tentativeSchedule.TentativeScheduleRepository;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,15 +23,28 @@ import static by.it.academy.DODO.utils.Utility.getWeek;
 public class TentativeScheduleServiceImpl implements TentativeScheduleService {
     private final TentativeScheduleRepository tentativeScheduleRepository;
     private final WorkerRepository workerRepository;
+    private final TentativeScheduleMapper tentativeScheduleMapper;
 
     @Transactional
     @Override
-    public boolean addTentativeSchedule(UUID idWorker, LocalDate dateWork, LocalTime startTime, LocalTime endTime) {
-        Optional<TentativeSchedule> optionalTentativeSchedule = tentativeScheduleRepository.findByIdAndDateWork(idWorker, dateWork);
-        if (optionalTentativeSchedule.isPresent()) {
-            TentativeSchedule tentativeSchedule = optionalTentativeSchedule.get();
-            setSchedule(startTime, endTime, tentativeSchedule);
-            tentativeScheduleRepository.save(tentativeSchedule);
+    public boolean create(UUID idWorker, TentativeScheduleDTO request) {
+        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
+
+        tentativeSchedule.setWorker(workerRepository.findById(idWorker).orElseThrow());
+        tentativeScheduleRepository.save(tentativeSchedule);
+        return true;
+    }
+
+    @Transactional
+    @Override
+    public boolean update(UUID id, TentativeScheduleDTO request){
+        TentativeSchedule newTentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
+        Optional<TentativeSchedule> optionalTentativeSchedule = tentativeScheduleRepository.findById(id);
+
+        if(optionalTentativeSchedule.isPresent()){
+            TentativeSchedule oldTentativeSchedule = optionalTentativeSchedule.get();
+            setSchedule(newTentativeSchedule.getStartTime(), newTentativeSchedule.getEndTime(), oldTentativeSchedule);
+            tentativeScheduleRepository.save(oldTentativeSchedule);
             return true;
         }
         return false;
@@ -42,35 +57,37 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeSchedule> readTentativeScheduleById(UUID idWorker, LocalDate date) {
+    public List<TentativeSchedule> read(UUID idWorker, LocalDate date) {
         LocalDate[] week = getWeek(date);
         return tentativeScheduleRepository.findAllByIdAndDateWorkBetween(idWorker, week[0], week[1]).orElse(null);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public LocalDate getMaxDate(UUID idWorker) {
-//        return tentativeScheduleRepository.findByDateWorkMax(idWorker).orElse(null);
-        return null;
-    }
-
     @Transactional
     @Override
-    public boolean AddEmptySchedule(UUID idWorker, LocalDate now) {
-        Optional<Worker> optionalWorker = workerRepository.findById(idWorker);
+    public TentativeSchedule findById(UUID id) {
+        return tentativeScheduleRepository.findById(id).orElse(null);
+    }
 
-        if(optionalWorker.isPresent()) {
-            Worker worker = optionalWorker.get();
-            LocalDate[] week = getWeek(now);
-
-            while (!week[0].isAfter(week[1])){
-                TentativeSchedule tentativeSchedule = new TentativeSchedule(week[0], worker);
-                tentativeScheduleRepository.save(tentativeSchedule);
-
-                week[0] = week[0].plusDays(1);
-            }
-            return true;
+    @Override
+    public boolean delete(UUID id) {
+        try {
+            tentativeScheduleRepository.deleteById(id);
+        } catch (DataAccessException ex) {
+            ex.printStackTrace();
+            return false;
         }
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean update(TentativeScheduleDTO tentativeScheduleDTO) {
+        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(tentativeScheduleDTO);
+        try {
+            tentativeScheduleRepository.save(tentativeSchedule);
+        } catch (DataAccessException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

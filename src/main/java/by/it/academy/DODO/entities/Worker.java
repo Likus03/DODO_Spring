@@ -1,5 +1,8 @@
 package by.it.academy.DODO.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,8 +47,11 @@ public class Worker {
     @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WorkSchedule> workSchedules;
+
+    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TentativeSchedule> tentativeSchedules;
 
     public Worker(String firstname, String surname, String phoneNumber, WorkerType workerType, List<Order> orders) {
         this.firstname = firstname;

@@ -2,6 +2,8 @@ package by.it.academy.DODO.repositories.tentativeSchedule;
 
 import by.it.academy.DODO.entities.TentativeSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ public interface TentativeScheduleRepository extends JpaRepository<TentativeSche
     @NonNull
     Optional<List<TentativeSchedule>> findAllByIdAndDateWorkBetween(@NonNull UUID id, @NonNull LocalDate dateStartWeek, @NonNull LocalDate dateEndWeek);
 
-//    @NonNull
-//    Optional<LocalDate> findByDateWorkMax(@NonNull UUID id);
+    @NonNull
+    @Query(value = "select max(dateWork) from TentativeSchedule where id = :id", nativeQuery = true)
+    Optional<LocalDate> findMaxDateWorkById(@NonNull @Param("id") UUID id);
 }

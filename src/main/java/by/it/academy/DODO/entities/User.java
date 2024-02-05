@@ -1,9 +1,7 @@
 package by.it.academy.DODO.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import jakarta.persistence.*;
 
@@ -32,12 +30,6 @@ public class User {
     @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
 
-    public User(String login, String password, Worker worker) {
-        this.login = login;
-        this.password = password;
-        this.worker = worker;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,5 +40,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getIdUser(), getLogin(), getPassword(), getWorker());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

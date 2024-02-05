@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
-    OrderDTO createUserDTO(Order order);
-    Order createUser(OrderDTO request);
+    OrderDTO createOrderDTO(Order order);
+    Order createOder(OrderDTO request);
 }

@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         if (optionalOrders.isPresent()) {
             List<Order> orders = optionalOrders.get();
             return orders.stream()
-                    .map(orderMapper::createUserDTO)
+                    .map(orderMapper::createOrderDTO)
                     .collect(Collectors.toList());
         }
         return null;

@@ -29,12 +29,12 @@ public class OrderController {
         return orderService.getOrdersByParameters(null, false);
     }
     @PatchMapping("order/{id}")
-    public boolean CompleteOrder(@PathVariable UUID id) {
+    public boolean completeOrder(@PathVariable UUID id) {
         return orderService.completeOrder(id);
     }
 
     @PatchMapping("worker/{idWorker}/order/{idOrder}")
-    public boolean TakeOrder(@PathVariable UUID idWorker, @PathVariable UUID idOrder){
+    public boolean takeOrder(@PathVariable UUID idWorker, @PathVariable UUID idOrder){
         return orderService.takeOrder(idOrder, idWorker);
     }
 //    @PostMapping("order")
