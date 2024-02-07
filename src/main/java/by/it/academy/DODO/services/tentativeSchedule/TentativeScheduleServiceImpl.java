@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static by.it.academy.DODO.utils.Utility.getWeek;
 
@@ -37,11 +39,11 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, TentativeScheduleDTO request){
+    public boolean update(UUID id, TentativeScheduleDTO request) {
         TentativeSchedule newTentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
         Optional<TentativeSchedule> optionalTentativeSchedule = tentativeScheduleRepository.findById(id);
 
-        if(optionalTentativeSchedule.isPresent()){
+        if (optionalTentativeSchedule.isPresent()) {
             TentativeSchedule oldTentativeSchedule = optionalTentativeSchedule.get();
             setSchedule(newTentativeSchedule.getStartTime(), newTentativeSchedule.getEndTime(), oldTentativeSchedule);
             tentativeScheduleRepository.save(oldTentativeSchedule);
@@ -57,9 +59,23 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeSchedule> read(UUID idWorker, LocalDate date) {
+    public List<TentativeScheduleDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate date) {
         LocalDate[] week = getWeek(date);
-        return tentativeScheduleRepository.findAllByIdAndDateWorkBetween(idWorker, week[0], week[1]).orElse(null);
+        return tentativeScheduleRepository.findAllByWorkerIdAndDateWorkBetween(idWorker, week[0], week[1])
+                .map(schedules -> schedules.stream()
+                        .map(tentativeScheduleMapper::createTentativeScheduleDTO)
+                        .collect(Collectors.toList()))
+                .orElse(Collections.emptyList());
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<TentativeScheduleDTO> readDaySchedule(LocalDate date) {
+        return tentativeScheduleRepository.findAllByDateWork(date)
+                .map(schedules -> schedules.stream()
+                        .map(tentativeScheduleMapper::createTentativeScheduleDTO)
+                        .collect(Collectors.toList()))
+                .orElse(Collections.emptyList());
     }
 
     @Transactional

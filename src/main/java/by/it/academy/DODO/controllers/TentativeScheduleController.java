@@ -1,7 +1,6 @@
 package by.it.academy.DODO.controllers;
 
 import by.it.academy.DODO.dto.TentativeScheduleDTO;
-import by.it.academy.DODO.entities.TentativeSchedule;
 import by.it.academy.DODO.services.tentativeSchedule.TentativeScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +20,14 @@ public class TentativeScheduleController {
         return tentativeScheduleService.create(id, request);
     }
 
-    @GetMapping("worker/{id}/tentativeSchedule")
-    public List<TentativeSchedule> read(@PathVariable UUID id, @RequestBody LocalDate dateWork) {
-        return tentativeScheduleService.read(id, dateWork);
+    @GetMapping("worker/{id}/tentativeSchedule/{dateWork}")
+    public List<TentativeScheduleDTO> getWeekScheduleByIdWorker(@PathVariable UUID id, @PathVariable LocalDate dateWork) {
+        return tentativeScheduleService.readWeekScheduleByIdWorker(id, dateWork);
+    }
+
+    @GetMapping("tentativeSchedule/{dateWork}")
+    public List<TentativeScheduleDTO> getDaySchedule(@PathVariable LocalDate dateWork){
+        return tentativeScheduleService.readDaySchedule(dateWork);
     }
 
     @PutMapping("tentativeSchedule/{id}")

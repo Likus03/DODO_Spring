@@ -1,9 +1,10 @@
 package by.it.academy.DODO.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -20,7 +21,7 @@ public class User {
     @Column(name = "ID")
     private UUID idUser;
 
-    @Column(name = "LOGIN", nullable = false)
+    @Column(name = "LOGIN", nullable = false, unique = true)
     private String login;
 
     @Column(name = "PASSWORD", nullable = false)
@@ -40,14 +41,5 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getIdUser(), getLogin(), getPassword(), getWorker());
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "idUser=" + idUser +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

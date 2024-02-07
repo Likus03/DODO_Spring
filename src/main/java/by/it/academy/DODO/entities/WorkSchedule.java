@@ -16,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "WORK_SCHEDULES")
+@Table(name = "WORK_SCHEDULES", uniqueConstraints = @UniqueConstraint(columnNames = {"DATE_WORK", "WORKER_ID"}))
 public class WorkSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +26,10 @@ public class WorkSchedule {
     @Column(name = "DATE_WORK", nullable = false)
     private LocalDate dateWork;
 
-    @Column(name = "START_TIME")
+    @Column(name = "START_TIME", nullable = false)
     private LocalTime startTime;
 
-    @Column(name = "END_TIME")
+    @Column(name = "END_TIME", nullable = false)
     private LocalTime endTime;
 
     @ManyToOne

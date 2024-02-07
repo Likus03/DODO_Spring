@@ -3,8 +3,10 @@ package by.it.academy.DODO.aspects;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.hibernate.annotations.processing.SQL;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -25,7 +27,7 @@ public class LoggerAspect {
         log.info(LOG_REQUEST_PARAMETER,
                 request.getMethod(),
                 joinPoint.getSignature(),
-                request.getQueryString());
+                request.getRequestURI());
     }
 
     @AfterReturning(value = "pointCut()", returning = "response")

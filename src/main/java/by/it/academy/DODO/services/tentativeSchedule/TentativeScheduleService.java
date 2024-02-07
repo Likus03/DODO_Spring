@@ -9,10 +9,9 @@ import java.util.UUID;
 
 public interface TentativeScheduleService {
     boolean create(UUID idWorker, TentativeScheduleDTO request);
-
     boolean update(UUID id, TentativeScheduleDTO request);
-
-    List<TentativeSchedule> read(UUID idWorker, LocalDate date);
+    List<TentativeScheduleDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate localDate);
+    List<TentativeScheduleDTO> readDaySchedule(LocalDate date);
     TentativeSchedule findById(UUID id);
     boolean delete(UUID id);
     boolean update(TentativeScheduleDTO tentativeScheduleDTO);
