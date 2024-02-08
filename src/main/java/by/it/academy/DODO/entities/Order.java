@@ -1,6 +1,8 @@
 package by.it.academy.DODO.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +28,11 @@ public class Order {
     @Column(name = "TOTAL_COST")
     private Float totalCost;
 
+    @NotEmpty(message = "Address cannot be null")
     @Column(name = "ADDRESS", nullable = false)
     private String address;
 
+    @FutureOrPresent(message = "Delivery date and time cannot be in past")
     @Column(name = "DELIVERY_TIME", nullable = false)
     private LocalDateTime deliveryTime;
 

@@ -1,6 +1,7 @@
 package by.it.academy.DODO.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,9 +22,11 @@ public class User {
     @Column(name = "ID")
     private UUID idUser;
 
+    @NotEmpty(message = "Login cannot be null")
     @Column(name = "LOGIN", nullable = false, unique = true, updatable = false)
     private String login;
 
+    @NotEmpty(message = "Password cannot be null")
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
