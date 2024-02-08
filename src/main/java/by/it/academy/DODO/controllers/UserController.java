@@ -1,6 +1,6 @@
 package by.it.academy.DODO.controllers;
 
-import by.it.academy.DODO.dto.UserWorkerDTO;
+import by.it.academy.DODO.dto.request.UserWorkerRequestDTO;
 import by.it.academy.DODO.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
     @PostMapping("user")
-    public boolean createUser(@RequestBody UserWorkerDTO request) {
+    public boolean createUser(@RequestBody UserWorkerRequestDTO request) {
         return userService.create(request);
     }
 

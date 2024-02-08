@@ -1,7 +1,7 @@
 package by.it.academy.DODO.services.workSchedule;
 
-import by.it.academy.DODO.dto.WorkScheduleRequestDTO;
-import by.it.academy.DODO.dto.WorkScheduleResponseDTO;
+import by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO;
+import by.it.academy.DODO.dto.response.workSchedule.WorkScheduleResponseDTO;
 import by.it.academy.DODO.entities.WorkSchedule;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.mappers.WorkScheduleMapper;

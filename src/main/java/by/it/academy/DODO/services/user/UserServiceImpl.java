@@ -1,15 +1,13 @@
 package by.it.academy.DODO.services.user;
 
-import by.it.academy.DODO.dto.UserDTO;
-import by.it.academy.DODO.dto.UserWorkerDTO;
-import by.it.academy.DODO.dto.WorkerDTO;
+import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.request.user.UserRequestDTO;
+import by.it.academy.DODO.dto.request.UserWorkerRequestDTO;
 import by.it.academy.DODO.entities.User;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.mappers.UserMapper;
 import by.it.academy.DODO.mappers.WorkerMapper;
 import by.it.academy.DODO.repositories.user.UserRepository;
-import by.it.academy.DODO.repositories.worker.WorkerRepository;
-import by.it.academy.DODO.services.worker.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
@@ -28,12 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean create(UserWorkerDTO request) {
-        WorkerDTO workerDTO = request.getWorkerDTO();
-        UserDTO userDTO = request.getUserDTO();
+    public boolean create(UserWorkerRequestDTO request) {
+        WorkerRequestDTO workerRequestDTO = request.getWorkerRequestDTO();
+        UserRequestDTO userRequestDTO = request.getUserRequestDTO();
 
-        Worker worker = workerMapper.createWorker(workerDTO);
-        User user = userMapper.createUser(userDTO);
+        Worker worker = workerMapper.createWorker(workerRequestDTO);
+        User user = userMapper.createUser(userRequestDTO);
 
         user.setWorker(worker);
         try {
@@ -47,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean update(UserDTO userDTO) {
-        User user = userMapper.createUser(userDTO);
+    public boolean update(UserRequestDTO userRequestDTO) {
+        User user = userMapper.createUser(userRequestDTO);
         try {
             userRepository.save(user);
         } catch (DataAccessException ex) {

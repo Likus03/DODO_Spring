@@ -1,6 +1,6 @@
 package by.it.academy.DODO.mappers;
 
-import by.it.academy.DODO.dto.TentativeScheduleDTO;
+import by.it.academy.DODO.dto.response.tentativeSchedule.TentativeScheduleResponseDTO;
 import by.it.academy.DODO.entities.TentativeSchedule;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring")
 public interface TentativeScheduleMapper {
-    TentativeScheduleDTO createTentativeScheduleDTO(TentativeSchedule tentativeSchedule);
-    TentativeSchedule createTentativeSchedule(TentativeScheduleDTO request);
+    TentativeScheduleResponseDTO createTentativeScheduleDTO(TentativeSchedule tentativeSchedule);
+    TentativeSchedule createTentativeSchedule(TentativeScheduleResponseDTO tentativeScheduleResponseDTO);
 
 }

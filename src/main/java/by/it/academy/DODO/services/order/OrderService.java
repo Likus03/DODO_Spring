@@ -1,15 +1,16 @@
 package by.it.academy.DODO.services.order;
 
-import by.it.academy.DODO.dto.OrderDTO;
+import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
+import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
 //    List<OrderDTO> readAvailableOrder();
-    List<OrderDTO> getOrdersByParameters(UUID id, boolean completed);
+    List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed);
     boolean takeOrder(UUID idOrder, UUID idWorker);
-//    boolean create(OrderDTO request);
+    boolean create(OrderRequestDTO request);
     boolean completeOrder(UUID id);
 //    Order findById(UUID id);
 }

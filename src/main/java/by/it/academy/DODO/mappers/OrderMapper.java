@@ -1,6 +1,7 @@
 package by.it.academy.DODO.mappers;
 
-import by.it.academy.DODO.dto.OrderDTO;
+import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
+import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 import by.it.academy.DODO.entities.Order;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
-    OrderDTO createOrderDTO(Order order);
-    Order createOder(OrderDTO request);
+    OrderResponseDTO createOrderDTO(Order order);
+    Order createOder(OrderRequestDTO orderRequestDTO);
 }

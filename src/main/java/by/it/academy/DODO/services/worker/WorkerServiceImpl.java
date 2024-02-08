@@ -1,6 +1,6 @@
 package by.it.academy.DODO.services.worker;
 
-import by.it.academy.DODO.dto.WorkerDTO;
+import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.mappers.WorkerMapper;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
@@ -23,7 +23,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerDTO> readAll() {
+    public List<WorkerRequestDTO> readAll() {
         return workerRepository.findAll().stream()
                 .map(workerMapper::createWorkerDTO)
                 .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerDTO> readBySearch(String parameter) {
+    public List<WorkerRequestDTO> readBySearch(String parameter) {
         return workerRepository.findByParameter(parameter)
                 .map(workers -> workers.stream()
                         .map(workerMapper::createWorkerDTO)
@@ -41,7 +41,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, WorkerDTO request) {
+    public boolean update(UUID id, WorkerRequestDTO request) {
         Worker newWorker = workerMapper.createWorker(request);
         Optional<Worker> optionalWorker = workerRepository.findById(id);
         if (optionalWorker.isPresent()) {

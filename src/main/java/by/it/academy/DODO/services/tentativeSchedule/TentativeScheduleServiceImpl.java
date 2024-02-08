@@ -1,6 +1,6 @@
 package by.it.academy.DODO.services.tentativeSchedule;
 
-import by.it.academy.DODO.dto.TentativeScheduleDTO;
+import by.it.academy.DODO.dto.response.tentativeSchedule.TentativeScheduleResponseDTO;
 import by.it.academy.DODO.entities.TentativeSchedule;
 import by.it.academy.DODO.mappers.TentativeScheduleMapper;
 import by.it.academy.DODO.repositories.tentativeSchedule.TentativeScheduleRepository;
@@ -29,7 +29,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean create(UUID idWorker, TentativeScheduleDTO request) {
+    public boolean create(UUID idWorker, TentativeScheduleResponseDTO request) {
         TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
 
         tentativeSchedule.setWorker(workerRepository.findById(idWorker).orElseThrow());
@@ -39,7 +39,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, TentativeScheduleDTO request) {
+    public boolean update(UUID id, TentativeScheduleResponseDTO request) {
         TentativeSchedule newTentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
         Optional<TentativeSchedule> optionalTentativeSchedule = tentativeScheduleRepository.findById(id);
 
@@ -59,7 +59,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate date) {
+    public List<TentativeScheduleResponseDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate date) {
         LocalDate[] week = getWeek(date);
         return tentativeScheduleRepository.findAllByWorkerIdAndDateWorkBetween(idWorker, week[0], week[1])
                 .map(schedules -> schedules.stream()
@@ -70,7 +70,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> readDaySchedule(LocalDate date) {
+    public List<TentativeScheduleResponseDTO> readDaySchedule(LocalDate date) {
         return tentativeScheduleRepository.findAllByDateWork(date)
                 .map(schedules -> schedules.stream()
                         .map(tentativeScheduleMapper::createTentativeScheduleDTO)
@@ -96,8 +96,8 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
     }
 
     @Override
-    public boolean update(TentativeScheduleDTO tentativeScheduleDTO) {
-        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(tentativeScheduleDTO);
+    public boolean update(TentativeScheduleResponseDTO tentativeScheduleResponseDTO) {
+        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(tentativeScheduleResponseDTO);
         try {
             tentativeScheduleRepository.save(tentativeSchedule);
         } catch (DataAccessException ex) {

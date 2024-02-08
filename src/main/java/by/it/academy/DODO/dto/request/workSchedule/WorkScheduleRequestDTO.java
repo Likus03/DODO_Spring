@@ -1,4 +1,4 @@
-package by.it.academy.DODO.dto;
+package by.it.academy.DODO.dto.request.workSchedule;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

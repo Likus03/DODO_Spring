@@ -1,6 +1,7 @@
 package by.it.academy.DODO.controllers;
 
-import by.it.academy.DODO.dto.OrderDTO;
+import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
+import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 import by.it.academy.DODO.services.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +16,17 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("worker/{id}/orders/status/notCompleted")
-    public List<OrderDTO> getNotCompletedOrder(@PathVariable UUID id) {
+    public List<OrderResponseDTO> getNotCompletedOrder(@PathVariable UUID id) {
         return orderService.getOrdersByParameters(id, false);
     }
 
     @GetMapping("worker/{id}/orders/status/completed")
-    public List<OrderDTO> getCompletedOrder(@PathVariable UUID id) {
+    public List<OrderResponseDTO> getCompletedOrder(@PathVariable UUID id) {
         return orderService.getOrdersByParameters(id, true);
     }
 
     @GetMapping("orders/status/available")
-    public List<OrderDTO> getAvailableOrder() {
+    public List<OrderResponseDTO> getAvailableOrder() {
         return orderService.getOrdersByParameters(null, false);
     }
     @PatchMapping("order/{id}")
@@ -37,8 +38,8 @@ public class OrderController {
     public boolean takeOrder(@PathVariable UUID idWorker, @PathVariable UUID idOrder){
         return orderService.takeOrder(idOrder, idWorker);
     }
-//    @PostMapping("order")
-//    public boolean createOrder(@RequestBody OrderDTO request) {
-//        return orderService.create(request);
-//    }
+    @PostMapping("order")
+    public boolean createOrder(@RequestBody OrderRequestDTO request) {
+        return orderService.create(request);
+    }
 }

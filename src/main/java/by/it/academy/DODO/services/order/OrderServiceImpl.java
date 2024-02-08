@@ -1,12 +1,14 @@
 package by.it.academy.DODO.services.order;
 
-import by.it.academy.DODO.dto.OrderDTO;
+import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
+import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 import by.it.academy.DODO.entities.Order;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.mappers.OrderMapper;
 import by.it.academy.DODO.repositories.order.OrderRepository;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,9 +23,10 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final WorkerRepository workerRepository;
     private final OrderMapper orderMapper;
+
     @Transactional(readOnly = true)
     @Override
-    public List<OrderDTO> getOrdersByParameters(UUID id, boolean completed) {
+    public List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed) {
         Optional<List<Order>> optionalOrders = orderRepository.findAllByWorker_IdAndCompleted(id, completed);
 
         if (optionalOrders.isPresent()) {
@@ -51,19 +54,20 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
-//    @Transactional
-//    @Override
-//    public boolean create(OrderDTO request) {
-//
-//        Order order = orderMapper.createUser(request);
-//        try {
-//            orderRepository.save(order);
-//        } catch (DataAccessException ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-//        return true;
-//    }
+    @Transactional
+    @Override
+    public boolean create(OrderRequestDTO orderRequestDTO) {
+
+        Order order = orderMapper.createOder(orderRequestDTO);
+
+        try {
+            orderRepository.save(order);
+        } catch (DataAccessException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     @Transactional
     @Override

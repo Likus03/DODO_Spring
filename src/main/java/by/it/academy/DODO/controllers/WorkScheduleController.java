@@ -1,7 +1,7 @@
 package by.it.academy.DODO.controllers;
 
-import by.it.academy.DODO.dto.WorkScheduleRequestDTO;
-import by.it.academy.DODO.dto.WorkScheduleResponseDTO;
+import by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO;
+import by.it.academy.DODO.dto.response.workSchedule.WorkScheduleResponseDTO;
 import by.it.academy.DODO.services.workSchedule.WorkScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
