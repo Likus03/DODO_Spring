@@ -21,14 +21,14 @@ public class User {
     @Column(name = "ID")
     private UUID idUser;
 
-    @Column(name = "LOGIN", nullable = false, unique = true)
+    @Column(name = "LOGIN", nullable = false, unique = true, updatable = false)
     private String login;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "WORKER_ID", nullable = false)
+    @JoinColumn(name = "WORKER_ID", nullable = false, updatable = false)
     private Worker worker;
 
     @Override

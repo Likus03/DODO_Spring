@@ -1,6 +1,7 @@
 package by.it.academy.DODO.controllers;
 
 import by.it.academy.DODO.dto.request.UserWorkerRequestDTO;
+import by.it.academy.DODO.dto.request.user.UserRequestDTO;
 import by.it.academy.DODO.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +23,8 @@ public class UserController {
         return userService.delete(id);
     }
 
-
+    @PatchMapping("user/{id}")
+    public boolean update(@PathVariable UUID id, @RequestBody UserRequestDTO userRequestDTO){
+        return userService.update(id, userRequestDTO);
+    }
 }

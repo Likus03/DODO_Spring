@@ -36,11 +36,6 @@ public class TentativeSchedule {
     @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
 
-    public TentativeSchedule(LocalDate dateWork, Worker worker) {
-        this.dateWork = dateWork;
-        this.worker = worker;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

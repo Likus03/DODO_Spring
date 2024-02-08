@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean takeOrder(UUID idOrder, UUID idWorker) {
         Optional<Order> optionalOrder = orderRepository.findById(idOrder);
-        Optional<Worker> optionalWorker = workerRepository.findById(idOrder);
+        Optional<Worker> optionalWorker = workerRepository.findById(idWorker);
 
         if (optionalOrder.isPresent() && optionalWorker.isPresent()) {
             Order order = optionalOrder.get();
@@ -82,10 +82,4 @@ public class OrderServiceImpl implements OrderService {
         }
         return false;
     }
-
-//    @Transactional(readOnly = true)
-//    @Override
-//    public Order findById(UUID id) {
-//        return orderRepository.findById(id).orElse(null);
-//    }
 }

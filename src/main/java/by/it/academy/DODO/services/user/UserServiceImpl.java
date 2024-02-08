@@ -14,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -45,15 +46,17 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean update(UserRequestDTO userRequestDTO) {
-        User user = userMapper.createUser(userRequestDTO);
-        try {
-            userRepository.save(user);
-        } catch (DataAccessException ex) {
-            ex.printStackTrace();
-            return false;
+    public boolean update(UUID worker_id, UserRequestDTO userRequestDTO) {
+        User newUser = userMapper.createUser(userRequestDTO);
+        Optional<User> optionalUser = userRepository.findByWorkerId(worker_id);
+        if(optionalUser.isPresent()){
+            User oldUser = optionalUser.get();
+            oldUser.setPassword(newUser.getPassword());
+            userRepository.save(oldUser);
+            return true;
         }
-        return true;
+
+        return false;
     }
 
     @Transactional
@@ -67,11 +70,5 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         return true;
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public User getLoggedUser(String login, String password) {
-        return userRepository.findByLoginAndPassword(login, password).orElse(null);
     }
 }

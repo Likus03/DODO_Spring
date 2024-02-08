@@ -1,7 +1,7 @@
 package by.it.academy.DODO.dto.response.order;
 
-import by.it.academy.DODO.dto.request.client.ClientToOrderRequestDTO;
-import by.it.academy.DODO.dto.response.menu.MenuResponseDTO;
+import by.it.academy.DODO.dto.response.client.ClientToOrderResponseDTO;
+import by.it.academy.DODO.dto.MenuDTO;
 import by.it.academy.DODO.dto.request.worker.WorkerToOrderRequestDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class OrderResponseDTO {
     private LocalDateTime deliveryTime;
     private Boolean completed;
     private Float totalCost;
-    private ClientToOrderRequestDTO client;
+    private ClientToOrderResponseDTO client;
     private WorkerToOrderRequestDTO worker;
-    private List<MenuResponseDTO> menus;
+    private List<MenuDTO> menus;
 }

@@ -1,6 +1,6 @@
 package by.it.academy.DODO.services.client;
 
-import by.it.academy.DODO.dto.response.client.ClientResponseDTO;
+import by.it.academy.DODO.dto.ClientDTO;
 import by.it.academy.DODO.entities.Client;
 import by.it.academy.DODO.mappers.ClientMapper;
 import by.it.academy.DODO.repositories.client.ClientRepository;
@@ -18,8 +18,8 @@ public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
 
     @Override
-    public boolean create(ClientResponseDTO clientResponseDTO) {
-        Client client = clientMapper.createClient(clientResponseDTO);
+    public boolean create(ClientDTO clientDTO) {
+        Client client = clientMapper.createClient(clientDTO);
         clientRepository.save(client);
         return true;
     }
@@ -36,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientResponseDTO get(UUID id) {
+    public ClientDTO get(UUID id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();
@@ -46,8 +46,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean update(UUID id, ClientResponseDTO clientResponseDTO) {
-        Client newClient = clientMapper.createClient(clientResponseDTO);
+    public boolean update(UUID id, ClientDTO clientDTO) {
+        Client newClient = clientMapper.createClient(clientDTO);
         Optional<Client> optionalClient = clientRepository.findById(id);
         if(optionalClient.isPresent()){
             Client oldClient = optionalClient.get();

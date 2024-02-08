@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
-//    List<OrderDTO> readAvailableOrder();
     List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed);
     boolean takeOrder(UUID idOrder, UUID idWorker);
     boolean create(OrderRequestDTO request);
     boolean completeOrder(UUID id);
-//    Order findById(UUID id);
 }

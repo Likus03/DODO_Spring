@@ -1,15 +1,12 @@
 package by.it.academy.DODO.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import by.it.academy.DODO.WorkerType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import by.it.academy.DODO.WorkerType;
 
-import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -52,14 +49,6 @@ public class Worker {
 
     @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TentativeSchedule> tentativeSchedules;
-
-    public Worker(String firstname, String surname, String phoneNumber, WorkerType workerType, List<Order> orders) {
-        this.firstname = firstname;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.workerType = workerType;
-        this.orders = orders;
-    }
 
     @Override
     public boolean equals(Object o) {

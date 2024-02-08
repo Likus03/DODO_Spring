@@ -23,14 +23,6 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerRequestDTO> readAll() {
-        return workerRepository.findAll().stream()
-                .map(workerMapper::createWorkerDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    @Override
     public List<WorkerRequestDTO> readBySearch(String parameter) {
         return workerRepository.findByParameter(parameter)
                 .map(workers -> workers.stream()
@@ -59,18 +51,6 @@ public class WorkerServiceImpl implements WorkerService {
         oldWorker.setPhoneNumber(newWorker.getPhoneNumber());
         oldWorker.setWorkerType(newWorker.getWorkerType());
     }
-
-//    @Transactional
-//    @Override
-//    public boolean delete(UUID id) {
-//        Optional<Worker> optionalWorker = workerRepository.findById(id);
-//        if (optionalWorker.isPresent()) {
-//            Worker worker = optionalWorker.get();
-//            workerRepository.delete(worker);
-//            return true;
-//        }
-//        return false;
-//    }
 
     @Transactional(readOnly = true)
     @Override
