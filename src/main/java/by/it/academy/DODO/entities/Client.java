@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Client {
     private String firstname;
 
     @NotEmpty(message = "Phone number cannot be null")
+    @Pattern(regexp = "^\\+\\d{1,14}$", message = "Phone number should start with '+' and be no more than 15 long")
     @Column(name = "PHONE_NUMBER", nullable = false, updatable = false)
     private String phoneNumber;
 
@@ -37,7 +39,7 @@ public class Client {
     @Column(name = "EMAIL")
     private String email;
 
-    @Past(message = "Date of birth must be in the past")
+    @Past(message = "Date of birth should be in the past")
     @Column(name = "BIRTHDAY", nullable = false, updatable = false)
     private LocalDate birthday;
 

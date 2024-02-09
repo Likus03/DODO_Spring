@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+  - changeSet:
+      id: 002-add-foreign-key-constraints
+      author: admin
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: USERS
+            baseColumnNames: WORKER_ID
+            constraintName: fk_users_workers
+            referencedTableName: WORKERS
+            referencedColumnNames: ID
+            onDelete: cascade
+            onUpdate: cascade
+
+        - addForeignKeyConstraint:
+            baseTableName: TENTATIVE_SCHEDULES
+            baseColumnNames: WORKER_ID
+            constraintName: fk_tentative_schedules_workers
+            referencedTableName: WORKERS
+            referencedColumnNames: ID
+            onDelete: cascade
+            onUpdate: cascade
+
+        - addForeignKeyConstraint:
+            baseTableName: WORK_SCHEDULES
+            baseColumnNames: WORKER_ID
+            constraintName: fk_work_schedules_workers
+            referencedTableName: WORKERS
+            referencedColumnNames: ID
+            onDelete: cascade
+            onUpdate: cascade
+
+        - addForeignKeyConstraint:
+            baseTableName: ORDERS
+            baseColumnNames: CLIENT_ID
+            constraintName: fk_clients_orders
+            referencedTableName: CLIENTS
+            referencedColumnNames: ID
+
+        - addForeignKeyConstraint:
+            baseTableName: ORDERS
+            baseColumnNames: WORKER_ID
+            constraintName: fk_workers_orders
+            referencedTableName: WORKERS
+            referencedColumnNames: ID
+
+        - addForeignKeyConstraint:
+            baseTableName: ORDER_DESCRIBES
+            baseColumnNames: MENU_ID
+            constraintName: fk_order_describes_menu
+            referencedTableName: MENUS
+            referencedColumnNames: ID
+
+        - addForeignKeyConstraint:
+            baseTableName: ORDER_DESCRIBES
+            baseColumnNames: ORDER_ID
+            constraintName: fk_order_describes_order
+            referencedTableName: ORDERS
+            referencedColumnNames: ID

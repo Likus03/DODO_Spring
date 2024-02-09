@@ -38,7 +38,6 @@ public class Worker {
     @Column(name = "PHONE_NUMBER", nullable = false)
     private String phoneNumber;
 
-    @NotEmpty(message = "Worker type cannot be null")
     @Column(name = "WORKER_TYPE", nullable = false)
     @Enumerated(STRING)
     private WorkerType workerType;

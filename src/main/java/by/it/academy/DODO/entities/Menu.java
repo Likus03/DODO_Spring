@@ -26,7 +26,7 @@ public class Menu {
     private UUID id;
 
     @NotEmpty(message = "Name cannot be null")
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
     @NotEmpty(message = "Describe cannot be null")
