@@ -4,6 +4,7 @@ import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
 import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 import by.it.academy.DODO.entities.Order;
 import by.it.academy.DODO.entities.Worker;
+import by.it.academy.DODO.exceptions.EmptyObjectException;
 import by.it.academy.DODO.mappers.OrderMapper;
 import by.it.academy.DODO.repositories.order.OrderRepository;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -26,16 +28,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed) {
-        Optional<List<Order>> optionalOrders = orderRepository.findAllByWorker_IdAndCompleted(id, completed);
+    public List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed) throws EmptyObjectException {
+        List<Order> orders = orderRepository.findAllByWorker_IdAndCompleted(id, completed)
+                .orElseThrow(() -> new NoSuchElementException(id.toString() + " " + completed));
 
-        if (optionalOrders.isPresent()) {
-            List<Order> orders = optionalOrders.get();
-            return orders.stream()
-                    .map(orderMapper::createOrderDTO)
-                    .collect(Collectors.toList());
+        if (orders.isEmpty()) {
+            throw new EmptyObjectException(id.toString() + " " + completed);
         }
-        return null;
+
+        return orders.stream()
+                .map(orderMapper::createOrderDTO)
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -71,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public boolean completeOrder(UUID id) {
+    public boolean completeOrder(UUID id) throws EmptyObjectException{
         Optional<Order> optionalOrder = orderRepository.findById(id);
 
         if (optionalOrder.isPresent()) {
@@ -80,6 +83,6 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.save(order);
             return true;
         }
-        return false;
+        throw new EmptyObjectException(id.toString());
     }
 }

@@ -2,6 +2,7 @@ package by.it.academy.DODO.services.client;
 
 import by.it.academy.DODO.dto.ClientDTO;
 import by.it.academy.DODO.entities.Client;
+import by.it.academy.DODO.exceptions.EmptyObjectException;
 import by.it.academy.DODO.mappers.ClientMapper;
 import by.it.academy.DODO.repositories.client.ClientRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,20 +37,20 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDTO get(UUID id) {
+    public ClientDTO get(UUID id) throws EmptyObjectException {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();
             return clientMapper.createClientDTO(client);
         }
-        return null;
+        throw new EmptyObjectException(id.toString());
     }
 
     @Override
     public boolean update(UUID id, ClientDTO clientDTO) {
         Client newClient = clientMapper.createClient(clientDTO);
         Optional<Client> optionalClient = clientRepository.findById(id);
-        if(optionalClient.isPresent()){
+        if (optionalClient.isPresent()) {
             Client oldClient = optionalClient.get();
             setUpdatingClient(newClient, oldClient);
             clientRepository.save(oldClient);

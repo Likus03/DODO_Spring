@@ -2,6 +2,7 @@ package by.it.academy.DODO.services.menu;
 
 import by.it.academy.DODO.dto.MenuDTO;
 import by.it.academy.DODO.entities.Menu;
+import by.it.academy.DODO.exceptions.EmptyObjectException;
 import by.it.academy.DODO.mappers.MenuMapper;
 import by.it.academy.DODO.repositories.menu.MenuRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +28,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuDTO> get() {
-        return menuRepository.findAll().stream()
+    public List<MenuDTO> get() throws EmptyObjectException {
+        List<Menu> menus = menuRepository.findAll();
+        if (menus.isEmpty()) {
+            throw new EmptyObjectException();
+        }
+        return menus.stream()
                 .map(menuMapper::createMenuDTO)
                 .collect(Collectors.toList());
     }
@@ -47,7 +52,7 @@ public class MenuServiceImpl implements MenuService {
     public boolean update(UUID id, MenuDTO menuDTO) {
         Menu newMenu = menuMapper.createMenu(menuDTO);
         Optional<Menu> optionalMenu = menuRepository.findById(id);
-        if(optionalMenu.isPresent()){
+        if (optionalMenu.isPresent()) {
             Menu oldMenu = optionalMenu.get();
             setUpdatingMenu(newMenu, oldMenu);
             menuRepository.save(oldMenu);

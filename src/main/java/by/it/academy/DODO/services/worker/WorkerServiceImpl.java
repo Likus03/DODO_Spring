@@ -2,17 +2,17 @@ package by.it.academy.DODO.services.worker;
 
 import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
 import by.it.academy.DODO.entities.Worker;
+import by.it.academy.DODO.exceptions.EmptyObjectException;
 import by.it.academy.DODO.mappers.WorkerMapper;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,12 +23,17 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerRequestDTO> readBySearch(String parameter) {
-        return workerRepository.findByParameter(parameter)
-                .map(workers -> workers.stream()
-                        .map(workerMapper::createWorkerDTO)
-                        .collect(Collectors.toList()))
-                .orElse(Collections.emptyList());
+    public List<WorkerRequestDTO> readBySearch(String parameter) throws EmptyObjectException {
+        List<Worker> workers = workerRepository
+                .findByParameter(parameter).orElseThrow(() -> new NoSuchElementException(parameter));
+
+        if (workers.isEmpty()) {
+            throw new EmptyObjectException(parameter);
+        }
+
+        return workers.stream()
+                .map(workerMapper::createWorkerDTO)
+                .toList();
     }
 
     @Transactional
@@ -54,7 +59,11 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public Worker findById(UUID id) {
-        return workerRepository.findById(id).orElse(null);
+    public Worker findById(UUID id) throws EmptyObjectException {
+        Worker worker = workerRepository.findById(id).orElse(null);
+        if (worker == null) {
+            throw new EmptyObjectException(id.toString());
+        }
+        return worker;
     }
 }

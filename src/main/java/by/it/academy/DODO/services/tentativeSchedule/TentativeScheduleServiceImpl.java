@@ -2,6 +2,7 @@ package by.it.academy.DODO.services.tentativeSchedule;
 
 import by.it.academy.DODO.dto.TentativeScheduleDTO;
 import by.it.academy.DODO.entities.TentativeSchedule;
+import by.it.academy.DODO.exceptions.EmptyObjectException;
 import by.it.academy.DODO.mappers.TentativeScheduleMapper;
 import by.it.academy.DODO.repositories.tentativeSchedule.TentativeScheduleRepository;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
@@ -12,11 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static by.it.academy.DODO.utils.Utility.getWeek;
 
@@ -59,23 +59,32 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate date) {
+    public List<TentativeScheduleDTO> readWeekScheduleByIdWorker(UUID idWorker, LocalDate date) throws EmptyObjectException {
         LocalDate[] week = getWeek(date);
-        return tentativeScheduleRepository.findAllByWorkerIdAndDateWorkBetween(idWorker, week[0], week[1])
-                .map(schedules -> schedules.stream()
-                        .map(tentativeScheduleMapper::createTentativeScheduleDTO)
-                        .collect(Collectors.toList()))
-                .orElse(Collections.emptyList());
+
+        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
+                .findAllByWorkerIdAndDateWorkBetween(idWorker, week[0], week[1]).orElseThrow(() -> new NoSuchElementException(idWorker + " " + date));
+
+        if (tentativeSchedules.isEmpty()) {
+            throw new EmptyObjectException(idWorker + " " + date);
+        }
+        return tentativeSchedules.stream()
+                .map(tentativeScheduleMapper::createTentativeScheduleDTO)
+                .toList();
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> readDaySchedule(LocalDate date) {
-        return tentativeScheduleRepository.findAllByDateWork(date)
-                .map(schedules -> schedules.stream()
-                        .map(tentativeScheduleMapper::createTentativeScheduleDTO)
-                        .collect(Collectors.toList()))
-                .orElse(Collections.emptyList());
+    public List<TentativeScheduleDTO> readDaySchedule(LocalDate date) throws EmptyObjectException{
+        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
+                .findAllByDateWork(date).orElseThrow(() -> new NoSuchElementException(date.toString()));
+
+        if (tentativeSchedules.isEmpty()) {
+            throw new EmptyObjectException(date.toString());
+        }
+        return tentativeSchedules.stream()
+                .map(tentativeScheduleMapper::createTentativeScheduleDTO)
+                .toList();
     }
 
     @Override
