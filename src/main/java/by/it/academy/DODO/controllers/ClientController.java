@@ -2,6 +2,7 @@ package by.it.academy.DODO.controllers;
 
 import by.it.academy.DODO.dto.ClientDTO;
 import by.it.academy.DODO.services.client.ClientService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("client")
-    public boolean create(@RequestBody ClientDTO clientDTO) {
+    public boolean create(@Valid @RequestBody ClientDTO clientDTO) {
         return clientService.create(clientDTO);
     }
 
@@ -24,12 +25,12 @@ public class ClientController {
     }
 
     @PatchMapping("client/{id}")
-    public boolean update(@PathVariable UUID id, @RequestBody ClientDTO clientDTO) {
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody ClientDTO clientDTO) {
         return clientService.update(id, clientDTO);
     }
 
     @DeleteMapping("client/{id}")
-    public boolean delete(@PathVariable UUID id) {
-        return clientService.delete(id);
+    public void delete(@PathVariable UUID id) {
+        clientService.delete(id);
     }
 }

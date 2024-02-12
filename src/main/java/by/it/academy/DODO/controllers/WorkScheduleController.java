@@ -3,6 +3,7 @@ package by.it.academy.DODO.controllers;
 import by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO;
 import by.it.academy.DODO.dto.response.workSchedule.WorkScheduleResponseDTO;
 import by.it.academy.DODO.services.workSchedule.WorkScheduleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,9 @@ import java.util.UUID;
 public class WorkScheduleController {
     private final WorkScheduleService workScheduleService;
 
-    @PostMapping("workSchedule")
-    public boolean create(@RequestBody WorkScheduleRequestDTO workScheduleRequestDTO){
-        return workScheduleService.createWorkSchedule(workScheduleRequestDTO);
+    @PostMapping("worker/{id}/workSchedule")
+    public boolean create(@PathVariable UUID id, @Valid @RequestBody WorkScheduleRequestDTO workScheduleRequestDTO){
+        return workScheduleService.createWorkSchedule(id, workScheduleRequestDTO);
     }
 
     @GetMapping("workSchedule/{dateWork}")

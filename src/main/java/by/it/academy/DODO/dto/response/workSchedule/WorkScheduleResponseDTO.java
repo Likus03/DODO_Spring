@@ -1,5 +1,6 @@
 package by.it.academy.DODO.dto.response.workSchedule;
 
+import by.it.academy.DODO.dto.response.worker.WorkerResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,5 @@ public class WorkScheduleResponseDTO {
     private LocalDate dateWork;
     private LocalTime startTime;
     private LocalTime endTime;
-    private String surname;
-    private String firstname;
+    private WorkerResponseDTO worker;
 }

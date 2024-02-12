@@ -3,7 +3,9 @@ package by.it.academy.DODO.controllers;
 import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
 import by.it.academy.DODO.dto.response.order.OrderResponseDTO;
 import by.it.academy.DODO.services.order.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +41,7 @@ public class OrderController {
         return orderService.takeOrder(idOrder, idWorker);
     }
     @PostMapping("order")
-    public boolean createOrder(@RequestBody OrderRequestDTO request) {
+    public boolean createOrder(@Valid @RequestBody OrderRequestDTO request, BindingResult bindingResult) {
         return orderService.create(request);
     }
 }

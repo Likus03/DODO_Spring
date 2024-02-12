@@ -14,7 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Slf4j
 @Aspect
 @Component
-public class LoggerAspect {
+public class ControllersLoggerAspect {
     private static final String LOG_REQUEST_PARAMETER = "{} -> {}: {}";
     private static final String LOG_RESPONSE_PARAMETER = "{} -> {}: {}, request = {}";
     @Pointcut("execution(* by.it.academy.DODO.controllers..*(..))")
@@ -35,7 +35,7 @@ public class LoggerAspect {
         HttpServletRequest request = getHttpServletRequest();
         log.info(LOG_RESPONSE_PARAMETER,
                 request.getMethod(),
-                joinPoint.getSignature(),
+                joinPoint.getSignature().toShortString(),
                 request.getRequestURI(),
                 response);
     }

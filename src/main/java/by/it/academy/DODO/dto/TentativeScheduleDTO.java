@@ -1,5 +1,6 @@
 package by.it.academy.DODO.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,12 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TentativeScheduleDTO {
+    @NotNull(message = "date work cannot be null")
     private LocalDate dateWork;
+
+    @NotNull(message = "start time cannot be null")
     private LocalTime startTime;
+
+    @NotNull(message = "end time cannot be null")
     private LocalTime endTime;
 }

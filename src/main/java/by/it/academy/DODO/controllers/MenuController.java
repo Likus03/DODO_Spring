@@ -2,6 +2,7 @@ package by.it.academy.DODO.controllers;
 
 import by.it.academy.DODO.dto.MenuDTO;
 import by.it.academy.DODO.services.menu.MenuService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class MenuController {
     private final MenuService menuService;
     @PostMapping("menu")
-    public boolean create(@RequestBody MenuDTO menuDTO) {
+    public boolean create(@Valid @RequestBody MenuDTO menuDTO) {
         return menuService.create(menuDTO);
     }
 
@@ -24,12 +25,17 @@ public class MenuController {
     }
 
     @DeleteMapping("menu/{id}")
-    public boolean delete(@PathVariable UUID id){
-        return menuService.delete(id);
+    public void delete(@PathVariable UUID id){
+        menuService.delete(id);
     }
 
     @PutMapping("menu/{id}")
-    public boolean update(@PathVariable UUID id, @RequestBody MenuDTO menuDTO){
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody MenuDTO menuDTO){
         return menuService.update(id, menuDTO);
+    }
+
+    @GetMapping("menu/{parameter}")
+    public List<MenuDTO> getByParameter(@PathVariable String parameter){
+        return menuService.getByParameter(parameter);
     }
 }

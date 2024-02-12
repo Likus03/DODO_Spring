@@ -2,17 +2,15 @@ package by.it.academy.DODO.services.worker;
 
 import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
 import by.it.academy.DODO.entities.Worker;
-import by.it.academy.DODO.exceptions.EmptyObjectException;
+import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.WorkerMapper;
 import by.it.academy.DODO.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -23,12 +21,12 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerRequestDTO> readBySearch(String parameter) throws EmptyObjectException {
+    public List<WorkerRequestDTO> getByParameter(String parameter) throws ClientInvalidDataException {
         List<Worker> workers = workerRepository
-                .findByParameter(parameter).orElseThrow(() -> new NoSuchElementException(parameter));
+                .findByParameter(parameter).orElse(Collections.emptyList());
 
         if (workers.isEmpty()) {
-            throw new EmptyObjectException(parameter);
+            throw new ClientInvalidDataException("Worker does not exist");
         }
 
         return workers.stream()
@@ -38,16 +36,27 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, WorkerRequestDTO request) {
+    public boolean update(UUID id, WorkerRequestDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
         Worker newWorker = workerMapper.createWorker(request);
         Optional<Worker> optionalWorker = workerRepository.findById(id);
         if (optionalWorker.isPresent()) {
             Worker oldWorker = optionalWorker.get();
             setUpdatingWorker(newWorker, oldWorker);
-            workerRepository.save(oldWorker);
-            return true;
+
+            return save(oldWorker);
         }
-        return false;
+        throw new ClientInvalidDataException("Worker was not found");
+    }
+
+    @Override
+    @Transactional
+    public boolean save(Worker worker) throws DataIntegrityViolationException {
+        try {
+            workerRepository.save(worker);
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Unable to save worker");
+        }
     }
 
     private void setUpdatingWorker(Worker newWorker, Worker oldWorker) {
@@ -55,15 +64,5 @@ public class WorkerServiceImpl implements WorkerService {
         oldWorker.setSurname(newWorker.getSurname());
         oldWorker.setPhoneNumber(newWorker.getPhoneNumber());
         oldWorker.setWorkerType(newWorker.getWorkerType());
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Worker findById(UUID id) throws EmptyObjectException {
-        Worker worker = workerRepository.findById(id).orElse(null);
-        if (worker == null) {
-            throw new EmptyObjectException(id.toString());
-        }
-        return worker;
     }
 }

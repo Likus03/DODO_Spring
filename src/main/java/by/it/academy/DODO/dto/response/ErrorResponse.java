@@ -9,6 +9,5 @@ import java.time.LocalDateTime;
 @Builder
 public class ErrorResponse {
     private String message;
-    private String describe;
     private LocalDateTime time;
 }

@@ -3,8 +3,8 @@ package by.it.academy.DODO.exceptions;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class EmptyObjectException extends RuntimeException  {
-    public EmptyObjectException(String message){
+public class ClientInvalidDataException extends RuntimeException  {
+    public ClientInvalidDataException(String message){
         super(message);
     }
 

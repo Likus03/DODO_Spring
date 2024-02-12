@@ -206,6 +206,7 @@ databaseChangeLog:
               - column:
                   name: COMPLETED
                   type: boolean
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:

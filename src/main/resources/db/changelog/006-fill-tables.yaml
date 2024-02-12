@@ -395,17 +395,11 @@ databaseChangeLog:
                   name: ID
                   value: 'c76ed671-8090-4b15-9f48-0fe26bef6b42'
               - column:
-                  name: TOTAL_COST
-                  value: null
-              - column:
                   name: ADDRESS
                   value: 'Ladygina 12, 3'
               - column:
                   name: DELIVERY_TIME
                   value: '2024-02-09T18:00'
-              - column:
-                  name: COMPLETED
-                  value: false
               - column:
                   name: CLIENT_ID
                   value: '064bdc47-7013-4528-84d5-9ab1cd550eb4'
@@ -419,17 +413,11 @@ databaseChangeLog:
                   name: ID
                   value: 'e9c7c763-6a3a-4a36-bb59-159b7b87f682'
               - column:
-                  name: TOTAL_COST
-                  value: null
-              - column:
                   name: ADDRESS
                   value: 'Balkankaya 23, 66'
               - column:
                   name: DELIVERY_TIME
                   value: '2024-02-09T19:20'
-              - column:
-                  name: COMPLETED
-                  value: false
               - column:
                   name: CLIENT_ID
                   value: 'ba65598f-a87e-4987-b5b5-53ff2e1c409c'

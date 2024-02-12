@@ -2,6 +2,7 @@ package by.it.academy.DODO.controllers;
 
 import by.it.academy.DODO.dto.TentativeScheduleDTO;
 import by.it.academy.DODO.services.tentativeSchedule.TentativeScheduleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,22 +17,22 @@ public class TentativeScheduleController {
     private final TentativeScheduleService tentativeScheduleService;
 
     @PostMapping("worker/{id}/tentativeSchedule")
-    public boolean create(@PathVariable UUID id, @RequestBody TentativeScheduleDTO request) {
+    public boolean create(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO request) {
         return tentativeScheduleService.create(id, request);
     }
 
     @GetMapping("worker/{id}/tentativeSchedule/{dateWork}")
     public List<TentativeScheduleDTO> getWeekScheduleByIdWorker(@PathVariable UUID id, @PathVariable LocalDate dateWork) {
-        return tentativeScheduleService.readWeekScheduleByIdWorker(id, dateWork);
+        return tentativeScheduleService.getWeekScheduleByIdWorker(id, dateWork);
     }
 
     @GetMapping("tentativeSchedule/{dateWork}")
     public List<TentativeScheduleDTO> getDaySchedule(@PathVariable LocalDate dateWork){
-        return tentativeScheduleService.readDaySchedule(dateWork);
+        return tentativeScheduleService.getDaySchedule(dateWork);
     }
 
     @PutMapping("tentativeSchedule/{id}")
-    public boolean update(@PathVariable UUID id, @RequestBody TentativeScheduleDTO request){
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO request){
         return tentativeScheduleService.update(id, request);
     }
 

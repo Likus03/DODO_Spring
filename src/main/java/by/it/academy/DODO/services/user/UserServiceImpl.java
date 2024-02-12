@@ -1,16 +1,17 @@
 package by.it.academy.DODO.services.user;
 
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
-import by.it.academy.DODO.dto.request.user.UserRequestDTO;
 import by.it.academy.DODO.dto.request.UserWorkerRequestDTO;
+import by.it.academy.DODO.dto.request.user.UserRequestDTO;
+import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
 import by.it.academy.DODO.entities.User;
 import by.it.academy.DODO.entities.Worker;
+import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.UserMapper;
 import by.it.academy.DODO.mappers.WorkerMapper;
 import by.it.academy.DODO.repositories.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean create(UserWorkerRequestDTO request) {
+    public boolean create(UserWorkerRequestDTO request) throws DataIntegrityViolationException {
         WorkerRequestDTO workerRequestDTO = request.getWorkerRequestDTO();
         UserRequestDTO userRequestDTO = request.getUserRequestDTO();
 
@@ -35,40 +36,41 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.createUser(userRequestDTO);
 
         user.setWorker(worker);
+        return save(user);
+    }
+
+    @Override
+    @Transactional
+    public boolean save(User user) throws DataIntegrityViolationException {
         try {
             userRepository.save(user);
-        } catch (DataAccessException ex) {
-            ex.printStackTrace();
-            return false;
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Unable to save user");
         }
-        return true;
     }
 
     @Transactional
     @Override
-    public boolean update(UUID worker_id, UserRequestDTO userRequestDTO) {
+    public boolean update(UUID idWorker, UserRequestDTO userRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
         User newUser = userMapper.createUser(userRequestDTO);
-        Optional<User> optionalUser = userRepository.findByWorkerId(worker_id);
-        if(optionalUser.isPresent()){
+        Optional<User> optionalUser = userRepository.findByWorkerId(idWorker);
+        if (optionalUser.isPresent()) {
             User oldUser = optionalUser.get();
             oldUser.setPassword(newUser.getPassword());
-            userRepository.save(oldUser);
-            return true;
-        }
 
-        return false;
+            return save(oldUser);
+        }
+        throw new ClientInvalidDataException("User was not found");
     }
 
     @Transactional
     @Override
-    public boolean delete(UUID id) {
-        try {
-            userRepository.deleteById(id);
-        } catch (IllegalArgumentException ex) {
-            log.error("reason: ", ex.getCause());
-            ex.printStackTrace();
-            return false;
-        }
+    public boolean delete(UUID idWorker) throws ClientInvalidDataException {
+        User user = userRepository.findByWorkerId(idWorker)
+                .orElseThrow(() -> new ClientInvalidDataException("User was not found"));
+        userRepository.delete(user);
+
         return true;
     }
 }

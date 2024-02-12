@@ -2,16 +2,19 @@ package by.it.academy.DODO.services.client;
 
 import by.it.academy.DODO.dto.ClientDTO;
 import by.it.academy.DODO.entities.Client;
-import by.it.academy.DODO.exceptions.EmptyObjectException;
+import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.ClientMapper;
 import by.it.academy.DODO.repositories.client.ClientRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
@@ -19,44 +22,55 @@ public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
 
     @Override
-    public boolean create(ClientDTO clientDTO) {
+    @Transactional
+    public boolean create(ClientDTO clientDTO) throws DataIntegrityViolationException{
         Client client = clientMapper.createClient(clientDTO);
-        clientRepository.save(client);
-        return true;
+        return save(client);
     }
 
     @Override
-    public boolean delete(UUID id) {
+    @Transactional
+    public boolean save(Client client) throws DataIntegrityViolationException{
         try {
-            clientRepository.deleteById(id);
-        } catch (DataAccessException ex) {
-            ex.printStackTrace();
-            return false;
+            clientRepository.saveAndFlush(client);
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Unable to save client");
         }
+    }
+
+    @Override
+    @Transactional
+    public boolean delete(UUID id) throws ClientInvalidDataException{
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new ClientInvalidDataException("Client was not found"));
+        clientRepository.delete(client);
         return true;
     }
 
     @Override
-    public ClientDTO get(UUID id) throws EmptyObjectException {
+    @Transactional(readOnly = true)
+    public ClientDTO get(UUID id) throws ClientInvalidDataException {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();
             return clientMapper.createClientDTO(client);
         }
-        throw new EmptyObjectException(id.toString());
+        throw new ClientInvalidDataException("Client does not exist");
     }
 
     @Override
-    public boolean update(UUID id, ClientDTO clientDTO) {
+    @Transactional
+    public boolean update(UUID id, ClientDTO clientDTO) throws DataIntegrityViolationException, ClientInvalidDataException{
         Client newClient = clientMapper.createClient(clientDTO);
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client oldClient = optionalClient.get();
             setUpdatingClient(newClient, oldClient);
-            clientRepository.save(oldClient);
-            return true;
+
+            return save(oldClient);
         }
-        return false;
+        throw new ClientInvalidDataException("Client was not found");
     }
 
     private void setUpdatingClient(Client newClient, Client oldClient) {

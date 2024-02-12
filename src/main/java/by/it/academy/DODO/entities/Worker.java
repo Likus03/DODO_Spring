@@ -2,7 +2,6 @@ package by.it.academy.DODO.entities;
 
 import by.it.academy.DODO.WorkerType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,15 +25,15 @@ public class Worker {
     @Column(name = "ID")
     private UUID id;
 
-    @NotEmpty(message = "Firstname cannot be null")
+
     @Column(name = "FIRSTNAME", nullable = false)
     private String firstname;
 
-    @NotEmpty(message = "Surname cannot be null")
+
     @Column(name = "SURNAME", nullable = false)
     private String surname;
 
-    @NotEmpty(message = "Phone number cannot be null")
+
     @Column(name = "PHONE_NUMBER", nullable = false)
     private String phoneNumber;
 

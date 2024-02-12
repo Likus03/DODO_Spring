@@ -4,83 +4,84 @@ import by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO;
 import by.it.academy.DODO.dto.response.workSchedule.WorkScheduleResponseDTO;
 import by.it.academy.DODO.entities.WorkSchedule;
 import by.it.academy.DODO.entities.Worker;
-import by.it.academy.DODO.exceptions.EmptyObjectException;
+import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.WorkScheduleMapper;
 import by.it.academy.DODO.repositories.workSchedule.WorkScheduleRepository;
-import by.it.academy.DODO.services.worker.WorkerService;
+import by.it.academy.DODO.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class WorkScheduleServiceImpl implements WorkScheduleService {
     private final WorkScheduleRepository workScheduleRepository;
-    private final WorkerService workerService;
+    private final WorkerRepository workerRepository;
     private final WorkScheduleMapper workScheduleMapper;
 
     @Override
-    public boolean createWorkSchedule(WorkScheduleRequestDTO workScheduleRequestDTO) throws DataIntegrityViolationException/*нарушение unique*/ {
+    @Transactional
+    public boolean createWorkSchedule(UUID id, WorkScheduleRequestDTO workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
         WorkSchedule workSchedule = workScheduleMapper.createWorkSchedule(workScheduleRequestDTO);
-        Worker worker = workerService.findById(workScheduleRequestDTO.getIdWorker());
+        Worker worker = workerRepository.findById(id)
+                .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found"));
         workSchedule.setWorker(worker);
+
+        return save(workSchedule);
+    }
+
+    @Override
+    @Transactional
+    public boolean save(WorkSchedule workSchedule) throws DataIntegrityViolationException {
         try {
             workScheduleRepository.save(workSchedule);
-        } catch (DataAccessException ex) {
-            ex.printStackTrace();
-            return false;
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityViolationException("Unable to save work schedule");
         }
-        return true;
     }
 
-    @Override
-    public List<WorkScheduleResponseDTO> getDayWorkSchedule(LocalDate dateWork) throws EmptyObjectException {
-        List<WorkSchedule> workSchedules = workScheduleRepository.findAllByDateWork(dateWork).orElseThrow(() -> new NullPointerException(dateWork.toString()));
-
+    private List<WorkScheduleResponseDTO> getWorkScheduleResponseDTOS(List<WorkSchedule> workSchedules) throws ClientInvalidDataException{
         if (workSchedules.isEmpty()) {
-            throw new EmptyObjectException(dateWork.toString());
+            throw new ClientInvalidDataException("Work schedule does not exist");
         }
         return workSchedules.stream()
-                .map(workSchedule -> {
-                    WorkScheduleResponseDTO workScheduleResponseDTO = workScheduleMapper.createWorkScheduleDTO(workSchedule);
-                    workScheduleResponseDTO.setFirstname(workSchedule.getWorker().getFirstname());
-                    workScheduleResponseDTO.setSurname(workSchedule.getWorker().getSurname());
-                    return workScheduleResponseDTO;
-                })
-                .toList();
+                .map(workScheduleMapper::createWorkScheduleDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<WorkScheduleResponseDTO> getWeekWorkSchedule(LocalDate startWork, LocalDate endWork) throws EmptyObjectException {
+    @Transactional(readOnly = true)
+    public List<WorkScheduleResponseDTO> getDayWorkSchedule(LocalDate dateWork) throws ClientInvalidDataException {
         List<WorkSchedule> workSchedules = workScheduleRepository
-                .findAllByDateWorkBetween(startWork, endWork).orElseThrow(() -> new NullPointerException(startWork.toString() + " " + endWork.toString()));
+                .findAllByDateWork(dateWork).orElse(Collections.emptyList());
 
-        if (workSchedules.isEmpty()) {
-            throw new EmptyObjectException(startWork.toString() + " " + endWork.toString());
-        }
-        return workSchedules.stream()
-                .map(workSchedule -> {
-                    WorkScheduleResponseDTO workScheduleResponseDTO = workScheduleMapper.createWorkScheduleDTO(workSchedule);
-                    workScheduleResponseDTO.setFirstname(workSchedule.getWorker().getFirstname());
-                    workScheduleResponseDTO.setSurname(workSchedule.getWorker().getSurname());
-                    return workScheduleResponseDTO;
-                })
-                .toList();
+        return getWorkScheduleResponseDTOS(workSchedules);
     }
 
     @Override
-    public boolean deleteWorkSchedule(UUID id) {
-        try {
-            workScheduleRepository.deleteById(id);
-        } catch (DataAccessException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+    @Transactional(readOnly = true)
+    public List<WorkScheduleResponseDTO> getWeekWorkSchedule(LocalDate startWork, LocalDate endWork) throws ClientInvalidDataException {
+        List<WorkSchedule> workSchedules = workScheduleRepository
+                .findAllByDateWorkBetween(startWork, endWork).orElse(Collections.emptyList());
+
+        return getWorkScheduleResponseDTOS(workSchedules);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteWorkSchedule(UUID id) throws ClientInvalidDataException{
+        WorkSchedule workerSchedule = workScheduleRepository.findById(id)
+                .orElseThrow(() -> new ClientInvalidDataException("Worker was not found"));
+
+        workScheduleRepository.delete(workerSchedule);
         return true;
     }
 }
