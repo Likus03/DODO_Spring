@@ -7,15 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface MenuService {
-    boolean create(MenuDTO menuRequestDTO);
-
-    boolean save(Menu menu);
-
-    List<MenuDTO> get();
-
-    boolean delete(UUID id);
-
-    boolean update(UUID id, MenuDTO menuDTO);
-
-    List<MenuDTO> getByParameter(String parameter);
+    boolean createMenu(MenuDTO menuRequestDTO);
+    boolean saveMenu(Menu menu);
+    List<MenuDTO> getAllMenu();
+    List<MenuDTO> getMenuByParameter(String parameter);
+    boolean deleteMenu(UUID id);
+    boolean updateMenu(UUID id, MenuDTO menuDTO);
 }

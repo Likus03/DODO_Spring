@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
@@ -31,29 +30,46 @@ public class MenuServiceTests {
     @Test
     @Transactional
     public void testCreate() {
-        assertThrows(DataIntegrityViolationException.class, () -> {
-                    menuService.create(new MenuDTO());
-                }
-        );
-    }
-
-    @Test
-    @Transactional
-    public void deleteTest() {
-        assertThrows(ClientInvalidDataException.class, () -> {
-            menuService.delete(UUID.randomUUID());
+        assertThrows(DataIntegrityViolationException.class, () ->
+        {
+            menuService.createMenu(new MenuDTO());
         });
     }
 
     @Test
     @Transactional
-    public void testUpdateWithoutId() {
-        boolean realResult = menuService.update(UUID.randomUUID(), menuMapper.createMenuDTO(new Menu(UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"), "gavai", "Signature alfredo sauce, chicken, mozzarella, pineapples", 18.99f, new ArrayList<>())));
-        assertFalse(realResult);
+    public void testDelete() {
+        assertThrows(ClientInvalidDataException.class, () ->
+        {
+            menuService.deleteMenu(UUID.randomUUID());
+        });
+    }
+
+    @Test
+    @Transactional
+    public void testUpdate() {
+        assertThrows(ClientInvalidDataException.class, () ->
+        {
+            menuService.updateMenu(UUID.randomUUID(), menuMapper.createMenuDTO(
+                    new Menu(
+                            UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"),
+                            "gavai", "Signature alfredo sauce, chicken, mozzarella, pineapples",
+                            18.99f,
+                            new ArrayList<>())));
+        });
 
         assertThrows(DataIntegrityViolationException.class, () ->
         {
-            menuService.update(UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"), new MenuDTO());
+            menuService.updateMenu(UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"), new MenuDTO());
+        });
+    }
+
+    @Test
+    @Transactional
+    public void testSave(){
+        assertThrows(DataIntegrityViolationException.class, () ->
+        {
+            menuService.saveMenu(new Menu());
         });
     }
 }

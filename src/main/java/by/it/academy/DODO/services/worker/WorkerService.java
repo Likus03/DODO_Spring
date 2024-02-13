@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WorkerService {
-    List<WorkerRequestDTO> getByParameter(String parameter);
-    boolean update(UUID id, WorkerRequestDTO worker);
-    boolean save(Worker oldWorker);
+    List<WorkerRequestDTO> getWorkersByParameter(String parameter);
+    boolean updateWorker(UUID id, WorkerRequestDTO workerRequestDTO);
+    boolean saveWorker(Worker worker);
 }

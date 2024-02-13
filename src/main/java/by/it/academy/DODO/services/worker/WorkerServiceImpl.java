@@ -21,7 +21,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerRequestDTO> getByParameter(String parameter) throws ClientInvalidDataException {
+    public List<WorkerRequestDTO> getWorkersByParameter(String parameter) throws ClientInvalidDataException {
         List<Worker> workers = workerRepository
                 .findByParameter(parameter).orElse(Collections.emptyList());
 
@@ -36,23 +36,23 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, WorkerRequestDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
+    public boolean updateWorker(UUID id, WorkerRequestDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
         Worker newWorker = workerMapper.createWorker(request);
         Optional<Worker> optionalWorker = workerRepository.findById(id);
         if (optionalWorker.isPresent()) {
             Worker oldWorker = optionalWorker.get();
             setUpdatingWorker(newWorker, oldWorker);
 
-            return save(oldWorker);
+            return saveWorker(oldWorker);
         }
         throw new ClientInvalidDataException("Worker was not found");
     }
 
     @Override
     @Transactional
-    public boolean save(Worker worker) throws DataIntegrityViolationException {
+    public boolean saveWorker(Worker worker) throws DataIntegrityViolationException {
         try {
-            workerRepository.save(worker);
+            workerRepository.saveAndFlush(worker);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save worker");

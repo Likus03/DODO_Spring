@@ -29,14 +29,17 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean create(UUID idWorker, TentativeScheduleDTO request) throws DataIntegrityViolationException {
+    public boolean createTentativeSchedule(UUID idWorker, TentativeScheduleDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
         TentativeSchedule tentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
 
-        tentativeSchedule.setWorker(workerRepository.findById(idWorker).orElseThrow());
-        return save(tentativeSchedule);
+        tentativeSchedule.setWorker(workerRepository.findById(idWorker)
+                .orElseThrow(() -> new ClientInvalidDataException("Worker was not found")));
+        return saveTentativeSchedule(tentativeSchedule);
     }
 
-    private boolean save(TentativeSchedule tentativeSchedule) throws DataIntegrityViolationException {
+    @Override
+    @Transactional
+    public boolean saveTentativeSchedule(TentativeSchedule tentativeSchedule) throws DataIntegrityViolationException {
         try {
             tentativeScheduleRepository.saveAndFlush(tentativeSchedule);
             return true;
@@ -47,14 +50,14 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean update(UUID id, TentativeScheduleDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
+    public boolean updateTentativeSchedule(UUID id, TentativeScheduleDTO request) throws ClientInvalidDataException {
         TentativeSchedule newTentativeSchedule = tentativeScheduleMapper.createTentativeSchedule(request);
         Optional<TentativeSchedule> optionalTentativeSchedule = tentativeScheduleRepository.findById(id);
 
         if (optionalTentativeSchedule.isPresent()) {
             TentativeSchedule oldTentativeSchedule = optionalTentativeSchedule.get();
             setSchedule(newTentativeSchedule.getStartTime(), newTentativeSchedule.getEndTime(), oldTentativeSchedule);
-            return save(oldTentativeSchedule);
+            return saveTentativeSchedule(oldTentativeSchedule);
         }
         throw new ClientInvalidDataException("Tentative schedule was not found");
     }
@@ -66,26 +69,25 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> getWeekScheduleByIdWorker(UUID idWorker, LocalDate date) throws ClientInvalidDataException {
+    public List<TentativeScheduleDTO> getWeekTentativeSchedule(UUID idWorker, LocalDate date) throws ClientInvalidDataException {
         LocalDate[] week = getWeek(date);
 
         List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
                 .findAllByWorkerIdAndDateWorkBetween(idWorker, week[0], week[1]).orElse(Collections.emptyList());
 
-        if (tentativeSchedules.isEmpty()) {
-            throw new ClientInvalidDataException("Tentative schedule was not found");
-        }
-        return tentativeSchedules.stream()
-                .map(tentativeScheduleMapper::createTentativeScheduleDTO)
-                .toList();
+        return getTentativeScheduleDTOS(tentativeSchedules);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDTO> getDaySchedule(LocalDate date) throws ClientInvalidDataException {
+    public List<TentativeScheduleDTO> getDayTentativeSchedule(LocalDate date) throws ClientInvalidDataException {
         List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
                 .findAllByDateWork(date).orElse(Collections.emptyList());
 
+        return getTentativeScheduleDTOS(tentativeSchedules);
+    }
+
+    private List<TentativeScheduleDTO> getTentativeScheduleDTOS(List<TentativeSchedule> tentativeSchedules) throws ClientInvalidDataException {
         if (tentativeSchedules.isEmpty()) {
             throw new ClientInvalidDataException("Tentative schedule was not found");
         }
@@ -96,7 +98,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean delete(UUID id) throws ClientInvalidDataException{
+    public boolean deleteTentativeSchedule(UUID id) throws ClientInvalidDataException {
         TentativeSchedule tentativeSchedule = tentativeScheduleRepository.findById(id)
                 .orElseThrow(() -> new ClientInvalidDataException("Tentative schedule was not found"));
 

@@ -28,22 +28,25 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean create(UserWorkerRequestDTO request) throws DataIntegrityViolationException {
+    public boolean createUser(UserWorkerRequestDTO request) throws DataIntegrityViolationException {
         WorkerRequestDTO workerRequestDTO = request.getWorkerRequestDTO();
         UserRequestDTO userRequestDTO = request.getUserRequestDTO();
 
         Worker worker = workerMapper.createWorker(workerRequestDTO);
         User user = userMapper.createUser(userRequestDTO);
 
-        user.setWorker(worker);
-        return save(user);
+        if(worker != null & user != null) {
+            user.setWorker(worker);
+            return saveUser(user);
+        }
+        throw new ClientInvalidDataException("Unable to save");
     }
 
     @Override
     @Transactional
-    public boolean save(User user) throws DataIntegrityViolationException {
+    public boolean saveUser(User user) throws DataIntegrityViolationException {
         try {
-            userRepository.save(user);
+            userRepository.saveAndFlush(user);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save user");
@@ -52,21 +55,21 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean update(UUID idWorker, UserRequestDTO userRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+    public boolean updateUser(UUID idWorker, UserRequestDTO userRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
         User newUser = userMapper.createUser(userRequestDTO);
         Optional<User> optionalUser = userRepository.findByWorkerId(idWorker);
         if (optionalUser.isPresent()) {
             User oldUser = optionalUser.get();
             oldUser.setPassword(newUser.getPassword());
 
-            return save(oldUser);
+            return saveUser(oldUser);
         }
         throw new ClientInvalidDataException("User was not found");
     }
 
     @Transactional
     @Override
-    public boolean delete(UUID idWorker) throws ClientInvalidDataException {
+    public boolean deleteUser(UUID idWorker) throws ClientInvalidDataException {
         User user = userRepository.findByWorkerId(idWorker)
                 .orElseThrow(() -> new ClientInvalidDataException("User was not found"));
         userRepository.delete(user);

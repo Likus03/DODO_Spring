@@ -26,14 +26,14 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
-    public boolean create(MenuDTO menuRequestDTO) throws DataIntegrityViolationException{
+    public boolean createMenu(MenuDTO menuRequestDTO) throws DataIntegrityViolationException{
         Menu menu = menuMapper.createMenu(menuRequestDTO);
-        return save(menu);
+        return saveMenu(menu);
     }
 
     @Override
     @Transactional
-    public boolean save(Menu menu) throws DataIntegrityViolationException{
+    public boolean saveMenu(Menu menu) throws DataIntegrityViolationException{
         try {
             menuRepository.saveAndFlush(menu);
             return true;
@@ -44,10 +44,23 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<MenuDTO> get() throws ClientInvalidDataException {
+    public List<MenuDTO> getAllMenu() throws ClientInvalidDataException {
         List<Menu> menus = menuRepository.findAll();
+
+        return getMenuDTOS(menus);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MenuDTO> getMenuByParameter(String parameter) throws ClientInvalidDataException{
+        List<Menu> menus = menuRepository.findByParameter(parameter).orElse(Collections.emptyList());
+
+        return getMenuDTOS(menus);
+    }
+
+    private List<MenuDTO> getMenuDTOS(List<Menu> menus) {
         if (menus.isEmpty()) {
-            throw new ClientInvalidDataException("Menu information not found");
+            throw new ClientInvalidDataException("Menu was not found");
         }
         return menus.stream()
                 .map(menuMapper::createMenuDTO)
@@ -56,7 +69,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
-    public boolean delete(UUID id) throws ClientInvalidDataException{
+    public boolean deleteMenu(UUID id) throws ClientInvalidDataException{
         Menu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new ClientInvalidDataException("The requested menu was not found"));
         menuRepository.delete(menu);
@@ -65,13 +78,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
-    public boolean update(UUID id, MenuDTO menuDTO) throws ClientInvalidDataException, DataIntegrityViolationException{
+    public boolean updateMenu(UUID id, MenuDTO menuDTO) throws ClientInvalidDataException, DataIntegrityViolationException{
         Menu newMenu = menuMapper.createMenu(menuDTO);
         Optional<Menu> optionalMenu = menuRepository.findById(id);
         if (optionalMenu.isPresent()) {
             Menu oldMenu = optionalMenu.get();
             setUpdatingMenu(newMenu, oldMenu);
-            return save(oldMenu);
+            return saveMenu(oldMenu);
         }
         throw new ClientInvalidDataException("Menu was not found");
     }
@@ -80,18 +93,5 @@ public class MenuServiceImpl implements MenuService {
         oldMenu.setName(newMenu.getName());
         oldMenu.setDescribe(newMenu.getDescribe());
         oldMenu.setCost(newMenu.getCost());
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<MenuDTO> getByParameter(String parameter) throws ClientInvalidDataException{
-        List<Menu> menus = menuRepository.findByParameter(parameter).orElse(Collections.emptyList());
-
-        if(menus.isEmpty()){
-            throw new ClientInvalidDataException("Menu was not found");
-        }
-        return menus.stream()
-                .map(menuMapper::createMenuDTO)
-                .toList();
     }
 }

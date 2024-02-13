@@ -14,28 +14,29 @@ import java.util.UUID;
 @RequestMapping("/api/v1")
 public class MenuController {
     private final MenuService menuService;
+
     @PostMapping("menu")
     public boolean create(@Valid @RequestBody MenuDTO menuDTO) {
-        return menuService.create(menuDTO);
+        return menuService.createMenu(menuDTO);
     }
 
     @GetMapping("menu")
-    public List<MenuDTO> getAll(){
-        return menuService.get();
+    public List<MenuDTO> getAll() {
+        return menuService.getAllMenu();
     }
 
     @DeleteMapping("menu/{id}")
-    public void delete(@PathVariable UUID id){
-        menuService.delete(id);
+    public boolean delete(@PathVariable UUID id) {
+        return menuService.deleteMenu(id);
     }
 
     @PutMapping("menu/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody MenuDTO menuDTO){
-        return menuService.update(id, menuDTO);
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody MenuDTO menuDTO) {
+        return menuService.updateMenu(id, menuDTO);
     }
 
     @GetMapping("menu/{parameter}")
-    public List<MenuDTO> getByParameter(@PathVariable String parameter){
-        return menuService.getByParameter(parameter);
+    public List<MenuDTO> getByParameter(@PathVariable String parameter) {
+        return menuService.getMenuByParameter(parameter);
     }
 }

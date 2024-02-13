@@ -28,8 +28,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed) throws ClientInvalidDataException {
-        List<Order> orders = orderRepository.findAllByWorker_IdAndCompleted(id, completed)
+    public List<OrderResponseDTO> getOrdersByParameters(UUID idWorker, boolean completed) throws ClientInvalidDataException {
+        List<Order> orders = orderRepository.findAllByWorker_IdAndCompleted(idWorker, completed)
                 .orElse(Collections.emptyList());
 
         if (orders.isEmpty()) {
@@ -51,21 +51,21 @@ public class OrderServiceImpl implements OrderService {
             Order order = optionalOrder.get();
             Worker worker = optionalWorker.get();
             order.setWorker(worker);
-            return save(order);
+            return saveOrder(order);
         }
         return false;
     }
 
     @Transactional
     @Override
-    public boolean create(OrderRequestDTO orderRequestDTO) throws DataIntegrityViolationException{
+    public boolean createOrder(OrderRequestDTO orderRequestDTO) throws DataIntegrityViolationException{
         Order order = orderMapper.createOder(orderRequestDTO);
-        return save(order);
+        return saveOrder(order);
     }
 
     @Override
     @Transactional
-    public boolean save(Order order) throws DataIntegrityViolationException {
+    public boolean saveOrder(Order order) throws DataIntegrityViolationException {
         try {
             orderRepository.saveAndFlush(order);
             return true;
@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setCompleted(true);
-            return save(order);
+            return saveOrder(order);
 
         }
         throw new ClientInvalidDataException("Order was not found");

@@ -15,13 +15,13 @@ import java.util.UUID;
 public class WorkerController {
     private final WorkerService workerService;
 
-    @GetMapping("workers/{param}")
-    public List<WorkerRequestDTO> getWorkersByParameter(@PathVariable String param) {
-        return workerService.getByParameter(param);
+    @GetMapping("workers/{parameter}")
+    public List<WorkerRequestDTO> getByParameter(@PathVariable String parameter) {
+        return workerService.getWorkersByParameter(parameter);
     }
 
     @PatchMapping("worker/{id}")
-    public boolean updateWorker(@PathVariable UUID id, @Valid @RequestBody WorkerRequestDTO request) {
-        return workerService.update(id, request);
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody WorkerRequestDTO workerRequestDTO) {
+        return workerService.updateWorker(id, workerRequestDTO);
     }
 }

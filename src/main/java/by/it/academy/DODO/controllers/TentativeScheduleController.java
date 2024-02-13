@@ -17,27 +17,27 @@ public class TentativeScheduleController {
     private final TentativeScheduleService tentativeScheduleService;
 
     @PostMapping("worker/{id}/tentativeSchedule")
-    public boolean create(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO request) {
-        return tentativeScheduleService.create(id, request);
+    public boolean create(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO tentativeScheduleDTO) {
+        return tentativeScheduleService.createTentativeSchedule(id, tentativeScheduleDTO);
     }
 
     @GetMapping("worker/{id}/tentativeSchedule/{dateWork}")
-    public List<TentativeScheduleDTO> getWeekScheduleByIdWorker(@PathVariable UUID id, @PathVariable LocalDate dateWork) {
-        return tentativeScheduleService.getWeekScheduleByIdWorker(id, dateWork);
+    public List<TentativeScheduleDTO> getWeekTentativeSchedule(@PathVariable UUID id, @PathVariable LocalDate dateWork) {
+        return tentativeScheduleService.getWeekTentativeSchedule(id, dateWork);
     }
 
     @GetMapping("tentativeSchedule/{dateWork}")
-    public List<TentativeScheduleDTO> getDaySchedule(@PathVariable LocalDate dateWork){
-        return tentativeScheduleService.getDaySchedule(dateWork);
+    public List<TentativeScheduleDTO> getDayTentativeSchedule(@PathVariable LocalDate dateWork){
+        return tentativeScheduleService.getDayTentativeSchedule(dateWork);
     }
 
     @PutMapping("tentativeSchedule/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO request){
-        return tentativeScheduleService.update(id, request);
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDTO tentativeScheduleDTO){
+        return tentativeScheduleService.updateTentativeSchedule(id, tentativeScheduleDTO);
     }
 
     @DeleteMapping("tentativeSchedule/{id}")
     public boolean delete(@PathVariable UUID id){
-        return tentativeScheduleService.delete(id);
+        return tentativeScheduleService.deleteTentativeSchedule(id);
     }
 }

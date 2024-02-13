@@ -7,10 +7,8 @@ import by.it.academy.DODO.entities.User;
 import java.util.UUID;
 
 public interface UserService {
-    boolean create(UserWorkerRequestDTO request);
-
-    boolean save(User user);
-
-    boolean update(UUID id, UserRequestDTO userRequestDTO);
-    boolean delete(UUID id);
+    boolean createUser(UserWorkerRequestDTO userWorkerRequestDTO);
+    boolean saveUser(User user);
+    boolean updateUser(UUID idWorker, UserRequestDTO userRequestDTO);
+    boolean deleteUser(UUID id);
 }

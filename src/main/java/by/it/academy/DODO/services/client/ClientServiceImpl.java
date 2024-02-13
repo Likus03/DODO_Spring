@@ -23,14 +23,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean create(ClientDTO clientDTO) throws DataIntegrityViolationException{
+    public boolean createClient(ClientDTO clientDTO) throws DataIntegrityViolationException{
         Client client = clientMapper.createClient(clientDTO);
-        return save(client);
+        return saveClient(client);
     }
 
     @Override
     @Transactional
-    public boolean save(Client client) throws DataIntegrityViolationException{
+    public boolean saveClient(Client client) throws DataIntegrityViolationException{
         try {
             clientRepository.saveAndFlush(client);
             return true;
@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean delete(UUID id) throws ClientInvalidDataException{
+    public boolean deleteClient(UUID id) throws ClientInvalidDataException{
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientInvalidDataException("Client was not found"));
         clientRepository.delete(client);
@@ -50,7 +50,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional(readOnly = true)
-    public ClientDTO get(UUID id) throws ClientInvalidDataException {
+    public ClientDTO getClient(UUID id) throws ClientInvalidDataException {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();
@@ -61,14 +61,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean update(UUID id, ClientDTO clientDTO) throws DataIntegrityViolationException, ClientInvalidDataException{
+    public boolean updateClient(UUID id, ClientDTO clientDTO) throws DataIntegrityViolationException, ClientInvalidDataException{
         Client newClient = clientMapper.createClient(clientDTO);
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client oldClient = optionalClient.get();
             setUpdatingClient(newClient, oldClient);
 
-            return save(oldClient);
+            return saveClient(oldClient);
         }
         throw new ClientInvalidDataException("Client was not found");
     }

@@ -33,7 +33,7 @@ public class WorkScheduleController {
     }
 
     @DeleteMapping("workSchedule/{id}")
-    public boolean deleteWorkSchedule(@PathVariable UUID id){
+    public boolean delete(@PathVariable UUID id){
         return workScheduleService.deleteWorkSchedule(id);
     }
 }

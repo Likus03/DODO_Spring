@@ -1,10 +1,7 @@
 package by.it.academy.DODO.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,6 +32,12 @@ public class TentativeSchedule {
     @ManyToOne
     @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
+
+    public TentativeSchedule(LocalDate dateWork, LocalTime startTime, LocalTime endTime) {
+        this.dateWork = dateWork;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
     @Override
     public boolean equals(Object o) {

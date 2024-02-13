@@ -16,21 +16,21 @@ public class ClientController {
 
     @PostMapping("client")
     public boolean create(@Valid @RequestBody ClientDTO clientDTO) {
-        return clientService.create(clientDTO);
+        return clientService.createClient(clientDTO);
     }
 
     @GetMapping("client/{id}")
-    public ClientDTO getClient(@PathVariable UUID id) {
-        return clientService.get(id);
+    public ClientDTO get(@PathVariable UUID id) {
+        return clientService.getClient(id);
     }
 
     @PatchMapping("client/{id}")
     public boolean update(@PathVariable UUID id, @Valid @RequestBody ClientDTO clientDTO) {
-        return clientService.update(id, clientDTO);
+        return clientService.updateClient(id, clientDTO);
     }
 
     @DeleteMapping("client/{id}")
-    public void delete(@PathVariable UUID id) {
-        clientService.delete(id);
+    public boolean delete(@PathVariable UUID id) {
+        return clientService.deleteClient(id);
     }
 }

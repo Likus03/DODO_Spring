@@ -4,7 +4,7 @@ databaseChangeLog:
           username: root
           password: root
   - changeSet:
-      id: 003-create-unique-constraints
+      id: 004-create-unique-constraints
       author: admin
       changes:
         - addUniqueConstraint:

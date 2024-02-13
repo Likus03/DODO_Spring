@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WorkScheduleService {
-    boolean createWorkSchedule(UUID id, WorkScheduleRequestDTO workScheduleRequestDTO);
-
-    boolean save(WorkSchedule workSchedule);
-
+    boolean createWorkSchedule(UUID idWorker, WorkScheduleRequestDTO workScheduleRequestDTO);
+    boolean saveWorkSchedule(WorkSchedule workSchedule);
     List<WorkScheduleResponseDTO> getDayWorkSchedule(LocalDate dateWork);
     List<WorkScheduleResponseDTO> getWeekWorkSchedule(LocalDate startWork, LocalDate endWork);
     boolean deleteWorkSchedule(UUID id);

@@ -4,9 +4,8 @@ databaseChangeLog:
           username: root
           password: root
   - changeSet:
-      id: 004-create-function
+      id: 006-create-trigger
       author: admin
       changes:
         - sqlFile:
-            path: db/changelog/sql/function.sql
-
+            path: db/changelog/sql/trigger.sql

@@ -4,7 +4,7 @@ databaseChangeLog:
           username: root
           password: root
   - changeSet:
-      id: 002-add-foreign-key-constraints
+      id: 003-add-foreign-key-constraints
       author: admin
       changes:
         - addForeignKeyConstraint:

@@ -53,6 +53,13 @@ public class Worker {
     @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TentativeSchedule> tentativeSchedules;
 
+    public Worker(String firstname, String surname, String phoneNumber, WorkerType workerType) {
+        this.firstname = firstname;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.workerType = workerType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -15,17 +15,16 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
     @PostMapping("user")
-    public boolean createUser(@Valid @RequestBody UserWorkerRequestDTO request) {
-        return userService.create(request);
+    public boolean create(@Valid @RequestBody UserWorkerRequestDTO userWorkerRequestDTO) {
+        return userService.createUser(userWorkerRequestDTO);
     }
-
     @DeleteMapping("user/{idWorker}")
-    public boolean deleteUser(@PathVariable UUID idWorker){
-        return userService.delete(idWorker);
+    public boolean delete(@PathVariable UUID idWorker){
+        return userService.deleteUser(idWorker);
     }
 
-    @PatchMapping("user/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody UserRequestDTO userRequestDTO){
-        return userService.update(id, userRequestDTO);
+    @PatchMapping("user/{idWorker}")
+    public boolean update(@PathVariable UUID idWorker, @Valid @RequestBody UserRequestDTO userRequestDTO){
+        return userService.updateUser(idWorker, userRequestDTO);
     }
 }

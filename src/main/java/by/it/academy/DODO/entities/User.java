@@ -31,6 +31,11 @@ public class User {
     @JoinColumn(name = "WORKER_ID", nullable = false, updatable = false)
     private Worker worker;
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

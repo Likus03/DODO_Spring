@@ -10,9 +10,7 @@ import java.util.UUID;
 public interface OrderService {
     List<OrderResponseDTO> getOrdersByParameters(UUID id, boolean completed);
     boolean takeOrder(UUID idOrder, UUID idWorker);
-    boolean create(OrderRequestDTO request);
-
-    boolean save(Order order);
-
+    boolean createOrder(OrderRequestDTO orderRequestDTO);
+    boolean saveOrder(Order order);
     boolean completeOrder(UUID id);
 }

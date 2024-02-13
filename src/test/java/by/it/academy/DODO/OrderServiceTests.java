@@ -1,6 +1,7 @@
 package by.it.academy.DODO;
 
 import by.it.academy.DODO.dto.request.order.OrderRequestDTO;
+import by.it.academy.DODO.entities.Order;
 import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.services.order.OrderService;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class OrderServiceTests {
 
     @Test
     @Transactional
-    public void testTakeOrder(){
+    public void testTakeOrder() {
         boolean realResultWithRandomIds = orderService.takeOrder(UUID.randomUUID(), UUID.randomUUID());
         boolean realResultWithoutIdWorker = orderService.takeOrder(UUID.fromString("c76ed671-8090-4b15-9f48-0fe26bef6b42"), UUID.randomUUID());
         boolean realResultWithoutIdOrder = orderService.takeOrder(UUID.randomUUID(), UUID.fromString("7aab5d8d-4965-49b8-a386-87b568823e4e"));
@@ -39,18 +40,27 @@ public class OrderServiceTests {
     @Test
     @Transactional
     public void testCreateOrder() {
-        assertThrows(DataIntegrityViolationException.class, () -> {
-                    orderService.create(new OrderRequestDTO());
-                }
-        );
+        assertThrows(DataIntegrityViolationException.class, () ->
+        {
+            orderService.createOrder(new OrderRequestDTO());
+        });
     }
 
     @Test
     @Transactional
-    public void testCompleteOrder(){
+    public void testCompleteOrder() {
         assertThrows(ClientInvalidDataException.class, () ->
         {
             orderService.completeOrder(UUID.randomUUID());
         });
     }
+    @Test
+    @Transactional
+    public void testSave(){
+        assertThrows(DataIntegrityViolationException.class, () ->
+        {
+            orderService.saveOrder(new Order());
+        });
+    }
+
 }

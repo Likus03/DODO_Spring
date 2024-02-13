@@ -28,20 +28,20 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
 
     @Override
     @Transactional
-    public boolean createWorkSchedule(UUID id, WorkScheduleRequestDTO workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+    public boolean createWorkSchedule(UUID idWorker, WorkScheduleRequestDTO workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
         WorkSchedule workSchedule = workScheduleMapper.createWorkSchedule(workScheduleRequestDTO);
-        Worker worker = workerRepository.findById(id)
+        Worker worker = workerRepository.findById(idWorker)
                 .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found"));
         workSchedule.setWorker(worker);
 
-        return save(workSchedule);
+        return saveWorkSchedule(workSchedule);
     }
 
     @Override
     @Transactional
-    public boolean save(WorkSchedule workSchedule) throws DataIntegrityViolationException {
+    public boolean saveWorkSchedule(WorkSchedule workSchedule) throws DataIntegrityViolationException {
         try {
-            workScheduleRepository.save(workSchedule);
+            workScheduleRepository.saveAndFlush(workSchedule);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save work schedule");
