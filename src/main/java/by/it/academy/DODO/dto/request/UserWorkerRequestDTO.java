@@ -7,13 +7,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) for receiving combined requests containing user and worker information.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserWorkerRequestDTO {
-    @NotNull(message = "information about user cannot be null")
-    UserRequestDTO userRequestDTO;
 
-    @NotNull(message = "information about worker cannot be null")
-    WorkerRequestDTO workerRequestDTO;
+    /**
+     * Information about the user.
+     */
+    @NotNull(message = "Information about user cannot be null")
+    private UserRequestDTO userRequestDTO;
+
+    /**
+     * Information about the worker.
+     */
+    @NotNull(message = "Information about worker cannot be null")
+    private WorkerRequestDTO workerRequestDTO;
 }

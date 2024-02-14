@@ -18,7 +18,13 @@ public class WorkerServiceImpl implements WorkerService {
 
     private final WorkerRepository workerRepository;
     private final WorkerMapper workerMapper;
-
+    /**
+     * Retrieves a list of workers based on the provided parameter.
+     *
+     * @param parameter The parameter to search for in worker details.
+     * @return A list of {@link WorkerRequestDTO}.
+     * @throws ClientInvalidDataException If the worker data is invalid or not found.
+     */
     @Transactional(readOnly = true)
     @Override
     public List<WorkerRequestDTO> getWorkersByParameter(String parameter) throws ClientInvalidDataException {
@@ -33,32 +39,58 @@ public class WorkerServiceImpl implements WorkerService {
                 .map(workerMapper::createWorkerDTO)
                 .toList();
     }
-
+    /**
+     * Updates the worker with the specified ID using the provided {@link WorkerRequestDTO}.
+     *
+     * @param id               The ID of the worker to update.
+     * @param workerRequestDTO The updated worker data.
+     * @return {@code true} if the worker is updated successfully, {@code false} otherwise.
+     * @throws DataIntegrityViolationException If there is a data integrity violation.
+     * @throws ClientInvalidDataException      If the worker data is invalid or not found.
+     */
     @Transactional
     @Override
-    public boolean updateWorker(UUID id, WorkerRequestDTO request) throws DataIntegrityViolationException, ClientInvalidDataException {
-        Worker newWorker = workerMapper.createWorker(request);
-        Optional<Worker> optionalWorker = workerRepository.findById(id);
-        if (optionalWorker.isPresent()) {
-            Worker oldWorker = optionalWorker.get();
-            setUpdatingWorker(newWorker, oldWorker);
+    public boolean updateWorker(UUID id, WorkerRequestDTO workerRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+        if (workerRequestDTO != null) {
+            Worker newWorker = workerMapper.createWorker(workerRequestDTO);
+            Optional<Worker> optionalWorker = workerRepository.findById(id);
+            if (optionalWorker.isPresent()) {
+                Worker oldWorker = optionalWorker.get();
+                setUpdatingWorker(newWorker, oldWorker);
 
-            return saveWorker(oldWorker);
+                return saveWorker(oldWorker);
+            }
+            throw new ClientInvalidDataException("Worker was not found");
         }
-        throw new ClientInvalidDataException("Worker was not found");
+        throw new ClientInvalidDataException("Unable to update worker");
     }
-
+    /**
+     * Saves the provided worker to the repository.
+     *
+     * @param worker The worker to save.
+     * @return {@code true} if the worker is saved successfully, {@code false} otherwise.
+     * @throws DataIntegrityViolationException If there is a data integrity violation.
+     * @throws ClientInvalidDataException      If the worker data is invalid.
+     */
     @Override
     @Transactional
-    public boolean saveWorker(Worker worker) throws DataIntegrityViolationException {
-        try {
-            workerRepository.saveAndFlush(worker);
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Unable to save worker");
+    public boolean saveWorker(Worker worker) throws DataIntegrityViolationException, ClientInvalidDataException {
+        if (worker != null) {
+            try {
+                workerRepository.saveAndFlush(worker);
+                return true;
+            } catch (DataIntegrityViolationException ex) {
+                throw new DataIntegrityViolationException("Unable to save worker");
+            }
         }
+        throw new ClientInvalidDataException("Unable to save worker");
     }
 
+    /**
+     * Sets up the updating of the worker with new worker data.
+     * @param newWorker The new worker data.
+     * @param oldWorker The existing worker data.
+     */
     private void setUpdatingWorker(Worker newWorker, Worker oldWorker) {
         oldWorker.setFirstname(newWorker.getFirstname());
         oldWorker.setSurname(newWorker.getSurname());

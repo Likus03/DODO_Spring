@@ -1,7 +1,9 @@
 package by.it.academy.DODO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+ * Enumeration representing different types of workers.
+ */
 public enum WorkerType {
     @JsonProperty("ADMIN")
     ADMIN,

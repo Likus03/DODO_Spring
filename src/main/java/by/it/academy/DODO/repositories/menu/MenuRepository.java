@@ -11,7 +11,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository interface for performing CRUD operations on {@link Menu} entities.
+ */
 public interface MenuRepository extends JpaRepository<Menu, UUID> {
+    /**
+     * Retrieves a list of {@link Menu} entities based on a search parameter that matches the 'name' or 'describe' fields.
+     *
+     * @param parameter The search parameter.
+     * @return An optional list of {@link Menu} entities matching the search parameter.
+     */
     @NonNull
     @Query(value = "select * from menus where name||describe ilike %:param%", nativeQuery = true)
     Optional<List<Menu>> findByParameter(@Nullable @Param("param") String parameter);

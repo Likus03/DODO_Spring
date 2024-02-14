@@ -13,12 +13,22 @@ import java.time.LocalDateTime;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
+/**
+ * Global exception handler for handling {@link ClientInvalidDataException}.
+ * Logs the error message and returns a custom {@link ErrorResponse} with a {@link HttpStatus#NOT_FOUND} status.
+ */
 @Slf4j
 @RestControllerAdvice
 public class HandlerClientInvalidDataException {
 
+    /**
+     * Handles the {@link ClientInvalidDataException} and returns a custom {@link ErrorResponse}.
+     *
+     * @param ex The exception to handle.
+     * @return A {@link ResponseEntity} with the custom {@link ErrorResponse} and {@link HttpStatus#NOT_FOUND} status.
+     */
     @ExceptionHandler(ClientInvalidDataException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleEmptyObject(ClientInvalidDataException ex) {
         log.error("ERROR: {}", ex.getMessage());
 
