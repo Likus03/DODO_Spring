@@ -7,13 +7,35 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
+/**
+ * Mapper interface for converting between {@link OrderRequestDTO}, {@link OrderResponseDTO}, and {@link Order}.
+ */
 @Component
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
+
+    /**
+     * Converts an {@link Order} entity to an {@link OrderResponseDTO}.
+     *
+     * @param order The {@link Order} entity to convert.
+     * @return The corresponding {@link OrderResponseDTO}.
+     */
     OrderResponseDTO createOrderDTO(Order order);
+
+    /**
+     * Converts an {@link OrderRequestDTO} to an {@link Order}.
+     *
+     * @param orderRequestDTO The {@link OrderRequestDTO} to convert.
+     * @return The corresponding {@link Order} entity.
+     */
     @Mapping(target = "completed", expression = "java(getDefaultValue())")
     Order createOder(OrderRequestDTO orderRequestDTO);
 
+    /**
+     * Provides a default value for the 'completed' field.
+     *
+     * @return The default value for 'completed'.
+     */
     default boolean getDefaultValue() {
         return false;
     }

@@ -8,16 +8,29 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Data Transfer Object (DTO) for receiving work schedule-related requests.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkScheduleRequestDTO {
-    @NotNull(message = "date work cannot be null")
+
+    /**
+     * The date of the work schedule.
+     */
+    @NotNull(message = "Date work cannot be null")
     private LocalDate dateWork;
 
-    @NotNull(message = "start time cannot be null")
+    /**
+     * The start time of the work schedule.
+     */
+    @NotNull(message = "Start time cannot be null")
     private LocalTime startTime;
 
-    @NotNull(message = "end time cannot be null")
+    /**
+     * The end time of the work schedule.
+     */
+    @NotNull(message = "End time cannot be null")
     private LocalTime endTime;
 }
