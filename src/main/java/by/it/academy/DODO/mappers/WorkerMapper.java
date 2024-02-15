@@ -34,4 +34,5 @@ public interface WorkerMapper {
      * @return The corresponding list of {@link WorkerDTO}.
      */
     List<WorkerDTO> createWorkerDTOList(List<Worker> workers);
+
 }

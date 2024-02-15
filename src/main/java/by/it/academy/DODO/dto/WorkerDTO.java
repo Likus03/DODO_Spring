@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkerDTO {
 
+public class WorkerDTO {
     /**
      * The first name of the worker.
      */

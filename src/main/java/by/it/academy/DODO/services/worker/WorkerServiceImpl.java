@@ -22,7 +22,11 @@ public class WorkerServiceImpl implements WorkerService {
      * Retrieves a list of workers based on the provided parameter.
      *
      * @param parameter The parameter to search for in worker details.
+<<<<<<< HEAD
      * @return A list of {@link WorkerDTO}.
+=======
+     * @return A list of {@link WorkerRequestDTO}.
+>>>>>>> dd07fcaaba3d9dbab4173cab642880a17f9b85ab
      * @throws ClientInvalidDataException If the worker data is invalid or not found.
      */
     @Transactional(readOnly = true)

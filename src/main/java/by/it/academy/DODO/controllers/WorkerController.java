@@ -40,7 +40,11 @@ public class WorkerController {
      * Get workers by parameter.
      *
      * @param parameter The parameter for filtering workers items.
+<<<<<<< HEAD
      * @return The list of {@link WorkerDTO} containing the worker's information.
+=======
+     * @return The list of {@link WorkerRequestDTO} containing the worker's information.
+>>>>>>> dd07fcaaba3d9dbab4173cab642880a17f9b85ab
      */
     @GetMapping("workers/{parameter}")
     public List<WorkerDTO> getByParameter(@PathVariable String parameter) {
@@ -51,7 +55,11 @@ public class WorkerController {
      * Update worker by ID.
      *
      * @param id               Worker's ID.
+<<<<<<< HEAD
      * @param workerDTO The updated worker data.
+=======
+     * @param workerRequestDTO The updated worker data.
+>>>>>>> dd07fcaaba3d9dbab4173cab642880a17f9b85ab
      * @return `true` if the menu is successfully updated.
      * In case of an error, returns error message.
      */

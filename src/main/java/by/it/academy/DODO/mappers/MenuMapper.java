@@ -6,8 +6,6 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
-
 /**
  * Mapper interface for converting between {@link MenuDTO} and {@link Menu}.
  */
@@ -37,4 +35,5 @@ public interface MenuMapper {
      * @return The corresponding list of {@link MenuDTO}.
      */
     List<MenuDTO> createMenuDTOList(List<Menu> menus);
+
 }

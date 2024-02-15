@@ -100,6 +100,7 @@ public class MenuServiceImpl implements MenuService {
                 throw new ClientInvalidDataException("Menu was not found");
             }
             return menuMapper.createMenuDTOList(menus);
+
         }
         throw new ClientInvalidDataException("Unable to get menu");
     }

@@ -26,4 +26,5 @@ public class UserWorkerRequestDTO {
      */
     @NotNull(message = "Information about worker cannot be null")
     private WorkerDTO workerDTO;
+
 }

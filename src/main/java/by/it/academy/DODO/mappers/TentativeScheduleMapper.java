@@ -6,7 +6,6 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 /**
  * Mapper interface for converting between {@link TentativeScheduleDTO} and {@link TentativeSchedule}.
  */
