@@ -1,7 +1,7 @@
 package by.it.academy.DODO.dto.request;
 
 import by.it.academy.DODO.dto.request.user.UserRequestDTO;
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.WorkerDTO;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +25,5 @@ public class UserWorkerRequestDTO {
      * Information about the worker.
      */
     @NotNull(message = "Information about worker cannot be null")
-    private WorkerRequestDTO workerRequestDTO;
+    private WorkerDTO workerDTO;
 }

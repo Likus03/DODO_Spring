@@ -41,26 +41,20 @@ public class OrderServiceTests {
     @Transactional
     public void testCreateOrder() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            orderService.createOrder(new OrderRequestDTO());
-        });
+                orderService.createOrder(new OrderRequestDTO()));
     }
 
     @Test
     @Transactional
     public void testCompleteOrder() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            orderService.completeOrder(UUID.randomUUID());
-        });
+                orderService.completeOrder(UUID.randomUUID()));
     }
     @Test
     @Transactional
     public void testSave(){
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            orderService.saveOrder(new Order());
-        });
+                orderService.saveOrder(new Order()));
     }
 
 }

@@ -2,7 +2,7 @@ package by.it.academy.DODO.services.user;
 
 import by.it.academy.DODO.dto.request.UserWorkerRequestDTO;
 import by.it.academy.DODO.dto.request.user.UserRequestDTO;
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.WorkerDTO;
 import by.it.academy.DODO.entities.User;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.exceptions.ClientInvalidDataException;
@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUser(UserWorkerRequestDTO userWorkerRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
         if (userWorkerRequestDTO != null) {
-            WorkerRequestDTO workerRequestDTO = userWorkerRequestDTO.getWorkerRequestDTO();
+            WorkerDTO workerDTO = userWorkerRequestDTO.getWorkerDTO();
             UserRequestDTO userRequestDTO = userWorkerRequestDTO.getUserRequestDTO();
 
-            Worker worker = workerMapper.createWorker(workerRequestDTO);
+            Worker worker = workerMapper.createWorker(workerDTO);
             User user = userMapper.createUser(userRequestDTO);
 
             if (worker != null & user != null) {

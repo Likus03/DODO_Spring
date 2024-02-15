@@ -1,6 +1,6 @@
 package by.it.academy.DODO;
 
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.WorkerDTO;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.WorkerMapper;
@@ -31,9 +31,7 @@ public class WorkerServiceTests {
     @Transactional
     public void testGetByParameter() {
         Assertions.assertThrows(ClientInvalidDataException.class, () ->
-                {
-                    workerService.getWorkersByParameter(null);
-                }
+                workerService.getWorkersByParameter(null)
         );
     }
 
@@ -41,28 +39,22 @@ public class WorkerServiceTests {
     @Transactional
     public void testUpdate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workerService.updateWorker(UUID.randomUUID(),
-                    workerMapper.createWorkerDTO(new Worker(
-                            "Alex",
-                            "Pick",
-                            "+375442583415",
-                            WorkerType.KITCHEN_WORKER)
-                    ));
-        });
+                workerService.updateWorker(UUID.randomUUID(),
+                        workerMapper.createWorkerDTO(new Worker(
+                                "Alex",
+                                "Pick",
+                                "+375442583415",
+                                WorkerType.KITCHEN_WORKER)
+                        )));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            workerService.updateWorker(UUID.fromString("7d614120-0ea9-4935-bd5f-d47619d6248a"), new WorkerRequestDTO());
-        });
+                workerService.updateWorker(UUID.fromString("7d614120-0ea9-4935-bd5f-d47619d6248a"), new WorkerDTO()));
     }
 
     @Test
     @Transactional
-    public void testSave(){
+    public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            workerService.saveWorker(new Worker());
-        });
+                workerService.saveWorker(new Worker()));
     }
 }

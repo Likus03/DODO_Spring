@@ -26,47 +26,39 @@ public class UserServiceTests {
         this.userService = userService;
         this.userMapper = userMapper;
     }
+
     @Test
     @Transactional
-    public void testCreate(){
+    public void testCreate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            userService.createUser(new UserWorkerRequestDTO());
-        });
+                userService.createUser(new UserWorkerRequestDTO()));
     }
 
     @Test
     @Transactional
-    public void testSave(){
+    public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            userService.saveUser(new User());
-        });
+                userService.saveUser(new User()));
     }
 
     @Test
     @Transactional
     public void testUpdate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            userService.updateUser(UUID.randomUUID(),
-                    userMapper.createUserDTO(new User(
-                            "fjid",
-                            "ju9393dj"
-                    )));
-        });
+                userService.updateUser(UUID.randomUUID(),
+                        userMapper.createUserDTO(new User(
+                                "fjid",
+                                "ju9393dj"
+                        ))));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            userService.updateUser(UUID.fromString("7d614120-0ea9-4935-bd5f-d47619d6248a"), new UserRequestDTO());
-        });
+                userService.updateUser(UUID.fromString("7d614120-0ea9-4935-bd5f-d47619d6248a"), new UserRequestDTO()));
     }
+
     @Test
     @Transactional
     public void testDelete() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            userService.deleteUser(UUID.randomUUID());
-        });
+                userService.deleteUser(UUID.randomUUID()));
     }
 }

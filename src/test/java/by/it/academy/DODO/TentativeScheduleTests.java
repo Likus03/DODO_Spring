@@ -33,76 +33,60 @@ public class TentativeScheduleTests {
     @Transactional
     public void testCreate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            tentativeScheduleService.createTentativeSchedule(UUID.randomUUID(), new TentativeScheduleDTO());
-        });
+                tentativeScheduleService.createTentativeSchedule(UUID.randomUUID(), new TentativeScheduleDTO()));
 
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            tentativeScheduleService.createTentativeSchedule(UUID.randomUUID(), new TentativeScheduleDTO
-                    (
-                            LocalDate.parse("2024-05-07"),
-                            LocalTime.parse("10:00"),
-                            LocalTime.parse("23:00")
-                    ));
-        });
+                tentativeScheduleService.createTentativeSchedule(UUID.randomUUID(), new TentativeScheduleDTO
+                        (
+                                LocalDate.parse("2024-05-07"),
+                                LocalTime.parse("10:00"),
+                                LocalTime.parse("23:00")
+                        )));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            tentativeScheduleService.createTentativeSchedule(UUID.fromString("1eb4b41f-1d03-4e4d-820a-7f51f62b19e4"),
-                    new TentativeScheduleDTO());
-        });
+                tentativeScheduleService.createTentativeSchedule(UUID.fromString("1eb4b41f-1d03-4e4d-820a-7f51f62b19e4"),
+                        new TentativeScheduleDTO()));
     }
 
     @Test
     @Transactional
     public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            tentativeScheduleService.saveTentativeSchedule(new TentativeSchedule());
-        });
+                tentativeScheduleService.saveTentativeSchedule(new TentativeSchedule()));
     }
 
     @Test
     @Transactional
     public void testUpdate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            tentativeScheduleService.updateTentativeSchedule(UUID.randomUUID(),
-                    tentativeScheduleMapper.createTentativeScheduleDTO(new TentativeSchedule
-                            (
-                                    LocalDate.parse("2024-05-07"),
-                                    LocalTime.parse("10:00"),
-                                    LocalTime.parse("23:00")
-                            )
-                    ));
-        });
+                tentativeScheduleService.updateTentativeSchedule(UUID.randomUUID(),
+                        tentativeScheduleMapper.createTentativeScheduleDTO(new TentativeSchedule
+                                (
+                                        LocalDate.parse("2024-05-07"),
+                                        LocalTime.parse("10:00"),
+                                        LocalTime.parse("23:00")
+                                )
+                        )));
     }
 
     @Test
     @Transactional
-    public void testGetWeekSchedule(){
+    public void testGetWeekSchedule() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-           tentativeScheduleService.getWeekTentativeSchedule(UUID.randomUUID(), LocalDate.now());
-        });
+                tentativeScheduleService.getWeekTentativeSchedule(UUID.randomUUID(), LocalDate.now()));
     }
 
     @Test
     @Transactional
-    public void testGetDaySchedule(){
+    public void testGetDaySchedule() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-           tentativeScheduleService.getDayTentativeSchedule(LocalDate.parse("2100-01-01"));
-        });
+                tentativeScheduleService.getDayTentativeSchedule(LocalDate.parse("2100-01-01")));
     }
 
     @Test
     @Transactional
     public void testDelete() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            tentativeScheduleService.deleteTentativeSchedule(UUID.randomUUID());
-        });
+                tentativeScheduleService.deleteTentativeSchedule(UUID.randomUUID()));
     }
 }

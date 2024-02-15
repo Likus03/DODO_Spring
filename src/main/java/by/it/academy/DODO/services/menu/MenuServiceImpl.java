@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -100,9 +99,7 @@ public class MenuServiceImpl implements MenuService {
             if (menus.isEmpty()) {
                 throw new ClientInvalidDataException("Menu was not found");
             }
-            return menus.stream()
-                    .map(menuMapper::createMenuDTO)
-                    .collect(Collectors.toList());
+            return menuMapper.createMenuDTOList(menus);
         }
         throw new ClientInvalidDataException("Unable to get menu");
     }

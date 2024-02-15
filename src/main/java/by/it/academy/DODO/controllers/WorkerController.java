@@ -1,6 +1,6 @@
 package by.it.academy.DODO.controllers;
 
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.WorkerDTO;
 import by.it.academy.DODO.services.worker.WorkerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,10 +40,10 @@ public class WorkerController {
      * Get workers by parameter.
      *
      * @param parameter The parameter for filtering workers items.
-     * @return The list of {@link WorkerRequestDTO} containing the worker's information.
+     * @return The list of {@link WorkerDTO} containing the worker's information.
      */
     @GetMapping("workers/{parameter}")
-    public List<WorkerRequestDTO> getByParameter(@PathVariable String parameter) {
+    public List<WorkerDTO> getByParameter(@PathVariable String parameter) {
         return workerService.getWorkersByParameter(parameter);
     }
 
@@ -51,12 +51,12 @@ public class WorkerController {
      * Update worker by ID.
      *
      * @param id               Worker's ID.
-     * @param workerRequestDTO The updated worker data.
+     * @param workerDTO The updated worker data.
      * @return `true` if the menu is successfully updated.
      * In case of an error, returns error message.
      */
     @PatchMapping("worker/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody WorkerRequestDTO workerRequestDTO) {
-        return workerService.updateWorker(id, workerRequestDTO);
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody WorkerDTO workerDTO) {
+        return workerService.updateWorker(id, workerDTO);
     }
 }

@@ -5,6 +5,8 @@ import by.it.academy.DODO.entities.Menu;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 /**
  * Mapper interface for converting between {@link MenuDTO} and {@link Menu}.
@@ -28,4 +30,11 @@ public interface MenuMapper {
      * @return The corresponding {@link MenuDTO}.
      */
     MenuDTO createMenuDTO(Menu menu);
+
+    /**
+     * Converts a list of {@link Menu} entity to a list of {@link MenuDTO}.
+     * @param menus The list of {@link Menu} entity to convert.
+     * @return The corresponding list of {@link MenuDTO}.
+     */
+    List<MenuDTO> createMenuDTOList(List<Menu> menus);
 }

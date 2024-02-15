@@ -149,9 +149,7 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
             if (tentativeSchedules.isEmpty()) {
                 throw new ClientInvalidDataException("Tentative schedule was not found");
             }
-            return tentativeSchedules.stream()
-                    .map(tentativeScheduleMapper::createTentativeScheduleDTO)
-                    .toList();
+            return tentativeScheduleMapper.createTentativeScheduleDTOList(tentativeSchedules);
         }
         throw new ClientInvalidDataException("Unable to get tentative schedule");
     }

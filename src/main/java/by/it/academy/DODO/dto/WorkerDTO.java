@@ -1,4 +1,4 @@
-package by.it.academy.DODO.dto.request.worker;
+package by.it.academy.DODO.dto;
 
 import by.it.academy.DODO.WorkerType;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkerRequestDTO {
+public class WorkerDTO {
 
     /**
      * The first name of the worker.

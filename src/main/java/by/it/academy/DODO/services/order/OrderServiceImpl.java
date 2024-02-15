@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,9 +42,7 @@ public class OrderServiceImpl implements OrderService {
             throw new ClientInvalidDataException("Order was not found");
         }
 
-        return orders.stream()
-                .map(orderMapper::createOrderDTO)
-                .collect(Collectors.toList());
+        return orderMapper.createOrderDTOList(orders);
     }
     /**
      * Assigns a worker to a specific order.

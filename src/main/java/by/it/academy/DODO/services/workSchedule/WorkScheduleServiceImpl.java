@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -82,9 +81,7 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
             if (workSchedules.isEmpty()) {
                 throw new ClientInvalidDataException("Work schedule does not exist");
             }
-            return workSchedules.stream()
-                    .map(workScheduleMapper::createWorkScheduleDTO)
-                    .collect(Collectors.toList());
+            return workScheduleMapper.createWorkScheduleDTOList(workSchedules);
         }
         throw new ClientInvalidDataException("Unable to get work schedule");
     }

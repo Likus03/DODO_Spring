@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Mapper interface for converting between {@link OrderRequestDTO}, {@link OrderResponseDTO}, and {@link Order}.
  */
@@ -39,4 +41,11 @@ public interface OrderMapper {
     default boolean getDefaultValue() {
         return false;
     }
+
+    /**
+     * Converts a list of {@link Order} entity to a list of {@link OrderResponseDTO}.
+     * @param orders The list of {@link Order} entity to convert.
+     * @return The corresponding list of {@link OrderResponseDTO}.
+     */
+    List<OrderResponseDTO> createOrderDTOList(List<Order> orders);
 }

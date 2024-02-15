@@ -32,9 +32,7 @@ public class ClientServiceTests {
     @Transactional
     public void testCreate() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            clientService.createClient(new ClientDTO());
-        });
+                clientService.createClient(new ClientDTO()));
     }
 
     @Test
@@ -55,38 +53,30 @@ public class ClientServiceTests {
     @Transactional
     public void testUpdate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            clientService.updateClient(UUID.randomUUID(),
-                    clientMapper.createClientDTO(new Client(
-                            UUID.fromString("064bdc47-7013-4528-84d5-9ab1cd550eb4"),
-                            "Alex",
-                            "+375442583415",
-                            "akex@gmail.com",
-                            LocalDate.parse("1999-05-28"))
-                    ));
-        });
+                clientService.updateClient(UUID.randomUUID(),
+                        clientMapper.createClientDTO(new Client(
+                                UUID.fromString("064bdc47-7013-4528-84d5-9ab1cd550eb4"),
+                                "Alex",
+                                "+375442583415",
+                                "akex@gmail.com",
+                                LocalDate.parse("1999-05-28"))
+                        )));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            clientService.updateClient(UUID.fromString("064bdc47-7013-4528-84d5-9ab1cd550eb4"), new ClientDTO());
-        });
+                clientService.updateClient(UUID.fromString("064bdc47-7013-4528-84d5-9ab1cd550eb4"), new ClientDTO()));
     }
 
     @Test
     @Transactional
     public void testDelete() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            clientService.deleteClient(UUID.randomUUID());
-        });
+                clientService.deleteClient(UUID.randomUUID()));
     }
 
     @Test
     @Transactional
-    public void testSave(){
+    public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            clientService.saveClient(new Client());
-        });
+                clientService.saveClient(new Client()));
     }
 }

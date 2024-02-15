@@ -29,60 +29,46 @@ public class WorkScheduleTests {
     @Transactional
     public void testCreate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workScheduleService.createWorkSchedule(UUID.randomUUID(), new WorkScheduleRequestDTO());
-        });
+                workScheduleService.createWorkSchedule(UUID.randomUUID(), new WorkScheduleRequestDTO()));
 
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workScheduleService.createWorkSchedule(UUID.randomUUID(), new WorkScheduleRequestDTO
-                    (
-                            LocalDate.parse("2024-05-07"),
-                            LocalTime.parse("10:00"),
-                            LocalTime.parse("23:00")
-                    ));
-        });
+                workScheduleService.createWorkSchedule(UUID.randomUUID(), new WorkScheduleRequestDTO
+                        (
+                                LocalDate.parse("2024-05-07"),
+                                LocalTime.parse("10:00"),
+                                LocalTime.parse("23:00")
+                        )));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            workScheduleService.createWorkSchedule(UUID.fromString("1eb4b41f-1d03-4e4d-820a-7f51f62b19e4"),
-                    new WorkScheduleRequestDTO());
-        });
+                workScheduleService.createWorkSchedule(UUID.fromString("1eb4b41f-1d03-4e4d-820a-7f51f62b19e4"),
+                        new WorkScheduleRequestDTO()));
     }
 
     @Test
     @Transactional
     public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            workScheduleService.saveWorkSchedule(new WorkSchedule());
-        });
+                workScheduleService.saveWorkSchedule(new WorkSchedule()));
     }
 
     @Test
     @Transactional
     public void testGetWeekSchedule() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workScheduleService.getWeekWorkSchedule(null, null);
-        });
+                workScheduleService.getWeekWorkSchedule(null, null));
     }
 
     @Test
     @Transactional
     public void testGetDaySchedule() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workScheduleService.getDayWorkSchedule(null);
-        });
+                workScheduleService.getDayWorkSchedule(null));
     }
 
     @Test
     @Transactional
     public void testDelete() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            workScheduleService.deleteWorkSchedule(UUID.randomUUID());
-        });
+                workScheduleService.deleteWorkSchedule(UUID.randomUUID()));
     }
 }

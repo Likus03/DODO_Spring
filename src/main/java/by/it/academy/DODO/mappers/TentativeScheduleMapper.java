@@ -4,6 +4,9 @@ import by.it.academy.DODO.dto.TentativeScheduleDTO;
 import by.it.academy.DODO.entities.TentativeSchedule;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 /**
  * Mapper interface for converting between {@link TentativeScheduleDTO} and {@link TentativeSchedule}.
  */
@@ -27,4 +30,10 @@ public interface TentativeScheduleMapper {
      */
     TentativeSchedule createTentativeSchedule(TentativeScheduleDTO tentativeScheduleDTO);
 
+    /**
+     * Converts a list of {@link TentativeSchedule} entity to a list of {@link TentativeScheduleDTO}.
+     * @param tentativeSchedules The list of {@link TentativeSchedule} entity to convert.
+     * @return The corresponding list of {@link TentativeScheduleDTO}.
+     */
+    List<TentativeScheduleDTO> createTentativeScheduleDTOList(List<TentativeSchedule> tentativeSchedules);
 }

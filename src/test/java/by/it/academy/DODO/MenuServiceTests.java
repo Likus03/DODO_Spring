@@ -31,45 +31,35 @@ public class MenuServiceTests {
     @Transactional
     public void testCreate() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            menuService.createMenu(new MenuDTO());
-        });
+                menuService.createMenu(new MenuDTO()));
     }
 
     @Test
     @Transactional
     public void testDelete() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            menuService.deleteMenu(UUID.randomUUID());
-        });
+                menuService.deleteMenu(UUID.randomUUID()));
     }
 
     @Test
     @Transactional
     public void testUpdate() {
         assertThrows(ClientInvalidDataException.class, () ->
-        {
-            menuService.updateMenu(UUID.randomUUID(), menuMapper.createMenuDTO(
-                    new Menu(
-                            UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"),
-                            "gavai", "Signature alfredo sauce, chicken, mozzarella, pineapples",
-                            18.99f,
-                            new ArrayList<>())));
-        });
+                menuService.updateMenu(UUID.randomUUID(), menuMapper.createMenuDTO(
+                        new Menu(
+                                UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"),
+                                "gavai", "Signature alfredo sauce, chicken, mozzarella, pineapples",
+                                18.99f,
+                                new ArrayList<>()))));
 
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            menuService.updateMenu(UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"), new MenuDTO());
-        });
+                menuService.updateMenu(UUID.fromString("8c3905bd-0f13-4a06-874a-162890d25856"), new MenuDTO()));
     }
 
     @Test
     @Transactional
-    public void testSave(){
+    public void testSave() {
         assertThrows(DataIntegrityViolationException.class, () ->
-        {
-            menuService.saveMenu(new Menu());
-        });
+                menuService.saveMenu(new Menu()));
     }
 }

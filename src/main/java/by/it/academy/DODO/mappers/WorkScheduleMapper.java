@@ -6,6 +6,8 @@ import by.it.academy.DODO.entities.WorkSchedule;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Mapper interface for converting between {@link WorkScheduleRequestDTO}, {@link WorkScheduleResponseDTO}, and {@link WorkSchedule}.
  */
@@ -26,4 +28,11 @@ public interface WorkScheduleMapper {
      * @return The corresponding {@link WorkSchedule} entity.
      */
     WorkSchedule createWorkSchedule(WorkScheduleRequestDTO workScheduleRequestDTO);
+
+    /**
+     * Converts a list of {@link WorkSchedule} entity to a list of {@link WorkScheduleResponseDTO}.
+     * @param workSchedules The list of {@link WorkSchedule} entity to convert.
+     * @return The corresponding list of {@link WorkScheduleResponseDTO}.
+     */
+    List<WorkScheduleResponseDTO> createWorkScheduleDTOList(List<WorkSchedule> workSchedules);
 }

@@ -1,6 +1,6 @@
 package by.it.academy.DODO.services.worker;
 
-import by.it.academy.DODO.dto.request.worker.WorkerRequestDTO;
+import by.it.academy.DODO.dto.WorkerDTO;
 import by.it.academy.DODO.entities.Worker;
 import by.it.academy.DODO.exceptions.ClientInvalidDataException;
 import by.it.academy.DODO.mappers.WorkerMapper;
@@ -22,12 +22,12 @@ public class WorkerServiceImpl implements WorkerService {
      * Retrieves a list of workers based on the provided parameter.
      *
      * @param parameter The parameter to search for in worker details.
-     * @return A list of {@link WorkerRequestDTO}.
+     * @return A list of {@link WorkerDTO}.
      * @throws ClientInvalidDataException If the worker data is invalid or not found.
      */
     @Transactional(readOnly = true)
     @Override
-    public List<WorkerRequestDTO> getWorkersByParameter(String parameter) throws ClientInvalidDataException {
+    public List<WorkerDTO> getWorkersByParameter(String parameter) throws ClientInvalidDataException {
         List<Worker> workers = workerRepository
                 .findByParameter(parameter).orElse(Collections.emptyList());
 
@@ -35,24 +35,22 @@ public class WorkerServiceImpl implements WorkerService {
             throw new ClientInvalidDataException("Worker does not exist");
         }
 
-        return workers.stream()
-                .map(workerMapper::createWorkerDTO)
-                .toList();
+        return workerMapper.createWorkerDTOList(workers);
     }
     /**
-     * Updates the worker with the specified ID using the provided {@link WorkerRequestDTO}.
+     * Updates the worker with the specified ID using the provided {@link WorkerDTO}.
      *
      * @param id               The ID of the worker to update.
-     * @param workerRequestDTO The updated worker data.
+     * @param workerDTO The updated worker data.
      * @return {@code true} if the worker is updated successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
      * @throws ClientInvalidDataException      If the worker data is invalid or not found.
      */
     @Transactional
     @Override
-    public boolean updateWorker(UUID id, WorkerRequestDTO workerRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
-        if (workerRequestDTO != null) {
-            Worker newWorker = workerMapper.createWorker(workerRequestDTO);
+    public boolean updateWorker(UUID id, WorkerDTO workerDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+        if (workerDTO != null) {
+            Worker newWorker = workerMapper.createWorker(workerDTO);
             Optional<Worker> optionalWorker = workerRepository.findById(id);
             if (optionalWorker.isPresent()) {
                 Worker oldWorker = optionalWorker.get();
