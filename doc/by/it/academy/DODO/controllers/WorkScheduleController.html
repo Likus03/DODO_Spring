@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2024-02-15">
-<meta name="description" content="declaration: package: by.it.academy.DODO.controllers, class: WorkScheduleController">
+<meta name="description" content="declaration: package: by.it.academy.dodo.controllers, class: WorkScheduleController">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.DODO.controllers</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.dodo.controllers</a></div>
 <h1 title="Class WorkScheduleController" class="title">Class WorkScheduleController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">by.it.academy.DODO.controllers.WorkScheduleController</div>
+<div class="inheritance">by.it.academy.dodo.controllers.WorkScheduleController</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -105,7 +105,7 @@ loadScripts(document, 'script');</script>
  </ul>
 
  <p>Each method in this class corresponds to a specific API endpoint and delegates the
- processing to the underlying <a href="../services/workSchedule/WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule"><code>WorkScheduleService</code></a> for business logic.
+ processing to the underlying <a href="../services/workSchedule/WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule"><code>WorkScheduleService</code></a> for business logic.
 
  <p>This class is annotated with `@RestController`, indicating that it handles HTTP requests
  and returns the response directly instead of relying on a view resolver.
@@ -114,7 +114,7 @@ loadScripts(document, 'script');</script>
  in this class ("/api/v1"). This helps organize and group related endpoints under a common base path.
 
  <p>The `@RequiredArgsConstructor` annotation is used to generate a constructor with required
- fields, in this case, injecting an instance of <a href="../services/workSchedule/WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule"><code>WorkScheduleService</code></a>.</div>
+ fields, in this case, injecting an instance of <a href="../services/workSchedule/WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule"><code>WorkScheduleService</code></a>.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -144,7 +144,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create(java.util.UUID,by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO)" class="member-name-link">create</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- @Valid <a href="../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.DODO.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</code></div>
+ @Valid <a href="../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.dodo.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Create a new work schedule by worker ID.</div>
 </div>
@@ -153,12 +153,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Delete work schedule by ID.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDayWorkSchedule(java.time.LocalDate)" class="member-name-link">getDayWorkSchedule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;dateWork)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieve the work schedule of a worker for a specific day.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)" class="member-name-link">getWeekWorkSchedule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;startWork,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;endWork)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -202,7 +202,7 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  @Valid @RequestBody
- @Valid <a href="../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.DODO.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</span></div>
+ @Valid <a href="../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.dodo.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</span></div>
 <div class="block">Create a new work schedule by worker ID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -218,14 +218,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getDayWorkSchedule(java.time.LocalDate)">
 <h3>getDayWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("workSchedule/{dateWork}")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getDayWorkSchedule</span><wbr><span class="parameters">(@PathVariable
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getDayWorkSchedule</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;dateWork)</span></div>
 <div class="block">Retrieve the work schedule of a worker for a specific day.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>dateWork</code> - The date for which the work schedule is requested.</dd>
 <dt>Returns:</dt>
-<dd>A list of <a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a> objects representing the day's work schedule.</dd>
+<dd>A list of <a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a> objects representing the day's work schedule.</dd>
 </dl>
 </section>
 </li>
@@ -233,7 +233,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)">
 <h3>getWeekWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("workSchedule/{startWork}/{endWork}")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getWeekWorkSchedule</span><wbr><span class="parameters">(@PathVariable
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getWeekWorkSchedule</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;startWork,
  @PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;endWork)</span></div>
@@ -243,7 +243,7 @@ loadScripts(document, 'script');</script>
 <dd><code>startWork</code> - Start date of the week.</dd>
 <dd><code>endWork</code> - End date of the week.</dd>
 <dt>Returns:</dt>
-<dd>List of <a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a> responses for the specified week</dd>
+<dd>List of <a href="../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a> responses for the specified week</dd>
 </dl>
 </section>
 </li>

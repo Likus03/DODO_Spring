@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2024-02-15">
-<meta name="description" content="declaration: package: by.it.academy.DODO.services.user, interface: UserService">
+<meta name="description" content="declaration: package: by.it.academy.dodo.services.user, interface: UserService">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,13 +82,13 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.DODO.services.user</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.dodo.services.user</a></div>
 <h1 title="Interface UserService" class="title">Interface UserService</h1>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="UserServiceImpl.html" title="class in by.it.academy.DODO.services.user">UserServiceImpl</a></code></dd>
+<dd><code><a href="UserServiceImpl.html" title="class in by.it.academy.dodo.services.user">UserServiceImpl</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">UserService</span></div>
@@ -107,17 +107,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createUser(by.it.academy.DODO.dto.request.UserWorkerRequestDTO)" class="member-name-link">createUser</a><wbr>(<a href="../../dto/request/UserWorkerRequestDTO.html" title="class in by.it.academy.DODO.dto.request">UserWorkerRequestDTO</a>&nbsp;userWorkerRequestDTO)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createUser(by.it.academy.DODO.dto.request.UserWorkerRequestDTO)" class="member-name-link">createUser</a><wbr>(<a href="../../dto/request/UserWorkerRequestDTO.html" title="class in by.it.academy.dodo.dto.request">UserWorkerRequestDTO</a>&nbsp;userWorkerRequestDTO)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#deleteUser(java.util.UUID)" class="member-name-link">deleteUser</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveUser(by.it.academy.DODO.entities.User)" class="member-name-link">saveUser</a><wbr>(<a href="../../entities/User.html" title="class in by.it.academy.DODO.entities">User</a>&nbsp;user)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveUser(by.it.academy.DODO.entities.User)" class="member-name-link">saveUser</a><wbr>(<a href="../../entities/User.html" title="class in by.it.academy.dodo.entities">User</a>&nbsp;user)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateUser(java.util.UUID,by.it.academy.DODO.dto.request.user.UserRequestDTO)" class="member-name-link">updateUser</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idWorker,
- <a href="../../dto/request/user/UserRequestDTO.html" title="class in by.it.academy.DODO.dto.request.user">UserRequestDTO</a>&nbsp;userRequestDTO)</code></div>
+ <a href="../../dto/request/user/UserRequestDTO.html" title="class in by.it.academy.dodo.dto.request.user">UserRequestDTO</a>&nbsp;userRequestDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
@@ -136,20 +136,20 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="createUser(by.it.academy.DODO.dto.request.UserWorkerRequestDTO)">
 <h3>createUser</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">createUser</span><wbr><span class="parameters">(<a href="../../dto/request/UserWorkerRequestDTO.html" title="class in by.it.academy.DODO.dto.request">UserWorkerRequestDTO</a>&nbsp;userWorkerRequestDTO)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">createUser</span><wbr><span class="parameters">(<a href="../../dto/request/UserWorkerRequestDTO.html" title="class in by.it.academy.dodo.dto.request">UserWorkerRequestDTO</a>&nbsp;userWorkerRequestDTO)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="saveUser(by.it.academy.DODO.entities.User)">
 <h3>saveUser</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">saveUser</span><wbr><span class="parameters">(<a href="../../entities/User.html" title="class in by.it.academy.DODO.entities">User</a>&nbsp;user)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">saveUser</span><wbr><span class="parameters">(<a href="../../entities/User.html" title="class in by.it.academy.dodo.entities">User</a>&nbsp;user)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="updateUser(java.util.UUID,by.it.academy.DODO.dto.request.user.UserRequestDTO)">
 <h3>updateUser</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">updateUser</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idWorker,
- <a href="../../dto/request/user/UserRequestDTO.html" title="class in by.it.academy.DODO.dto.request.user">UserRequestDTO</a>&nbsp;userRequestDTO)</span></div>
+ <a href="../../dto/request/user/UserRequestDTO.html" title="class in by.it.academy.dodo.dto.request.user">UserRequestDTO</a>&nbsp;userRequestDTO)</span></div>
 </section>
 </li>
 <li>

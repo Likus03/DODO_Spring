@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2024-02-15">
-<meta name="description" content="declaration: package: by.it.academy.DODO.services.workSchedule, class: WorkScheduleServiceImpl">
+<meta name="description" content="declaration: package: by.it.academy.dodo.services.workSchedule, class: WorkScheduleServiceImpl">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,22 +82,22 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.DODO.services.workSchedule</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.dodo.services.workSchedule</a></div>
 <h1 title="Class WorkScheduleServiceImpl" class="title">Class WorkScheduleServiceImpl</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">by.it.academy.DODO.services.workSchedule.WorkScheduleServiceImpl</div>
+<div class="inheritance">by.it.academy.dodo.services.workSchedule.WorkScheduleServiceImpl</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Service
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">WorkScheduleServiceImpl</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></span></div>
+implements <a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -127,7 +127,7 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createWorkSchedule(java.util.UUID,by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO)" class="member-name-link">createWorkSchedule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idWorker,
- <a href="../../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.DODO.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</code></div>
+ <a href="../../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.dodo.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates a new work schedule for the specified worker.</div>
 </div>
@@ -136,19 +136,19 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Deletes the work schedule with the specified ID.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDayWorkSchedule(java.time.LocalDate)" class="member-name-link">getDayWorkSchedule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;dateWork)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves a list of work schedules for the specified date.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)" class="member-name-link">getWeekWorkSchedule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;startWork,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;endWork)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves a list of work schedules for the specified date range.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveWorkSchedule(by.it.academy.DODO.entities.WorkSchedule)" class="member-name-link">saveWorkSchedule</a><wbr>(<a href="../../entities/WorkSchedule.html" title="class in by.it.academy.DODO.entities">WorkSchedule</a>&nbsp;workSchedule)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveWorkSchedule(by.it.academy.DODO.entities.WorkSchedule)" class="member-name-link">saveWorkSchedule</a><wbr>(<a href="../../entities/WorkSchedule.html" title="class in by.it.academy.dodo.entities">WorkSchedule</a>&nbsp;workSchedule)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Saves the provided work schedule to the repository.</div>
 </div>
@@ -188,13 +188,13 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <h3>createWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@Transactional
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">createWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idWorker,
- <a href="../../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.DODO.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</span>
+ <a href="../../dto/request/workSchedule/WorkScheduleRequestDTO.html" title="class in by.it.academy.dodo.dto.request.workSchedule">WorkScheduleRequestDTO</a>&nbsp;workScheduleRequestDTO)</span>
                            throws <span class="exceptions">org.springframework.dao.DataIntegrityViolationException,
-<a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></span></div>
+<a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></span></div>
 <div class="block">Creates a new work schedule for the specified worker.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="WorkScheduleService.html#createWorkSchedule(java.util.UUID,by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO)">createWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html#createWorkSchedule(java.util.UUID,by.it.academy.DODO.dto.request.workSchedule.WorkScheduleRequestDTO)">createWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>idWorker</code> - The ID of the worker.</dd>
 <dd><code>workScheduleRequestDTO</code> - The request DTO containing the work schedule details.</dd>
@@ -202,7 +202,7 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <dd><code>true</code> if the work schedule is created successfully, <code>false</code> otherwise.</dd>
 <dt>Throws:</dt>
 <dd><code>org.springframework.dao.DataIntegrityViolationException</code> - If there is a data integrity violation.</dd>
-<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
+<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
 </dl>
 </section>
 </li>
@@ -210,19 +210,19 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <section class="detail" id="saveWorkSchedule(by.it.academy.DODO.entities.WorkSchedule)">
 <h3>saveWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@Transactional
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">saveWorkSchedule</span><wbr><span class="parameters">(<a href="../../entities/WorkSchedule.html" title="class in by.it.academy.DODO.entities">WorkSchedule</a>&nbsp;workSchedule)</span>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">saveWorkSchedule</span><wbr><span class="parameters">(<a href="../../entities/WorkSchedule.html" title="class in by.it.academy.dodo.entities">WorkSchedule</a>&nbsp;workSchedule)</span>
                          throws <span class="exceptions">org.springframework.dao.DataIntegrityViolationException</span></div>
 <div class="block">Saves the provided work schedule to the repository.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="WorkScheduleService.html#saveWorkSchedule(by.it.academy.DODO.entities.WorkSchedule)">saveWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html#saveWorkSchedule(by.it.academy.DODO.entities.WorkSchedule)">saveWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>workSchedule</code> - The work schedule to save.</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if the work schedule is saved successfully, <code>false</code> otherwise.</dd>
 <dt>Throws:</dt>
 <dd><code>org.springframework.dao.DataIntegrityViolationException</code> - If there is a data integrity violation.</dd>
-<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid.</dd>
+<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid.</dd>
 </dl>
 </section>
 </li>
@@ -230,18 +230,18 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <section class="detail" id="getDayWorkSchedule(java.time.LocalDate)">
 <h3>getDayWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@Transactional(readOnly=true)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getDayWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;dateWork)</span>
-                                                 throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getDayWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;dateWork)</span>
+                                                 throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></span></div>
 <div class="block">Retrieves a list of work schedules for the specified date.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="WorkScheduleService.html#getDayWorkSchedule(java.time.LocalDate)">getDayWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html#getDayWorkSchedule(java.time.LocalDate)">getDayWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>dateWork</code> - The date for which to retrieve work schedules.</dd>
 <dt>Returns:</dt>
-<dd>A list of <a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a>.</dd>
+<dd>A list of <a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a>.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
+<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
 </dl>
 </section>
 </li>
@@ -249,20 +249,20 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <section class="detail" id="getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)">
 <h3>getWeekWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@Transactional(readOnly=true)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getWeekWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;startWork,
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule">WorkScheduleResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getWeekWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;startWork,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;endWork)</span>
-                                                  throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></span></div>
+                                                  throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></span></div>
 <div class="block">Retrieves a list of work schedules for the specified date range.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="WorkScheduleService.html#getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)">getWeekWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html#getWeekWorkSchedule(java.time.LocalDate,java.time.LocalDate)">getWeekWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>startWork</code> - The start date of the date range.</dd>
 <dd><code>endWork</code> - The end date of the date range.</dd>
 <dt>Returns:</dt>
-<dd>A list of <a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.DODO.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a>.</dd>
+<dd>A list of <a href="../../dto/response/workSchedule/WorkScheduleResponseDTO.html" title="class in by.it.academy.dodo.dto.response.workSchedule"><code>WorkScheduleResponseDTO</code></a>.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
+<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></code> - If the work schedule data is invalid or not found.</dd>
 </dl>
 </section>
 </li>
@@ -271,17 +271,17 @@ implements <a href="WorkScheduleService.html" title="interface in by.it.academy.
 <h3>deleteWorkSchedule</h3>
 <div class="member-signature"><span class="annotations">@Transactional
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">deleteWorkSchedule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span>
-                           throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></span></div>
+                           throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></span></div>
 <div class="block">Deletes the work schedule with the specified ID.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="WorkScheduleService.html#deleteWorkSchedule(java.util.UUID)">deleteWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.DODO.services.workSchedule">WorkScheduleService</a></code></dd>
+<dd><code><a href="WorkScheduleService.html#deleteWorkSchedule(java.util.UUID)">deleteWorkSchedule</a></code>&nbsp;in interface&nbsp;<code><a href="WorkScheduleService.html" title="interface in by.it.academy.dodo.services.workSchedule">WorkScheduleService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>id</code> - The ID of the work schedule to delete.</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if the work schedule is deleted successfully, <code>false</code> otherwise.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.DODO.exceptions">ClientInvalidDataException</a></code> - If the work schedule with the specified ID is not found.</dd>
+<dd><code><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a></code> - If the work schedule with the specified ID is not found.</dd>
 </dl>
 </section>
 </li>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2024-02-15">
-<meta name="description" content="declaration: package: by.it.academy.DODO.services.order, interface: OrderService">
+<meta name="description" content="declaration: package: by.it.academy.dodo.services.order, interface: OrderService">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,13 +82,13 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.DODO.services.order</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.dodo.services.order</a></div>
 <h1 title="Interface OrderService" class="title">Interface OrderService</h1>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="OrderServiceImpl.html" title="class in by.it.academy.DODO.services.order">OrderServiceImpl</a></code></dd>
+<dd><code><a href="OrderServiceImpl.html" title="class in by.it.academy.dodo.services.order">OrderServiceImpl</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">OrderService</span></div>
@@ -110,14 +110,14 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#completeOrder(java.util.UUID)" class="member-name-link">completeOrder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createOrder(by.it.academy.DODO.dto.request.order.OrderRequestDTO)" class="member-name-link">createOrder</a><wbr>(<a href="../../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.DODO.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createOrder(by.it.academy.DODO.dto.request.order.OrderRequestDTO)" class="member-name-link">createOrder</a><wbr>(<a href="../../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.dodo.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOrdersByParameters(java.util.UUID,boolean)" class="member-name-link">getOrdersByParameters</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  boolean&nbsp;completed)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveOrder(by.it.academy.DODO.entities.Order)" class="member-name-link">saveOrder</a><wbr>(<a href="../../entities/Order.html" title="class in by.it.academy.DODO.entities">Order</a>&nbsp;order)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveOrder(by.it.academy.DODO.entities.Order)" class="member-name-link">saveOrder</a><wbr>(<a href="../../entities/Order.html" title="class in by.it.academy.dodo.entities">Order</a>&nbsp;order)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#takeOrder(java.util.UUID,java.util.UUID)" class="member-name-link">takeOrder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idOrder,
@@ -140,7 +140,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getOrdersByParameters(java.util.UUID,boolean)">
 <h3>getOrdersByParameters</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getOrdersByParameters</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getOrdersByParameters</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  boolean&nbsp;completed)</span></div>
 </section>
 </li>
@@ -154,13 +154,13 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="createOrder(by.it.academy.DODO.dto.request.order.OrderRequestDTO)">
 <h3>createOrder</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">createOrder</span><wbr><span class="parameters">(<a href="../../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.DODO.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">createOrder</span><wbr><span class="parameters">(<a href="../../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.dodo.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="saveOrder(by.it.academy.DODO.entities.Order)">
 <h3>saveOrder</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">saveOrder</span><wbr><span class="parameters">(<a href="../../entities/Order.html" title="class in by.it.academy.DODO.entities">Order</a>&nbsp;order)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">saveOrder</span><wbr><span class="parameters">(<a href="../../entities/Order.html" title="class in by.it.academy.dodo.entities">Order</a>&nbsp;order)</span></div>
 </section>
 </li>
 <li>

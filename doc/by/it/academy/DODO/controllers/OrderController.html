@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2024-02-15">
-<meta name="description" content="declaration: package: by.it.academy.DODO.controllers, class: OrderController">
+<meta name="description" content="declaration: package: by.it.academy.dodo.controllers, class: OrderController">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.DODO.controllers</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">by.it.academy.dodo.controllers</a></div>
 <h1 title="Class OrderController" class="title">Class OrderController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">by.it.academy.DODO.controllers.OrderController</div>
+<div class="inheritance">by.it.academy.dodo.controllers.OrderController</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -107,7 +107,7 @@ loadScripts(document, 'script');</script>
  </ul>
 
  <p>Each method in this class corresponds to a specific API endpoint and delegates the
- processing to the underlying <a href="../services/order/OrderService.html" title="interface in by.it.academy.DODO.services.order"><code>OrderService</code></a> for business logic.
+ processing to the underlying <a href="../services/order/OrderService.html" title="interface in by.it.academy.dodo.services.order"><code>OrderService</code></a> for business logic.
 
  <p>This class is annotated with `@RestController`, indicating that it handles HTTP requests
  and returns the response directly instead of relying on a view resolver.
@@ -116,7 +116,7 @@ loadScripts(document, 'script');</script>
  in this class ("/api/v1"). This helps organize and group related endpoints under a common base path.
 
  <p>The `@RequiredArgsConstructor` annotation is used to generate a constructor with required
- fields, in this case, injecting an instance of <a href="../services/order/OrderService.html" title="interface in by.it.academy.DODO.services.order"><code>OrderService</code></a>.</div>
+ fields, in this case, injecting an instance of <a href="../services/order/OrderService.html" title="interface in by.it.academy.dodo.services.order"><code>OrderService</code></a>.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -150,21 +150,21 @@ loadScripts(document, 'script');</script>
 <div class="block">Complete an order by ID.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create(by.it.academy.DODO.dto.request.order.OrderRequestDTO)" class="member-name-link">create</a><wbr>(@Valid <a href="../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.DODO.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create(by.it.academy.DODO.dto.request.order.OrderRequestDTO)" class="member-name-link">create</a><wbr>(@Valid <a href="../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.dodo.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Create a new order.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAvailable()" class="member-name-link">getAvailable</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieve a list of available orders.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCompleted(java.util.UUID)" class="member-name-link">getCompleted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieve a list of completed orders for a specific worker.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNotCompleted(java.util.UUID)" class="member-name-link">getNotCompleted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieve a list of incomplete orders for a specific worker.</div>
@@ -210,14 +210,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getNotCompleted(java.util.UUID)">
 <h3>getNotCompleted</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("worker/{id}/orders/status/notCompleted")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getNotCompleted</span><wbr><span class="parameters">(@PathVariable
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getNotCompleted</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Retrieve a list of incomplete orders for a specific worker.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>id</code> - The ID of the order to retrieve.</dd>
 <dt>Returns:</dt>
-<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
+<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
 </dl>
 </section>
 </li>
@@ -225,14 +225,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getCompleted(java.util.UUID)">
 <h3>getCompleted</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("worker/{id}/orders/status/completed")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getCompleted</span><wbr><span class="parameters">(@PathVariable
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getCompleted</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Retrieve a list of completed orders for a specific worker.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>id</code> - The ID of the order to retrieve.</dd>
 <dt>Returns:</dt>
-<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
+<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
 </dl>
 </section>
 </li>
@@ -240,11 +240,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getAvailable()">
 <h3>getAvailable</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("orders/status/available")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getAvailable</span>()</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order">OrderResponseDTO</a>&gt;</span>&nbsp;<span class="element-name">getAvailable</span>()</div>
 <div class="block">Retrieve a list of available orders.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.DODO.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
+<dd>The list of <a href="../dto/response/order/OrderResponseDTO.html" title="class in by.it.academy.dodo.dto.response.order"><code>OrderResponseDTO</code></a> containing the order's information.</dd>
 </dl>
 </section>
 </li>
@@ -288,7 +288,7 @@ loadScripts(document, 'script');</script>
 <h3>create</h3>
 <div class="member-signature"><span class="annotations">@PostMapping("order")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(@Valid @RequestBody
- @Valid <a href="../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.DODO.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</span></div>
+ @Valid <a href="../dto/request/order/OrderRequestDTO.html" title="class in by.it.academy.dodo.dto.request.order">OrderRequestDTO</a>&nbsp;orderRequestDTO)</span></div>
 <div class="block">Create a new order.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
