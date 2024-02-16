@@ -22,7 +22,7 @@ public interface OrderMapper {
      * @param order The {@link Order} entity to convert.
      * @return The corresponding {@link OrderResponseDto}.
      */
-    OrderResponseDto createOrderDTO(Order order);
+    OrderResponseDto mapToOrderDto(Order order);
 
     /**
      * Converts an {@link OrderRequestDto} to an {@link Order}.
@@ -31,7 +31,7 @@ public interface OrderMapper {
      * @return The corresponding {@link Order} entity.
      */
     @Mapping(target = "completed", expression = "java(getDefaultValue())")
-    Order createOder(OrderRequestDto orderRequestDTO);
+    Order mapToOder(OrderRequestDto orderRequestDTO);
 
     /**
      * Provides a default value for the 'completed' field.
@@ -47,5 +47,5 @@ public interface OrderMapper {
      * @param orders The list of {@link Order} entity to convert.
      * @return The corresponding list of {@link OrderResponseDto}.
      */
-    List<OrderResponseDto> createOrderDTOList(List<Order> orders);
+    List<OrderResponseDto> mapToOrderDtoList(List<Order> orders);
 }

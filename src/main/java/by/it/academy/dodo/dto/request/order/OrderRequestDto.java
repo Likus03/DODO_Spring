@@ -1,11 +1,11 @@
 package by.it.academy.dodo.dto.request.order;
 
+import by.it.academy.dodo.dto.request.client.ClientRequestDto;
 import by.it.academy.dodo.dto.request.menu.MenuRequestDto;
-import by.it.academy.dodo.entities.Client;
-import by.it.academy.dodo.entities.Worker;
+import by.it.academy.dodo.dto.request.worker.WorkerRequestDto;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,18 +35,17 @@ public class OrderRequestDto {
     /**
      * The client associated with the order.
      */
-    @NotBlank(message = "Client cannot be null")
-    private Client client;
+    @Valid
+    private ClientRequestDto client;
 
     /**
      * The worker associated with the order.
      */
-    private Worker worker;
-
+    private WorkerRequestDto worker;
 
     /**
      * The list of menu items included in the order.
      */
-    @NotEmpty
+    @Valid
     private List<MenuRequestDto> menus;
 }

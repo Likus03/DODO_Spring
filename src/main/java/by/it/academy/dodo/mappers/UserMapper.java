@@ -18,7 +18,7 @@ public interface UserMapper {
      * @param userRequestDTO The {@link UserRequestDto} to convert.
      * @return The corresponding {@link User} entity.
      */
-    User createUser(UserRequestDto userRequestDTO);
+    User mapToUser(UserRequestDto userRequestDTO);
 
     /**
      * Converts a {@link User} entity to a {@link UserRequestDto}.
@@ -26,5 +26,5 @@ public interface UserMapper {
      * @param user The {@link User} entity to convert.
      * @return The corresponding {@link UserRequestDto}.
      */
-    UserRequestDto createUserDTO(User user);
+    UserRequestDto mapToUserDto(User user);
 }

@@ -37,34 +37,41 @@ public class WorkerController {
     private final WorkerService workerService;
 
     /**
-     * Get workers by parameter.
+     * Get workers by firstname.
      *
-     * @param parameter The parameter for filtering workers items.
-<<<<<<< HEAD
+     * @param firstname The firstname for filtering workers items.
      * @return The list of {@link WorkerDto} containing the worker's information.
-=======
-     * @return The list of {@link WorkerRequestDTO} containing the worker's information.
->>>>>>> dd07fcaaba3d9dbab4173cab642880a17f9b85ab
      */
-    @GetMapping("workers/{parameter}")
-    public List<WorkerDto> getByParameter(@PathVariable String parameter) {
-        return workerService.getWorkersByParameter(parameter);
+    @GetMapping(value = "workers", params = "firstname")
+    public List<WorkerDto> getWorkersByFirstname(@RequestParam String firstname) {
+        return workerService.getWorkersByFirstname(firstname);
+    }
+
+    @GetMapping(value = "workers", params = "surname")
+    public List<WorkerDto> getWorkersBySurname(@RequestParam String surname) {
+        return workerService.getWorkersBySurname(surname);
+    }
+
+    @GetMapping(value = "workers", params = "phoneNumber")
+    public List<WorkerDto> getWorkersByPhoneNumber(@RequestParam String phoneNumber) {
+        return workerService.getWorkersByPhoneNumber(phoneNumber);
+    }
+
+    @GetMapping(value = "workers", params = "workerType")
+    public List<WorkerDto> getWorkersByWorkerType(@RequestParam String workerType) {
+        return workerService.getWorkersByWorkerType(workerType);
     }
 
     /**
      * Update worker by ID.
      *
      * @param id               Worker's ID.
-<<<<<<< HEAD
      * @param workerDTO The updated worker data.
-=======
-     * @param workerRequestDTO The updated worker data.
->>>>>>> dd07fcaaba3d9dbab4173cab642880a17f9b85ab
      * @return `true` if the menu is successfully updated.
      * In case of an error, returns error message.
      */
-    @PatchMapping("worker/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody WorkerDto workerDTO) {
+    @PutMapping("worker/{id}")
+    public boolean updateWorker(@PathVariable UUID id, @Valid @RequestBody WorkerDto workerDTO) {
         return workerService.updateWorker(id, workerDTO);
     }
 }

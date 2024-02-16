@@ -112,13 +112,13 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: DESCRIBE
+                  name: DESCRIPTION
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
                   name: COST
-                  type: float
+                  type: decimal
                   constraints:
                     nullable: false
 
@@ -133,7 +133,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   type: date
                   constraints:
                     nullable: false
@@ -160,7 +160,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   type: date
                   constraints:
                     nullable: false
@@ -192,7 +192,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: TOTAL_COST
-                  type: float
+                  type: decimal
               - column:
                   name: ADDRESS
                   type: varchar(255)

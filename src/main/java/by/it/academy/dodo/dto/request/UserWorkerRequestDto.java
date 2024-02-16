@@ -1,8 +1,8 @@
 package by.it.academy.dodo.dto.request;
 
-import by.it.academy.dodo.dto.request.user.UserRequestDto;
 import by.it.academy.dodo.dto.WorkerDto;
-import jakarta.validation.constraints.NotNull;
+import by.it.academy.dodo.dto.request.user.UserRequestDto;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +18,13 @@ public class UserWorkerRequestDto {
     /**
      * Information about the user.
      */
-    @NotNull(message = "Information about user cannot be null")
-    private UserRequestDto userRequestDTO;
+    @Valid
+    private UserRequestDto user;
 
     /**
      * Information about the worker.
      */
-    @NotNull(message = "Information about worker cannot be null")
-    private WorkerDto workerDTO;
+    @Valid
+    private WorkerDto worker;
 
 }

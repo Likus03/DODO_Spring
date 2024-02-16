@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.request.order.OrderRequestDto;
 import by.it.academy.dodo.dto.response.order.OrderResponseDto;
 import by.it.academy.dodo.services.order.OrderService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,33 +44,21 @@ public class OrderController {
     /**
      * Retrieve a list of incomplete orders for a specific worker.
      *
-     * @param id The ID of the order to retrieve.
+     * @param workerId The ID of the order to retrieve.
      * @return The list of {@link OrderResponseDto} containing the order's information.
      */
-    @GetMapping("worker/{id}/orders/status/notCompleted")
-    public List<OrderResponseDto> getNotCompleted(@PathVariable UUID id) {
-        return orderService.getOrdersByParameters(id, false);
+    @GetMapping(value = "worker/{workerId}/orders", params = "isCompleted")
+    public List<OrderResponseDto> getOrdersByStatus(@PathVariable UUID workerId, @RequestParam @NotNull boolean isCompleted) {
+        return orderService.getOrdersByStatus(workerId, isCompleted);
     }
-
-    /**
-     * Retrieve a list of completed orders for a specific worker.
-     *
-     * @param id The ID of the order to retrieve.
-     * @return The list of {@link OrderResponseDto} containing the order's information.
-     */
-    @GetMapping("worker/{id}/orders/status/completed")
-    public List<OrderResponseDto> getCompleted(@PathVariable UUID id) {
-        return orderService.getOrdersByParameters(id, true);
-    }
-
     /**
      * Retrieve a list of available orders.
      *
      * @return The list of {@link OrderResponseDto} containing the order's information.
      */
-    @GetMapping("orders/status/available")
-    public List<OrderResponseDto> getAvailable() {
-        return orderService.getOrdersByParameters(null, false);
+    @GetMapping("available-orders")
+    public List<OrderResponseDto> getAvailableOrders() {
+        return orderService.getAvailableOrders();
     }
 
     /**
@@ -79,21 +68,21 @@ public class OrderController {
      * @return `true` if the order is successfully updated.
      * In case of an error, returns error message.
      */
-    @PatchMapping("order/{id}")
+    @PutMapping("order/{id}")
     public boolean completeOrder(@PathVariable UUID id) {
         return orderService.completeOrder(id);
     }
 
     /**
      * Acceptance of an order by a worker using the ID worker and ID order.
-     * @param idWorker Worker's ID.
-     * @param idOrder Order's ID.
+     * @param workerId Worker's ID.
+     * @param orderId Order's ID.
      * @return   Result of order acceptance `true` if the order is successfully updated.
      * In case of an error, returns error message.
      */
-    @PatchMapping("worker/{idWorker}/order/{idOrder}")
-    public boolean takeOrder(@PathVariable UUID idWorker, @PathVariable UUID idOrder) {
-        return orderService.takeOrder(idOrder, idWorker);
+    @PutMapping("worker/{workerId}/order/{orderId}")
+    public boolean getOrder(@PathVariable UUID workerId, @PathVariable UUID orderId) {
+        return orderService.getOrder(orderId, workerId);
     }
 
     /**

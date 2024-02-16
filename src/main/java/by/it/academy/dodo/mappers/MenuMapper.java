@@ -1,39 +1,39 @@
 package by.it.academy.dodo.mappers;
 
-import by.it.academy.dodo.dto.MenuDto;
+import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.entities.Menu;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 /**
- * Mapper interface for converting between {@link MenuDto} and {@link Menu}.
+ * Mapper interface for converting between {@link DishDto} and {@link Menu}.
  */
 @Component
 @Mapper(componentModel = "spring")
 public interface MenuMapper {
 
     /**
-     * Converts a {@link MenuDto} to a {@link Menu}.
+     * Converts a {@link DishDto} to a {@link Menu}.
      *
-     * @param menuDTO The {@link MenuDto} to convert.
+     * @param dishDTO The {@link DishDto} to convert.
      * @return The corresponding {@link Menu} entity.
      */
-    Menu createMenu(MenuDto menuDTO);
+    Menu mapToMenu(DishDto dishDTO);
 
     /**
-     * Converts a {@link Menu} entity to a {@link MenuDto}.
+     * Converts a {@link Menu} entity to a {@link DishDto}.
      *
-     * @param menu The {@link Menu} entity to convert.
-     * @return The corresponding {@link MenuDto}.
+     * @param dish The {@link Menu} entity to convert.
+     * @return The corresponding {@link DishDto}.
      */
-    MenuDto createMenuDTO(Menu menu);
+    DishDto mapToDishDto(Menu dish);
 
     /**
-     * Converts a list of {@link Menu} entity to a list of {@link MenuDto}.
-     * @param menus The list of {@link Menu} entity to convert.
-     * @return The corresponding list of {@link MenuDto}.
+     * Converts a list of {@link Menu} entity to a list of {@link DishDto}.
+     * @param dishes The list of {@link Menu} entity to convert.
+     * @return The corresponding list of {@link DishDto}.
      */
-    List<MenuDto> createMenuDTOList(List<Menu> menus);
+    List<DishDto> mapToDishDtoList(List<Menu> dishes);
 
 }

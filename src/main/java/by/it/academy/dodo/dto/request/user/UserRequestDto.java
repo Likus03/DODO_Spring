@@ -1,6 +1,6 @@
 package by.it.academy.dodo.dto.request.user;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +16,12 @@ public class UserRequestDto {
     /**
      * The login associated with the user.
      */
-    @NotEmpty(message = "Login cannot be null")
+    @NotBlank(message = "Login cannot be null")
     private String login;
 
     /**
      * The password associated with the user.
      */
-    @NotEmpty(message = "Password cannot be null")
+    @NotBlank(message = "Password cannot be null")
     private String password;
 }

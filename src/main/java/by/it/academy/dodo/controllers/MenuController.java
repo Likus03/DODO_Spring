@@ -1,6 +1,6 @@
 package by.it.academy.dodo.controllers;
 
-import by.it.academy.dodo.dto.MenuDto;
+import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.services.menu.MenuService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,30 +34,30 @@ import java.util.UUID;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/menu")
 public class MenuController {
     private final MenuService menuService;
 
     /**
      * Create a new menu.
      *
-     * @param menuDTO The menu data to be created.
+     * @param dishDTO The menu data to be created.
      * @return `true` if the menu is successfully created.
      *          In case of an error, returns error message.
      */
-    @PostMapping("menu")
-    public boolean create(@Valid @RequestBody MenuDto menuDTO) {
-        return menuService.createMenu(menuDTO);
+    @PostMapping("dish")
+    public boolean create(@Valid @RequestBody DishDto dishDTO) {
+        return menuService.createDish(dishDTO);
     }
 
     /**
      * Retrieve menu information.
      *
-     * @return The list {@link MenuDto} containing the menu information.
+     * @return The list of {@link DishDto} containing the menu information.
      */
-    @GetMapping("menu")
-    public List<MenuDto> getAll() {
-        return menuService.getAllMenu();
+    @GetMapping
+    public List<DishDto> getAll() {
+        return menuService.getMenu();
     }
 
     /**
@@ -67,32 +67,37 @@ public class MenuController {
      * @return `true` if the menu is successfully deleted.
      * In case of an error, returns error message.
      */
-    @DeleteMapping("menu/{id}")
+    @DeleteMapping("dish/{id}")
     public boolean delete(@PathVariable UUID id) {
-        return menuService.deleteMenu(id);
+        return menuService.deleteDish(id);
     }
 
     /**
      * Update menu information by ID.
      *
      * @param id         Menu's ID.
-     * @param menuDTO  The updated menu data.
+     * @param dishDTO  The updated menu data.
      * @return `true` if the menu is successfully updated.
      *          In case of an error, returns error message.
      */
-    @PutMapping("menu/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody MenuDto menuDTO) {
-        return menuService.updateMenu(id, menuDTO);
+    @PutMapping("dish/{id}")
+    public boolean update(@PathVariable UUID id, @Valid @RequestBody DishDto dishDTO) {
+        return menuService.updateDish(id, dishDTO);
     }
 
     /**
      * Retrieve menu information by parameter.
      *
-     * @param parameter The parameter for filtering menu items.
-     * @return The list of {@link MenuDto} containing the menu information.
+     * @param name The parameter for filtering menu items.
+     * @return The list of {@link DishDto} containing the menu information.
      */
-    @GetMapping("menu/{parameter}")
-    public List<MenuDto> getByParameter(@PathVariable String parameter) {
-        return menuService.getMenuByParameter(parameter);
+    @GetMapping(value = "dish", params = "name")
+    public List<DishDto> getDishByName(@RequestParam String name) {
+        return menuService.getDishByName(name);
     }
+    @GetMapping(value = "dish", params = "description")
+    public List<DishDto> getDishByDescription(@RequestParam String description) {
+        return menuService.getDishByDescription(description);
+    }
+
 }

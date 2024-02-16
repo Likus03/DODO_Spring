@@ -17,7 +17,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 public class ControllersLoggerAspect {
     private static final String LOG_REQUEST_PATTERN = "{} -> {}: {}";
-    private static final String LOG_RESPONSE_PATTERN = "{} -> {}: {}, request = {}";
 
     /**
      * Pointcut definition for methods in the controllers package.
@@ -36,7 +35,7 @@ public class ControllersLoggerAspect {
         HttpServletRequest request = getHttpServletRequest();
         log.info(LOG_REQUEST_PATTERN,
                 request.getMethod(),
-                joinPoint.getSignature(),
+                joinPoint.getSignature().toShortString(),
                 request.getRequestURI());
     }
 

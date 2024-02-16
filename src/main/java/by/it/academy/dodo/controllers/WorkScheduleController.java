@@ -48,7 +48,7 @@ public class WorkScheduleController {
      * In case of an error, returns error message.
      */
     @PostMapping("worker/{id}/workSchedule")
-    public boolean create(@PathVariable UUID id, @Valid @RequestBody WorkScheduleRequestDto workScheduleRequestDTO){
+    public boolean createWorkSchedule(@PathVariable UUID id, @Valid @RequestBody WorkScheduleRequestDto workScheduleRequestDTO){
         return workScheduleService.createWorkSchedule(id, workScheduleRequestDTO);
     }
 
@@ -81,7 +81,7 @@ public class WorkScheduleController {
      * In case of an error, returns error message.
      */
     @DeleteMapping("workSchedule/{id}")
-    public boolean delete(@PathVariable UUID id){
+    public boolean deleteWorkSchedule(@PathVariable UUID id){
         return workScheduleService.deleteWorkSchedule(id);
     }
 }

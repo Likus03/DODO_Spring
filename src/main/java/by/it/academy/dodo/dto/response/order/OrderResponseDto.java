@@ -1,7 +1,7 @@
 package by.it.academy.dodo.dto.response.order;
 
+import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.dto.response.client.ClientToOrderResponseDto;
-import by.it.academy.dodo.dto.MenuDto;
 import by.it.academy.dodo.dto.response.worker.WorkerResponseDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +34,5 @@ public class OrderResponseDto {
     private WorkerResponseDto worker;
 
     /** The list of menu items included in the order. */
-    private List<MenuDto> menus;
+    private List<DishDto> menus;
 }

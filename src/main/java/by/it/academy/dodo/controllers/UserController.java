@@ -32,7 +32,7 @@ import java.util.UUID;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
 
@@ -42,30 +42,30 @@ public class UserController {
      * @param userWorkerRequestDTO DTO containing user and worker information.
      * @return `true` if the user creation is successful. In case of an error, returns error message.
      */
-    @PostMapping("user")
-    public boolean create(@Valid @RequestBody UserWorkerRequestDto userWorkerRequestDTO) {
+    @PostMapping
+    public boolean createUser(@Valid @RequestBody UserWorkerRequestDto userWorkerRequestDTO) {
         return userService.createUser(userWorkerRequestDTO);
     }
 
     /**
      * Delete user by Worker's ID.
      *
-     * @param idWorker Worker's ID.
+     * @param workerId Worker's ID.
      * @return `true` if the user deletion is successful. In case of an error, returns error message.
      */
-    @DeleteMapping("user/{idWorker}")
-    public boolean delete(@PathVariable UUID idWorker){
-        return userService.deleteUser(idWorker);
+    @DeleteMapping("{workerId}")
+    public boolean deleteUser(@PathVariable UUID workerId){
+        return userService.deleteUser(workerId);
     }
 
     /**
      *
-     * @param idWorker Worker's ID.
+     * @param workerId Worker's ID.
      * @param userRequestDTO DTO containing updated user information.
      * @return `true` if the user update is successful. In case of an error, returns error message.
      */
-    @PatchMapping("user/{idWorker}")
-    public boolean update(@PathVariable UUID idWorker, @Valid @RequestBody UserRequestDto userRequestDTO){
-        return userService.updateUser(idWorker, userRequestDTO);
+    @PutMapping("{workerId}")
+    public boolean updateUser(@PathVariable UUID workerId, @Valid @RequestBody UserRequestDto userRequestDTO){
+        return userService.updateUser(workerId, userRequestDTO);
     }
 }

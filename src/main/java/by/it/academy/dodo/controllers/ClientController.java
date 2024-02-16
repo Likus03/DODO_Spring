@@ -32,7 +32,7 @@ import java.util.UUID;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/client")
 public class ClientController {
     private final ClientService clientService;
 
@@ -43,8 +43,8 @@ public class ClientController {
      * @return `true` if the client is successfully created.
      *          In case of an error, returns error message.
      */
-    @PostMapping("client")
-    public boolean create(@Valid @RequestBody ClientDto clientDTO) {
+    @PostMapping
+    public boolean createClient(@Valid @RequestBody ClientDto clientDTO) {
         return clientService.createClient(clientDTO);
     }
 
@@ -54,8 +54,8 @@ public class ClientController {
      * @param id Client's ID.
      * @return The {@link ClientDto} containing the client information.
      */
-    @GetMapping("client/{id}")
-    public ClientDto get(@PathVariable UUID id) {
+    @GetMapping("{id}")
+    public ClientDto getClient(@PathVariable UUID id) {
         return clientService.getClient(id);
     }
 
@@ -67,8 +67,8 @@ public class ClientController {
      * @return `true` if the client is successfully updated.
      *          In case of an error, returns error message.
      */
-    @PatchMapping("client/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody ClientDto clientDTO) {
+    @PutMapping("{id}")
+    public boolean updateClient(@PathVariable UUID id, @Valid @RequestBody ClientDto clientDTO) {
         return clientService.updateClient(id, clientDTO);
     }
 
@@ -79,8 +79,8 @@ public class ClientController {
      * @return `true` if the client is successfully deleted.
      * In case of an error, returns error message.
      */
-    @DeleteMapping("client/{id}")
-    public boolean delete(@PathVariable UUID id) {
+    @DeleteMapping("{id}")
+    public boolean deleteClient(@PathVariable UUID id) {
         return clientService.deleteClient(id);
     }
 }

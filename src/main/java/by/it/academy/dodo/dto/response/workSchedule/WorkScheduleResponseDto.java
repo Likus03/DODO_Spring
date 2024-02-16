@@ -18,7 +18,7 @@ public class WorkScheduleResponseDto {
     /**
      * Date of the work schedule.
      */
-    private LocalDate dateWork;
+    private LocalDate workDate;
 
     /**
      * Start time of the work schedule.

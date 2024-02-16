@@ -18,7 +18,7 @@ public interface ClientMapper {
      * @param clientDTO The {@link ClientDto} to convert.
      * @return The corresponding {@link Client} entity.
      */
-    Client createClient(ClientDto clientDTO);
+    Client mapToClient(ClientDto clientDTO);
 
     /**
      * Converts a {@link Client} entity to a {@link ClientDto}.
@@ -26,5 +26,5 @@ public interface ClientMapper {
      * @param client The {@link Client} entity to convert.
      * @return The corresponding {@link ClientDto}.
      */
-    ClientDto createClientDTO(Client client);
+    ClientDto mapToClientDto(Client client);
 }

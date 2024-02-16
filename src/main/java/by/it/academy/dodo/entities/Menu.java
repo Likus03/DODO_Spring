@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -25,24 +25,12 @@ public class Menu {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "DESCRIBE", nullable = false)
-    private String describe;
+    @Column(name = "DESCRIPTION", nullable = false)
+    private String description;
 
     @Column(name = "COST", nullable = false)
-    private Float cost;
+    private BigDecimal cost;
 
     @ManyToMany(mappedBy = "menus")
     private List<Order> orders;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Menu menu)) return false;
-        return Objects.equals(getId(), menu.getId()) && Objects.equals(getName(), menu.getName()) && Objects.equals(getDescribe(), menu.getDescribe()) && Objects.equals(getCost(), menu.getCost()) && Objects.equals(getOrders(), menu.getOrders());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescribe(), getCost(), getOrders());
-    }
 }

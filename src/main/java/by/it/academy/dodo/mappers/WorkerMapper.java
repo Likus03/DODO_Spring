@@ -19,20 +19,20 @@ public interface WorkerMapper {
      * @param worker The {@link Worker} entity to convert.
      * @return The corresponding {@link WorkerDto}.
      */
-    WorkerDto createWorkerDTO(Worker worker);
+    WorkerDto mapToWorkerDto(Worker worker);
     /**
      * Converts a {@link WorkerDto} to a {@link Worker} entity.
      *
      * @param workerDTO The {@link WorkerDto} to convert.
      * @return The corresponding {@link Worker} entity.
      */
-    Worker createWorker(WorkerDto workerDTO);
+    Worker mapToWorker(WorkerDto workerDTO);
 
     /**
      * Converts a list of {@link Worker} entity to a list of {@link WorkerDto}.
      * @param workers menus The list of {@link Worker} entity to convert.
      * @return The corresponding list of {@link WorkerDto}.
      */
-    List<WorkerDto> createWorkerDTOList(List<Worker> workers);
+    List<WorkerDto> mapToWorkerDtoList(List<Worker> workers);
 
 }

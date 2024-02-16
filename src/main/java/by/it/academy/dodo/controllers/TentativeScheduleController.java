@@ -48,30 +48,30 @@ public class TentativeScheduleController {
      * In case of an error, returns error message.
      */
     @PostMapping("worker/{id}/tentativeSchedule")
-    public boolean create(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO) {
+    public boolean createTentativeSchedule(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO) {
         return tentativeScheduleService.createTentativeSchedule(id, tentativeScheduleDTO);
     }
 
     /**
      * Retrieve the tentative schedule of a worker for a specific week.
      * @param id Worker's ID.
-     * @param dateWork The date of the week for which the tentative schedule is being requested.
+     * @param workDate The date of the week for which the tentative schedule is being requested.
      * @return A list of {@link TentativeScheduleDto} objects representing the day's tentative schedule.
      */
-    @GetMapping("worker/{id}/tentativeSchedule/{dateWork}")
-    public List<TentativeScheduleDto> getWeekTentativeSchedule(@PathVariable UUID id, @PathVariable LocalDate dateWork) {
-        return tentativeScheduleService.getWeekTentativeSchedule(id, dateWork);
+    @GetMapping("worker/{id}/tentativeSchedule/{workDate}")
+    public List<TentativeScheduleDto> getWeekTentativeSchedule(@PathVariable UUID id, @PathVariable LocalDate workDate) {
+        return tentativeScheduleService.getWeekTentativeSchedule(id, workDate);
     }
 
     /**
      * Retrieve the tentative schedule of a worker for a specific day.
      *
-     * @param dateWork The date for which the tentative schedule is requested.
+     * @param workDate The date for which the tentative schedule is requested.
      * @return A list of {@link TentativeScheduleDto} objects representing the day's tentative schedule.
      */
-    @GetMapping("tentativeSchedule/{dateWork}")
-    public List<TentativeScheduleDto> getDayTentativeSchedule(@PathVariable LocalDate dateWork){
-        return tentativeScheduleService.getDayTentativeSchedule(dateWork);
+    @GetMapping("tentativeSchedule/{workDate}")
+    public List<TentativeScheduleDto> getDayTentativeSchedule(@PathVariable LocalDate workDate){
+        return tentativeScheduleService.getDayTentativeSchedule(workDate);
     }
 
     /**
@@ -94,7 +94,7 @@ public class TentativeScheduleController {
      * @return `true` if the tentative schedule is successfully created. In case of an error, returns error message.
      */
     @DeleteMapping("tentativeSchedule/{id}")
-    public boolean delete(@PathVariable UUID id){
+    public boolean deleteTentativeSchedule(@PathVariable UUID id){
         return tentativeScheduleService.deleteTentativeSchedule(id);
     }
 }

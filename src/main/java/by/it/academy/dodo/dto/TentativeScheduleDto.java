@@ -20,7 +20,7 @@ public class TentativeScheduleDto {
      * The date of the tentative schedule.
      */
     @NotNull(message = "date work cannot be null")
-    private LocalDate dateWork;
+    private LocalDate workDate;
 
     /**
      * The start time of the tentative schedule.

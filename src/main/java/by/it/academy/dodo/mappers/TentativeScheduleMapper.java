@@ -19,7 +19,7 @@ public interface TentativeScheduleMapper {
      * @param tentativeSchedule The {@link TentativeSchedule} entity to convert.
      * @return The corresponding {@link TentativeScheduleDto}.
      */
-    TentativeScheduleDto createTentativeScheduleDTO(TentativeSchedule tentativeSchedule);
+    TentativeScheduleDto mapToTentativeScheduleDto(TentativeSchedule tentativeSchedule);
 
     /**
      * Converts a {@link TentativeScheduleDto} to a {@link TentativeSchedule}.
@@ -27,12 +27,12 @@ public interface TentativeScheduleMapper {
      * @param tentativeScheduleDTO The {@link TentativeScheduleDto} to convert.
      * @return The corresponding {@link TentativeSchedule} entity.
      */
-    TentativeSchedule createTentativeSchedule(TentativeScheduleDto tentativeScheduleDTO);
+    TentativeSchedule mapToTentativeSchedule(TentativeScheduleDto tentativeScheduleDTO);
 
     /**
      * Converts a list of {@link TentativeSchedule} entity to a list of {@link TentativeScheduleDto}.
      * @param tentativeSchedules The list of {@link TentativeSchedule} entity to convert.
      * @return The corresponding list of {@link TentativeScheduleDto}.
      */
-    List<TentativeScheduleDto> createTentativeScheduleDTOList(List<TentativeSchedule> tentativeSchedules);
+    List<TentativeScheduleDto> mapToTentativeScheduleDtoList(List<TentativeSchedule> tentativeSchedules);
 }

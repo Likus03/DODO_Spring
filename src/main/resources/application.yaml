@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/DODO
+    url: jdbc:postgresql://localhost:5432/dodo
     driver-class-name: org.postgresql.Driver
     username: root
     password: root

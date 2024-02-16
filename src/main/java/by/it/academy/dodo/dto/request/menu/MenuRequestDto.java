@@ -17,6 +17,6 @@ public class MenuRequestDto {
     /**
      * The unique identifier of the menu item.
      */
-    @NotNull
+    @NotNull(message = "id cannot be null")
     private UUID id;
 }

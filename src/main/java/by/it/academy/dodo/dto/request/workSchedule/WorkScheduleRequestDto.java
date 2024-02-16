@@ -20,7 +20,7 @@ public class WorkScheduleRequestDto {
      * The date of the work schedule.
      */
     @NotNull(message = "Date work cannot be null")
-    private LocalDate dateWork;
+    private LocalDate workDate;
 
     /**
      * The start time of the work schedule.

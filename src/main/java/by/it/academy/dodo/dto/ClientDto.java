@@ -18,27 +18,25 @@ public class ClientDto {
     /**
      * The first name of the client.
      */
-    @NotNull(message = "Firstname cannot be null")
+    @NotBlank(message = "Firstname cannot be null")
     private String firstname;
 
     /**
      * The phone number of the client.
      */
-    @NotNull(message = "Phone number cannot be null")
+    @NotBlank(message = "Phone number cannot be null")
     @Pattern(regexp = "^\\+\\d{1,14}$", message = "Phone number should start with '+' and be no more than 15 characters long")
     private String phoneNumber;
 
     /**
      * The email address of the client.
      */
-    @NotNull(message = "Email cannot be null")
     @Email(message = "Email should be valid")
     private String email;
 
     /**
      * The date of birth of the client.
      */
-    @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth should be in the past")
     private LocalDate birthday;
 }

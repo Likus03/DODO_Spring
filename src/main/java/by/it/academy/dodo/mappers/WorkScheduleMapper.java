@@ -20,19 +20,19 @@ public interface WorkScheduleMapper {
      * @param workSchedule The {@link WorkSchedule} entity to convert.
      * @return The corresponding {@link WorkScheduleResponseDto}.
      */
-    WorkScheduleResponseDto createWorkScheduleDTO(WorkSchedule workSchedule);
+    WorkScheduleResponseDto mapToWorkScheduleDto(WorkSchedule workSchedule);
     /**
      * Converts a {@link WorkScheduleRequestDto} to a {@link WorkSchedule} entity.
      *
      * @param workScheduleRequestDTO The {@link WorkScheduleRequestDto} to convert.
      * @return The corresponding {@link WorkSchedule} entity.
      */
-    WorkSchedule createWorkSchedule(WorkScheduleRequestDto workScheduleRequestDTO);
+    WorkSchedule mapToWorkSchedule(WorkScheduleRequestDto workScheduleRequestDTO);
 
     /**
      * Converts a list of {@link WorkSchedule} entity to a list of {@link WorkScheduleResponseDto}.
      * @param workSchedules The list of {@link WorkSchedule} entity to convert.
      * @return The corresponding list of {@link WorkScheduleResponseDto}.
      */
-    List<WorkScheduleResponseDto> createWorkScheduleDTOList(List<WorkSchedule> workSchedules);
+    List<WorkScheduleResponseDto> mapToWorkScheduleDtoList(List<WorkSchedule> workSchedules);
 }

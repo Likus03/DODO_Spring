@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.UUID;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -33,16 +31,4 @@ public class Client {
 
     @Column(name = "BIRTHDAY", nullable = false, updatable = false)
     private LocalDate birthday;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client client)) return false;
-        return Objects.equals(getId(), client.getId()) && Objects.equals(getFirstname(), client.getFirstname()) && Objects.equals(getEmail(), client.getEmail()) && Objects.equals(getBirthday(), client.getBirthday());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getFirstname(), getEmail(), getBirthday());
-    }
 }

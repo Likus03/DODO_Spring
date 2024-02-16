@@ -152,7 +152,7 @@ implements <a href="MenuService.html" title="interface in by.it.academy.dodo.ser
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateMenu(java.util.UUID,by.it.academy.DODO.dto.MenuDTO)" class="member-name-link">updateMenu</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto">MenuDTO</a>&nbsp;menuDTO)</code></div>
+ <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto">MenuDTO</a>&nbsp;dishDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Updates the menu with the specified ID using the provided <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto"><code>MenuDTO</code></a>.</div>
 </div>
@@ -289,7 +289,7 @@ implements <a href="MenuService.html" title="interface in by.it.academy.dodo.ser
 <h3>updateMenu</h3>
 <div class="member-signature"><span class="annotations">@Transactional
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">updateMenu</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto">MenuDTO</a>&nbsp;menuDTO)</span>
+ <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto">MenuDTO</a>&nbsp;dishDTO)</span>
                    throws <span class="exceptions"><a href="../../exceptions/ClientInvalidDataException.html" title="class in by.it.academy.dodo.exceptions">ClientInvalidDataException</a>,
 org.springframework.dao.DataIntegrityViolationException</span></div>
 <div class="block">Updates the menu with the specified ID using the provided <a href="../../dto/MenuDTO.html" title="class in by.it.academy.dodo.dto"><code>MenuDTO</code></a>.</div>
@@ -298,7 +298,7 @@ org.springframework.dao.DataIntegrityViolationException</span></div>
 <dd><code><a href="MenuService.html#updateMenu(java.util.UUID,by.it.academy.DODO.dto.MenuDTO)">updateMenu</a></code>&nbsp;in interface&nbsp;<code><a href="MenuService.html" title="interface in by.it.academy.dodo.services.menu">MenuService</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>id</code> - The ID of the menu to update.</dd>
-<dd><code>menuDTO</code> - The updated menu data.</dd>
+<dd><code>dishDTO</code> - The updated menu data.</dd>
 <dt>Returns:</dt>
 <dd><code>true</code> if the menu is updated successfully, <code>false</code> otherwise.</dd>
 <dt>Throws:</dt>

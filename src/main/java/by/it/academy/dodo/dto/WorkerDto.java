@@ -1,7 +1,7 @@
 package by.it.academy.dodo.dto;
 
-import by.it.academy.dodo.WorkerType;
-import jakarta.validation.constraints.NotEmpty;
+import by.it.academy.dodo.enums.WorkerType;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -19,18 +19,19 @@ public class WorkerDto {
     /**
      * The first name of the worker.
      */
-    @NotEmpty(message = "Firstname cannot be null")
+    @NotBlank(message = "Firstname cannot be null")
     private String firstname;
 
     /**
      * The surname of the worker.
      */
-    @NotEmpty(message = "Surname cannot be null")
+    @NotBlank(message = "Surname cannot be null")
     private String surname;
 
     /**
      * The phone number of the worker. Should start with '+' and be no more than 15 characters long.
      */
+    @NotBlank(message = "Phone number cannot be null")
     @Pattern(regexp = "^\\+\\d{1,14}$", message = "Phone number should start with '+' and be no more than 15 characters long")
     private String phoneNumber;
 

@@ -206,7 +206,7 @@ databaseChangeLog:
                   name: NAME
                   value: 'Chicken bomboni'
               - column:
-                  name: DESCRIBE
+                  name: DESCRIPTION
                   value: 'Chicken pieces, bell peppers, cheddar and parmesan cheeses, mozzarella, red onion, sweet chili sauce, alfredo sauce'
               - column:
                   name: COST
@@ -221,7 +221,7 @@ databaseChangeLog:
                   name: NAME
                   value: 'Pizza julienne'
               - column:
-                  name: DESCRIBE
+                  name: DESCRIPTION
                   value: 'Chicken, champignons, creamy mushroom sauce, red onion, garlic, mozzarella, cheddar and parmesan cheese mixture, signature alfredo sauce'
               - column:
                   name: COST
@@ -236,7 +236,7 @@ databaseChangeLog:
                   name: NAME
                   value: 'Carbonara'
               - column:
-                  name: DESCRIBE
+                  name: DESCRIPTION
                   value: 'Bacon, cheddar and parmesan cheeses, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
               - column:
                   name: COST
@@ -249,7 +249,7 @@ databaseChangeLog:
                   name: ID
                   value: '735b1dd6-70e6-434e-829e-008103cefbfc'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-12'
               - column:
                   name: START_TIME
@@ -267,7 +267,7 @@ databaseChangeLog:
                   name: ID
                   value: 'b7d0e606-eef8-45bf-9a3c-5acd54b28a60'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-13'
               - column:
                   name: START_TIME
@@ -285,7 +285,7 @@ databaseChangeLog:
                   name: ID
                   value: '8fa34b4d-7c26-4e9f-a50b-552ff63c41e2'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-14'
               - column:
                   name: START_TIME
@@ -303,7 +303,7 @@ databaseChangeLog:
                   name: ID
                   value: 'd00322d0-1ff3-4901-9609-fb7051afbd36'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-12'
               - column:
                   name: START_TIME
@@ -321,7 +321,7 @@ databaseChangeLog:
                   name: ID
                   value: '8196dea3-dfab-4698-baac-4b9f0ab11ed7'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-13'
               - column:
                   name: START_TIME
@@ -339,7 +339,7 @@ databaseChangeLog:
                   name: ID
                   value: '3dcd180b-96af-4042-bdba-8ad44fa841c7'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-14'
               - column:
                   name: START_TIME
@@ -358,7 +358,7 @@ databaseChangeLog:
                   name: ID
                   value: '84c9d38e-9b9e-43d7-9db3-dfd04b1fa1f7'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-12'
               - column:
                   name: START_TIME
@@ -376,7 +376,7 @@ databaseChangeLog:
                   name: ID
                   value: '69a60116-aaa2-4240-8a5d-887fe933811b'
               - column:
-                  name: DATE_WORK
+                  name: WORK_DATE
                   value: '2024-02-12'
               - column:
                   name: START_TIME
