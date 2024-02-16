@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QUser.user;
-
+/**
+ * Custom implementation of additional operations for the UserRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implements UserRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 

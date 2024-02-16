@@ -55,12 +55,12 @@ public class WorkScheduleController {
     /**
      * Retrieve the work schedule of a worker for a specific day.
      *
-     * @param dateWork The date for which the work schedule is requested.
+     * @param workDate The date for which the work schedule is requested.
      * @return A list of {@link WorkScheduleResponseDto} objects representing the day's work schedule.
      */
-    @GetMapping("workSchedule/{dateWork}")
-    public List<WorkScheduleResponseDto> getDayWorkSchedule(@PathVariable LocalDate dateWork){
-        return workScheduleService.getDayWorkSchedule(dateWork);
+    @GetMapping("workSchedule/{workDate}")
+    public List<WorkScheduleResponseDto> getDayWorkSchedule(@PathVariable LocalDate workDate){
+        return workScheduleService.getDayWorkSchedule(workDate);
     }
 
     /**
@@ -77,8 +77,7 @@ public class WorkScheduleController {
     /**
      * Delete work schedule by ID.
      * @param id Work schedule's ID.
-     * @return `true` if the work schedule is successfully created.
-     * In case of an error, returns error message.
+     * @return `true` if the work schedule is successfully created, otherwise `false`.
      */
     @DeleteMapping("workSchedule/{id}")
     public boolean deleteWorkSchedule(@PathVariable UUID id){

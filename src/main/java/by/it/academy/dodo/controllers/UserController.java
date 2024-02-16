@@ -14,8 +14,8 @@ import java.util.UUID;
  * <p>Endpoints:
  * <ul>
  *   <li>POST /api/v1/user - Create a new user.</li>
- *   <li>DELETE /api/v1/user/{idWorker} - Delete user by Worker's ID.</li>
- *   <li>PATCH /api/v1/user/{idWorker} - Update user by Worker's ID.</li>
+ *   <li>DELETE /api/v1/user/{workerId} - Delete user by Worker's ID.</li>
+ *   <li>PUT /api/v1/user/{workerId} - Update user by Worker's ID.</li>
  * </ul>
  *
  * <p>Each method in this class corresponds to a specific API endpoint and delegates the
@@ -51,7 +51,7 @@ public class UserController {
      * Delete user by Worker's ID.
      *
      * @param workerId Worker's ID.
-     * @return `true` if the user deletion is successful. In case of an error, returns error message.
+     * @return `true` if the user deletion is successful, otherwise `false`.
      */
     @DeleteMapping("{workerId}")
     public boolean deleteUser(@PathVariable UUID workerId){
@@ -62,7 +62,7 @@ public class UserController {
      *
      * @param workerId Worker's ID.
      * @param userRequestDTO DTO containing updated user information.
-     * @return `true` if the user update is successful. In case of an error, returns error message.
+     * @return `true` if the user update is successful, otherwise `false`.
      */
     @PutMapping("{workerId}")
     public boolean updateUser(@PathVariable UUID workerId, @Valid @RequestBody UserRequestDto userRequestDTO){

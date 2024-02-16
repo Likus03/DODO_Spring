@@ -79,8 +79,7 @@ public class TentativeScheduleController {
      *
      * @param id                  Tentative schedule's ID.
      * @param tentativeScheduleDTO The DTO containing updated tentative schedule information.
-     * @return `true` if the tentative schedule is successfully created.
-     * In case of an error, returns error message.
+     * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @PutMapping("tentativeSchedule/{id}")
     public boolean update(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO){
@@ -91,7 +90,7 @@ public class TentativeScheduleController {
      * Delete a tentative schedule by ID.
      *
      * @param id Tentative schedule's ID.
-     * @return `true` if the tentative schedule is successfully created. In case of an error, returns error message.
+     * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @DeleteMapping("tentativeSchedule/{id}")
     public boolean deleteTentativeSchedule(@PathVariable UUID id){

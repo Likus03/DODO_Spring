@@ -24,7 +24,6 @@ public interface UserService {
      * @param user The user to save.
      * @return {@code true} if the user is saved successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the user data is invalid.
      */
     boolean saveUser(User user);
 
@@ -34,8 +33,6 @@ public interface UserService {
      * @param workerId          The ID of the associated worker.
      * @param userRequestDTO    The updated user data.
      * @return {@code true} if the user is updated successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the user data is invalid.
      */
     boolean updateUser(UUID workerId, UserRequestDto userRequestDTO);
 
@@ -44,7 +41,6 @@ public interface UserService {
      *
      * @param workerId The ID of the associated worker.
      * @return {@code true} if the user is deleted successfully, {@code false} otherwise.
-     * @throws ClientInvalidDataException If the user data is invalid.
      */
     boolean deleteUser(UUID workerId);
 }

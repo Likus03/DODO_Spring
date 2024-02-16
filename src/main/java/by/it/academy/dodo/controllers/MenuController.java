@@ -13,11 +13,12 @@ import java.util.UUID;
  *
  * <p>Endpoints:
  * <ul>
- *   <li>POST /api/v1/menu - Create a new menu.</li>
+ *   <li>POST /api/v1/menu/dish - Create a new menu.</li>
  *   <li>GET /api/v1/menu - Retrieve all menu information.</li>
- *   <li>GET /api/v1/menu/{parameter} - Retrieve menu information by parameter.</li>
- *   <li>PUT /api/v1/menu/{id} - Update menu information by ID.</li>
- *   <li>DELETE /api/v1/menu/{id} - Delete a menu by ID.</li>
+ *   <li>GET /api/v1/menu?name - Retrieve menu information by name.</li>
+ *   <li>GET /api/v1/menu?description - Retrieve menu information by description.</li>
+ *   <li>PUT /api/v1/menu/dish/{id} - Update menu information by ID.</li>
+ *   <li>DELETE /api/v1/menu/dish/{id} - Delete a menu by ID.</li>
  * </ul>
  *
  * <p>Each method in this class corresponds to a specific API endpoint and delegates the
@@ -46,7 +47,7 @@ public class MenuController {
      *          In case of an error, returns error message.
      */
     @PostMapping("dish")
-    public boolean create(@Valid @RequestBody DishDto dishDTO) {
+    public boolean createDish(@Valid @RequestBody DishDto dishDTO) {
         return menuService.createDish(dishDTO);
     }
 
@@ -56,7 +57,7 @@ public class MenuController {
      * @return The list of {@link DishDto} containing the menu information.
      */
     @GetMapping
-    public List<DishDto> getAll() {
+    public List<DishDto> getMenu() {
         return menuService.getMenu();
     }
 
@@ -64,11 +65,10 @@ public class MenuController {
      * Delete a menu by ID.
      *
      * @param id Menu's ID.
-     * @return `true` if the menu is successfully deleted.
-     * In case of an error, returns error message.
+     * @return `true` if the menu is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("dish/{id}")
-    public boolean delete(@PathVariable UUID id) {
+    public boolean deleteDish(@PathVariable UUID id) {
         return menuService.deleteDish(id);
     }
 
@@ -77,16 +77,15 @@ public class MenuController {
      *
      * @param id         Menu's ID.
      * @param dishDTO  The updated menu data.
-     * @return `true` if the menu is successfully updated.
-     *          In case of an error, returns error message.
+     * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("dish/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody DishDto dishDTO) {
+    public boolean updateDish(@PathVariable UUID id, @Valid @RequestBody DishDto dishDTO) {
         return menuService.updateDish(id, dishDTO);
     }
 
     /**
-     * Retrieve menu information by parameter.
+     * Retrieve menu information by name.
      *
      * @param name The parameter for filtering menu items.
      * @return The list of {@link DishDto} containing the menu information.
@@ -95,6 +94,13 @@ public class MenuController {
     public List<DishDto> getDishByName(@RequestParam String name) {
         return menuService.getDishByName(name);
     }
+
+    /**
+     * Retrieve menu information by description.
+     *
+     * @param description The parameter for filtering menu items.
+     * @return The list of {@link DishDto} containing the menu information.
+     */
     @GetMapping(value = "dish", params = "description")
     public List<DishDto> getDishByDescription(@RequestParam String description) {
         return menuService.getDishByDescription(description);

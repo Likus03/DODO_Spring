@@ -14,7 +14,7 @@ import java.util.UUID;
  * <ul>
  *   <li>POST /api/v1/client - Create a new client.</li>
  *   <li>GET /api/v1/client/{id} - Retrieve client information by ID.</li>
- *   <li>PATCH /api/v1/client/{id} - Update client information by ID.</li>
+ *   <li>PUT /api/v1/client/{id} - Update client information by ID.</li>
  *   <li>DELETE /api/v1/client/{id} - Delete a client by ID.</li>
  * </ul>
  *
@@ -64,8 +64,7 @@ public class ClientController {
      *
      * @param id         Client's ID.
      * @param clientDTO  The updated client data.
-     * @return `true` if the client is successfully updated.
-     *          In case of an error, returns error message.
+     * @return `true` if the client is successfully updated, otherwise `false`.
      */
     @PutMapping("{id}")
     public boolean updateClient(@PathVariable UUID id, @Valid @RequestBody ClientDto clientDTO) {
@@ -76,8 +75,7 @@ public class ClientController {
      * Delete a client by ID.
      *
      * @param id Client's ID.
-     * @return `true` if the client is successfully deleted.
-     * In case of an error, returns error message.
+     * @return `true` if the client is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("{id}")
     public boolean deleteClient(@PathVariable UUID id) {

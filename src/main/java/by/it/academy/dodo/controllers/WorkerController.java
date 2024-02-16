@@ -14,8 +14,11 @@ import java.util.UUID;
  *
  * <p>Endpoints:
  * <ul>
- *   <li>GET /api/v1/workers/{parameter} - Get workers by parameter.</li>
- *   <li>PATCH /api/v1/worker/{id} - Update worker by ID.</li>
+ *   <li>GET /api/v1/workers?firstname - Get workers by firstname.</li>
+ *   <li>GET /api/v1/workers?surname - Get workers by surname.</li>
+ *   <li>GET /api/v1/workers?phoneNumber - Get workers by phoneNumber.</li>
+ *   <li>GET /api/v1/workers?workerType - Get workers by workerType.</li>
+ *   <li>PUT /api/v1/worker/{id} - Update worker by ID.</li>
  * </ul>
  *
  * <p>Each method in this class corresponds to a specific API endpoint and delegates the
@@ -47,16 +50,34 @@ public class WorkerController {
         return workerService.getWorkersByFirstname(firstname);
     }
 
+    /**
+     * Get workers by surname.
+     *
+     * @param surname The surname for filtering workers items.
+     * @return The list of {@link WorkerDto} containing the worker's information.
+     */
     @GetMapping(value = "workers", params = "surname")
     public List<WorkerDto> getWorkersBySurname(@RequestParam String surname) {
         return workerService.getWorkersBySurname(surname);
     }
 
+    /**
+     * Get workers by phone number.
+     *
+     * @param phoneNumber The phoneNumber for filtering workers items.
+     * @return The list of {@link WorkerDto} containing the worker's information.
+     */
     @GetMapping(value = "workers", params = "phoneNumber")
     public List<WorkerDto> getWorkersByPhoneNumber(@RequestParam String phoneNumber) {
         return workerService.getWorkersByPhoneNumber(phoneNumber);
     }
 
+    /**
+     * Get workers by worker type.
+     *
+     * @param workerType The worker type for filtering workers items.
+     * @return The list of {@link WorkerDto} containing the worker's information.
+     */
     @GetMapping(value = "workers", params = "workerType")
     public List<WorkerDto> getWorkersByWorkerType(@RequestParam String workerType) {
         return workerService.getWorkersByWorkerType(workerType);
@@ -67,8 +88,7 @@ public class WorkerController {
      *
      * @param id               Worker's ID.
      * @param workerDTO The updated worker data.
-     * @return `true` if the menu is successfully updated.
-     * In case of an error, returns error message.
+     * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("worker/{id}")
     public boolean updateWorker(@PathVariable UUID id, @Valid @RequestBody WorkerDto workerDTO) {

@@ -7,10 +7,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * Data Transfer Object (DTO) for receiving worker-related requests.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkerRequestDto {
+    /**
+     * The unique identifier of the worker.
+     */
     @NotNull(message = "id cannot be null")
     private UUID id;
 }

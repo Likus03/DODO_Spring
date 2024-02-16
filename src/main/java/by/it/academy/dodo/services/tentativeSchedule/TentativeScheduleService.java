@@ -27,7 +27,6 @@ public interface TentativeScheduleService {
      * @param tentativeSchedule The tentative schedule to save.
      * @return {@code true} if the tentative schedule is saved successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the tentative schedule data is invalid.
      */
     boolean saveTentativeSchedule(TentativeSchedule tentativeSchedule);
 
@@ -37,8 +36,6 @@ public interface TentativeScheduleService {
      * @param id                   The ID of the tentative schedule to update.
      * @param tentativeScheduleDTO The updated tentative schedule data.
      * @return {@code true} if the tentative schedule is updated successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the tentative schedule data is invalid.
      */
     boolean updateTentativeSchedule(UUID id, TentativeScheduleDto tentativeScheduleDTO);
 
@@ -66,7 +63,6 @@ public interface TentativeScheduleService {
      *
      * @param id The ID of the tentative schedule to delete.
      * @return {@code true} if the tentative schedule is deleted successfully, {@code false} otherwise.
-     * @throws ClientInvalidDataException If the tentative schedule data is invalid.
      */
     boolean deleteTentativeSchedule(UUID id);
 }

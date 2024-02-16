@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QClient.client;
-
+/**
+ * Custom implementation of additional operations for the ClientRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class ClientRepositoryCustomImpl extends QuerydslRepositorySupport implements ClientRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 

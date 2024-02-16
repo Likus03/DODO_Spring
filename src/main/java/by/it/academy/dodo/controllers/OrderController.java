@@ -16,11 +16,10 @@ import java.util.UUID;
  * <p>Endpoints:
  * <ul>
  *   <li>POST /api/v1/order - Create a new order.</li>
- *   <li>GET /api/v1/worker/{id}/orders/status/notCompleted - Retrieve a list of incomplete orders for a specific worker.</li>
- *   <li>GET /api/v1/worker/{id}/orders/status/completed - Retrieve a list of completed orders for a specific worker.</li>
- *   <li>GET /api/v1/orders/status/available - Retrieve a list of available orders.</li>
- *   <li>PATCH /api/v1/order/{id} - Complete an order by its identifier.</li>
- *   <li>PATCH /api/v1/worker/{idWorker}/order/{idOrder} - Acceptance of an order by an worker using the ID worker and ID order.</li>
+ *   <li>GET /api/v1/worker/{workerId}/orders?IsCompleted - Retrieve a list of orders for a specific worker by status.</li>
+ *   <li>GET /api/v1/available-orders - Retrieve a list of available orders.</li>
+ *   <li>PUT /api/v1/order/{id} - Complete an order by its identifier.</li>
+ *   <li>PUT /api/v1/worker/{workerId}/order/{orderId} - Acceptance of an order by an worker using the ID worker and ID order.</li>
  * </ul>
  *
  * <p>Each method in this class corresponds to a specific API endpoint and delegates the
@@ -42,7 +41,7 @@ public class OrderController {
     private final OrderService orderService;
 
     /**
-     * Retrieve a list of incomplete orders for a specific worker.
+     * Retrieve a list of orders for a specific worker by status.
      *
      * @param workerId The ID of the order to retrieve.
      * @return The list of {@link OrderResponseDto} containing the order's information.
@@ -65,8 +64,7 @@ public class OrderController {
      * Complete an order by ID.
      *
      * @param id Order's ID.
-     * @return `true` if the order is successfully updated.
-     * In case of an error, returns error message.
+     * @return `true` if the order is successfully updated, otherwise `false`.
      */
     @PutMapping("order/{id}")
     public boolean completeOrder(@PathVariable UUID id) {
@@ -77,8 +75,7 @@ public class OrderController {
      * Acceptance of an order by a worker using the ID worker and ID order.
      * @param workerId Worker's ID.
      * @param orderId Order's ID.
-     * @return   Result of order acceptance `true` if the order is successfully updated.
-     * In case of an error, returns error message.
+     * @return   Result of order acceptance `true` if the order is successfully updated, otherwise `false`.
      */
     @PutMapping("worker/{workerId}/order/{orderId}")
     public boolean getOrder(@PathVariable UUID workerId, @PathVariable UUID orderId) {
@@ -92,7 +89,7 @@ public class OrderController {
      * In case of an error, returns error message.
      */
     @PostMapping("order")
-    public boolean create(@Valid @RequestBody OrderRequestDto orderRequestDTO) {
+    public boolean createOrder(@Valid @RequestBody OrderRequestDto orderRequestDTO) {
         return orderService.createOrder(orderRequestDTO);
     }
 }

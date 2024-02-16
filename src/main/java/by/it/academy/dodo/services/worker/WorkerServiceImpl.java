@@ -6,7 +6,6 @@ import by.it.academy.dodo.exceptions.ClientInvalidDataException;
 import by.it.academy.dodo.mappers.WorkerMapper;
 import by.it.academy.dodo.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,17 +60,6 @@ public class WorkerServiceImpl implements WorkerService {
     public boolean updateWorker(UUID id, WorkerDto workerDTO) {
         Worker newWorker = workerMapper.mapToWorker(workerDTO);
         return workerRepository.updateWorker(id, newWorker);
-    }
-
-    @Override
-    @Transactional
-    public boolean saveWorker(Worker worker) throws DataIntegrityViolationException {
-        try {
-            workerRepository.saveAndFlush(worker);
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Unable to save worker");
-        }
     }
 
     private List<WorkerDto> getWorkerDto(List<Worker> workers) throws ClientInvalidDataException {

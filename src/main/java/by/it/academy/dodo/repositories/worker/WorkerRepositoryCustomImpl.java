@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QWorker.worker;
-
+/**
+ * Custom implementation of additional operations for the WorkerRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class WorkerRepositoryCustomImpl extends QuerydslRepositorySupport implements WorkerRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 

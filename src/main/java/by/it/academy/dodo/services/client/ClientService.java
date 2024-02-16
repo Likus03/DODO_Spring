@@ -14,7 +14,6 @@ public interface ClientService {
      * @param clientDTO The client data to create.
      * @return {@code true} if the client is created successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the client data is invalid.
      */
     boolean createClient(ClientDto clientDTO);
 
@@ -24,7 +23,6 @@ public interface ClientService {
      * @param client The client to save.
      * @return {@code true} if the client is saved successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the client data is invalid.
      */
     boolean saveClient(Client client);
 
@@ -33,7 +31,6 @@ public interface ClientService {
      *
      * @param id The ID of the client to delete.
      * @return {@code true} if the client is deleted successfully, {@code false} otherwise.
-     * @throws ClientInvalidDataException If the client data is invalid.
      */
     boolean deleteClient(UUID id);
 
@@ -52,8 +49,6 @@ public interface ClientService {
      * @param id        The ID of the client to update.
      * @param clientDTO The updated client data.
      * @return {@code true} if the client is updated successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the client data is invalid.
      */
     boolean updateClient(UUID id, ClientDto clientDTO);
 

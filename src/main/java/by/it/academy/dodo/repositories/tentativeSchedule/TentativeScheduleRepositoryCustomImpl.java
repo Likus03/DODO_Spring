@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QTentativeSchedule.tentativeSchedule;
-
+/**
+ * Custom implementation of additional operations for the TentativeScheduleRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class TentativeScheduleRepositoryCustomImpl extends QuerydslRepositorySupport implements TentativeScheduleRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 

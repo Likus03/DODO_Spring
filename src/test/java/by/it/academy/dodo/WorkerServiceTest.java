@@ -1,16 +1,12 @@
 package by.it.academy.dodo;
 
-import by.it.academy.dodo.entities.Worker;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
 import by.it.academy.dodo.services.worker.WorkerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class WorkerServiceTest {
@@ -49,12 +45,5 @@ public class WorkerServiceTest {
         Assertions.assertThrows(ClientInvalidDataException.class, () ->
                 workerService.getWorkersByWorkerType(null)
         );
-    }
-
-    @Test
-    @Transactional
-    public void testSaveWorkerInvalidData() {
-        assertThrows(DataIntegrityViolationException.class, () ->
-                workerService.saveWorker(new Worker()));
     }
 }

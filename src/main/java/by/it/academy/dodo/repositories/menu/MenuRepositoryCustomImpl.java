@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QMenu.menu;
-
+/**
+ * Custom implementation of additional operations for the MenuRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class MenuRepositoryCustomImpl extends QuerydslRepositorySupport implements MenuRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 

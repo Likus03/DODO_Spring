@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import java.util.UUID;
 
 import static by.it.academy.dodo.entities.QOrder.order;
-
+/**
+ * Custom implementation of additional operations for the OrderRepository.
+ * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
+ */
 public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport implements OrderRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
@@ -15,7 +18,6 @@ public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport impleme
         super(Order.class);
         this.jpaQueryFactory = jpaQueryFactory;
     }
-
 
     @Override
     public boolean getOrder(UUID orderId, UUID workerId) {

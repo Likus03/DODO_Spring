@@ -19,6 +19,13 @@ public interface OrderService {
      * @throws ClientInvalidDataException If the order data is invalid.
      */
     List<OrderResponseDto> getOrdersByStatus(UUID workerId, boolean isCompleted);
+
+    /**
+     * Retrieves a list of available orders for workers.
+     *
+     * @return List of {@link OrderResponseDto} representing available orders.
+     * @throws ClientInvalidDataException If no available orders are found.
+     */
     List<OrderResponseDto> getAvailableOrders();
 
     /**
@@ -27,7 +34,6 @@ public interface OrderService {
      * @param idOrder  The ID of the order.
      * @param idWorker The ID of the worker.
      * @return {@code true} if the order is assigned successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
      */
     boolean getOrder(UUID idOrder, UUID idWorker);
 
@@ -37,7 +43,6 @@ public interface OrderService {
      * @param orderRequestDTO The order data to create.
      * @return {@code true} if the order is created successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the order data is invalid.
      */
     boolean createOrder(OrderRequestDto orderRequestDTO);
 
@@ -47,7 +52,6 @@ public interface OrderService {
      * @param order The order to save.
      * @return {@code true} if the order is saved successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the order data is invalid.
      */
     boolean saveOrder(Order order);
 
@@ -56,8 +60,6 @@ public interface OrderService {
      *
      * @param id The ID of the order to complete.
      * @return {@code true} if the order is marked as completed successfully, {@code false} otherwise.
-     * @throws ClientInvalidDataException      If the order data is invalid.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
      */
     boolean completeOrder(UUID id);
 }
