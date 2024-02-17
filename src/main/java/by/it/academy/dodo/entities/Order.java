@@ -1,10 +1,7 @@
 package by.it.academy.dodo.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,6 +20,7 @@ public class Order {
     @Column(name = "ID")
     private UUID id;
 
+    @Setter(AccessLevel.NONE)
     @Column(name = "TOTAL_COST")
     private BigDecimal totalCost;
 
