@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+  - changeSet:
+      id: 006-create-trigger
+      author: admin
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/trigger.sql

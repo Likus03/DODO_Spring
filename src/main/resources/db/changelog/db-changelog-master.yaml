@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/001-create-uuid-extension.yaml
+  - include:
+      file: classpath:db/changelog/002-create-tables.yaml
+  - include:
+      file: classpath:db/changelog/003-add-foreign-key-constraints.yaml
+  - include:
+      file: classpath:db/changelog/004-add-unique-constraints.yaml
+  - include:
+      file: classpath:db/changelog/005-create-function.yaml
+  - include:
+      file: classpath:db/changelog/006-create-trigger.yaml
+  - include:
+      file: classpath:db/changelog/007-fill-tables.yaml

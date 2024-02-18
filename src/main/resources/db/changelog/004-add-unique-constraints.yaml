@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+  - changeSet:
+      id: 004-create-unique-constraints
+      author: admin
+      changes:
+        - addUniqueConstraint:
+            constraintName: uc_tentative_schedules_date_work_worker_id
+            tableName: TENTATIVE_SCHEDULES
+            columnNames: WORK_DATE, WORKER_ID
+
+        - addUniqueConstraint:
+            constraintName: uc_work_schedules_date_work_worker_id
+            tableName: WORK_SCHEDULES
+            columnNames: WORK_DATE, WORKER_ID

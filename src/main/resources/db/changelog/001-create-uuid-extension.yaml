@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+  - changeSet:
+      id: 001-create-uuid-extension
+      author: admin
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/extension.sql

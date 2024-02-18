@@ -1,10 +1,10 @@
-package by.it.academy.DODO;
+package by.it.academy.dodo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DodoApplicationTests {
+class DodoApplicationTest {
 
 	@Test
 	void contextLoads() {
