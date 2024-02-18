@@ -22,7 +22,7 @@ public class OrderResponseDto {
     private LocalDateTime deliveryTime;
 
     /** Indicates whether the order has been completed or not. */
-    private Boolean completed;
+    private Boolean isCompleted;
 
     /** The total cost of the order. */
     private Float totalCost;

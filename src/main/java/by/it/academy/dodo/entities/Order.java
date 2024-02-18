@@ -30,8 +30,8 @@ public class Order {
     @Column(name = "DELIVERY_TIME", nullable = false)
     private LocalDateTime deliveryTime;
 
-    @Column(name = "COMPLETED", nullable = false)
-    private Boolean completed;
+    @Column(name = "IS_COMPLETED", nullable = false)
+    private Boolean isCompleted;
 
     @ManyToOne
     @JoinColumn(name = "CLIENT_ID", nullable = false)

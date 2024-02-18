@@ -204,7 +204,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: COMPLETED
+                  name: IS_COMPLETED
                   type: boolean
                   defaultValueBoolean: false
                   constraints:

@@ -15,13 +15,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface WorkScheduleMapper {
     /**
-     * Converts a {@link WorkSchedule} entity to a {@link WorkScheduleResponseDto}.
-     *
-     * @param workSchedule The {@link WorkSchedule} entity to convert.
-     * @return The corresponding {@link WorkScheduleResponseDto}.
-     */
-    WorkScheduleResponseDto mapToWorkScheduleDto(WorkSchedule workSchedule);
-    /**
      * Converts a {@link WorkScheduleRequestDto} to a {@link WorkSchedule} entity.
      *
      * @param workScheduleRequestDTO The {@link WorkScheduleRequestDto} to convert.

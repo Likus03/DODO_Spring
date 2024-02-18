@@ -12,15 +12,6 @@ import java.util.List;
 @Component
 @Mapper(componentModel = "spring")
 public interface TentativeScheduleMapper {
-
-    /**
-     * Converts a {@link TentativeSchedule} entity to a {@link TentativeScheduleDto}.
-     *
-     * @param tentativeSchedule The {@link TentativeSchedule} entity to convert.
-     * @return The corresponding {@link TentativeScheduleDto}.
-     */
-    TentativeScheduleDto mapToTentativeScheduleDto(TentativeSchedule tentativeSchedule);
-
     /**
      * Converts a {@link TentativeScheduleDto} to a {@link TentativeSchedule}.
      *

@@ -14,13 +14,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface WorkerMapper {
     /**
-     * Converts a {@link Worker} entity to a {@link WorkerDto}.
-     *
-     * @param worker The {@link Worker} entity to convert.
-     * @return The corresponding {@link WorkerDto}.
-     */
-    WorkerDto mapToWorkerDto(Worker worker);
-    /**
      * Converts a {@link WorkerDto} to a {@link Worker} entity.
      *
      * @param workerDTO The {@link WorkerDto} to convert.

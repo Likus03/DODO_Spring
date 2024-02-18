@@ -18,6 +18,6 @@ public interface OrderRepository extends JpaRepository<Order, UUID>, OrderReposi
      * @return An optional list of {@link Order} entities matching the worker's ID and completion status.
      */
 
-    List<Order> findAllByWorker_IdAndCompleted(UUID workerId, Boolean completed);
+    List<Order> findAllByWorker_IdAndIsCompleted(UUID workerId, Boolean completed);
     List<Order> findAllByWorker_Id(UUID workerId);
 }

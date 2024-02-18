@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     @Override
     public List<OrderResponseDto> getOrdersByStatus(UUID workerId, boolean isCompleted) throws ClientInvalidDataException {
-        List<Order> orders = orderRepository.findAllByWorker_IdAndCompleted(workerId, isCompleted);
+        List<Order> orders = orderRepository.findAllByWorker_IdAndIsCompleted(workerId, isCompleted);
 
         if (orders.isEmpty()) {
             throw new ClientInvalidDataException("Order was not found");
@@ -33,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.mapToOrderDtoList(orders);
     }
 
+    @Transactional
     @Override
     public List<OrderResponseDto> getAvailableOrders() throws ClientInvalidDataException {
         List<Order> orders = orderRepository.findAllByWorker_Id(null);

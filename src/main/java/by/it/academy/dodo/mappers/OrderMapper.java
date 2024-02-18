@@ -15,22 +15,13 @@ import java.util.List;
 @Component
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
-
-    /**
-     * Converts an {@link Order} entity to an {@link OrderResponseDto}.
-     *
-     * @param order The {@link Order} entity to convert.
-     * @return The corresponding {@link OrderResponseDto}.
-     */
-    OrderResponseDto mapToOrderDto(Order order);
-
     /**
      * Converts an {@link OrderRequestDto} to an {@link Order}.
      *
      * @param orderRequestDTO The {@link OrderRequestDto} to convert.
      * @return The corresponding {@link Order} entity.
      */
-    @Mapping(target = "completed", expression = "java(getDefaultValue())")
+    @Mapping(target = "isCompleted", expression = "java(getDefaultValue())")
     Order mapToOder(OrderRequestDto orderRequestDTO);
 
     /**
