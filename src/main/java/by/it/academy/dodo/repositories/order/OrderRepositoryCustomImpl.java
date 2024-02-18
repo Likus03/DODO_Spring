@@ -32,7 +32,7 @@ public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport impleme
     @Override
     public boolean completeOrder(UUID id) {
         long updateCount = jpaQueryFactory.update(order)
-                .set(order.completed, true)
+                .set(order.isCompleted, true)
                 .where(order.id.eq(id))
                 .execute();
 
