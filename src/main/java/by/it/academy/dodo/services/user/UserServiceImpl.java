@@ -3,6 +3,7 @@ package by.it.academy.dodo.services.user;
 import by.it.academy.dodo.dto.WorkerDto;
 import by.it.academy.dodo.dto.request.UserWorkerRequestDto;
 import by.it.academy.dodo.dto.request.user.UserRequestDto;
+import by.it.academy.dodo.dto.request.user.UserRequestPutDto;
 import by.it.academy.dodo.entities.User;
 import by.it.academy.dodo.entities.Worker;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
@@ -54,8 +55,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean updateUser(UUID workerId, UserRequestDto userRequestDTO) {
-        User newUser = userMapper.mapToUser(userRequestDTO);
+    public boolean updateUser(UUID workerId, UserRequestPutDto userRequestPutDto) {
+        User newUser = userMapper.mapToUser(userRequestPutDto);
         return userRepository.updateUserPassword(workerId, newUser.getPassword());
     }
 

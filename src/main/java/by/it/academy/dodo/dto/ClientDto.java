@@ -1,9 +1,11 @@
 package by.it.academy.dodo.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -11,7 +13,6 @@ import java.time.LocalDate;
  * Data Transfer Object (DTO) for representing client information.
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class ClientDto {
 
@@ -24,7 +25,6 @@ public class ClientDto {
     /**
      * The phone number of the client.
      */
-    @NotBlank(message = "Phone number cannot be null")
     @Pattern(regexp = "^\\+\\d{1,14}$", message = "Phone number should start with '+' and be no more than 15 characters long")
     private String phoneNumber;
 

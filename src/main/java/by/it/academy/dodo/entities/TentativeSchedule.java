@@ -31,7 +31,7 @@ public class TentativeSchedule {
     @Column(name = "END_TIME")
     private LocalTime endTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
 
