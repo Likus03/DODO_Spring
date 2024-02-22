@@ -8,5 +8,5 @@ import java.util.UUID;
 /**
  * Repository interface for performing CRUD operations on {@link Client} entities.
  */
-public interface ClientRepository extends JpaRepository<Client, UUID>, ClientRepositoryCustom{
+public interface ClientRepository extends JpaRepository<Client, UUID>, ClientRepositoryCustom {
 }
