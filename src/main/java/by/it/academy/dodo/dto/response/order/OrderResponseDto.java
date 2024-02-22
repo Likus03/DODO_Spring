@@ -3,17 +3,21 @@ package by.it.academy.dodo.dto.response.order;
 import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.dto.response.client.ClientToOrderResponseDto;
 import by.it.academy.dodo.dto.response.worker.WorkerResponseDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 /**
  * Data Transfer Object (DTO) for representing client information in the context of an order response.
  */
 @Data
 @NoArgsConstructor
+@JsonInclude(NON_NULL)
 public class OrderResponseDto {
     /** The delivery address for the order. */
     private String address;

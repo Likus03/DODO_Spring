@@ -31,7 +31,7 @@ public class WorkSchedule {
     @Column(name = "END_TIME", nullable = false)
     private LocalTime endTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
 }

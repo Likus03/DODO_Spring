@@ -24,6 +24,7 @@ public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport impleme
         long updateCount = jpaQueryFactory.update(order)
                 .set(order.worker.id, workerId)
                 .where(order.id.eq(orderId))
+                .where(order.worker.id.isNull())
                 .execute();
 
         return updateCount > 0;
@@ -34,6 +35,7 @@ public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport impleme
         long updateCount = jpaQueryFactory.update(order)
                 .set(order.isCompleted, true)
                 .where(order.id.eq(id))
+                .where(order.worker.id.isNotNull())
                 .execute();
 
         return updateCount > 0;

@@ -1,7 +1,7 @@
 package by.it.academy.dodo.controllers;
 
 import by.it.academy.dodo.dto.request.UserWorkerRequestDto;
-import by.it.academy.dodo.dto.request.user.UserRequestDto;
+import by.it.academy.dodo.dto.request.user.UserRequestPutDto;
 import by.it.academy.dodo.services.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -61,11 +61,11 @@ public class UserController {
     /**
      *
      * @param workerId Worker's ID.
-     * @param userRequestDTO DTO containing updated user information.
+     * @param userRequestPutDto DTO containing updated user information.
      * @return `true` if the user update is successful, otherwise `false`.
      */
     @PutMapping("{workerId}")
-    public boolean updateUser(@PathVariable UUID workerId, @Valid @RequestBody UserRequestDto userRequestDTO){
-        return userService.updateUser(workerId, userRequestDTO);
+    public boolean updateUser(@PathVariable UUID workerId, @Valid @RequestBody UserRequestPutDto userRequestPutDto){
+        return userService.updateUser(workerId, userRequestPutDto);
     }
 }

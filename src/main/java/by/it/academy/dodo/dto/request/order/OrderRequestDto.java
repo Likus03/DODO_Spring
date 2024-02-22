@@ -2,7 +2,6 @@ package by.it.academy.dodo.dto.request.order;
 
 import by.it.academy.dodo.dto.request.client.ClientRequestDto;
 import by.it.academy.dodo.dto.request.menu.MenuRequestDto;
-import by.it.academy.dodo.dto.request.worker.WorkerRequestDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -37,11 +36,6 @@ public class OrderRequestDto {
      */
     @Valid
     private ClientRequestDto client;
-
-    /**
-     * The worker associated with the order.
-     */
-    private WorkerRequestDto worker;
 
     /**
      * The list of menu items included in the order.
