@@ -1,7 +1,7 @@
 databaseChangeLog:
   - preConditions:
     - runningAs:
-        username: root
+        username: postgres
         password: root
   - changeSet:
       id: 002-create-tables
@@ -212,8 +212,6 @@ databaseChangeLog:
               - column:
                   name: CLIENT_ID
                   type: UUID
-                  constraints:
-                    nullable: false
               - column:
                   name: WORKER_ID
                   type: UUID
@@ -231,6 +229,3 @@ databaseChangeLog:
                   type: UUID
                   constraints:
                     nullable: false
-
-
-

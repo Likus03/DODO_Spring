@@ -11,7 +11,6 @@ import java.util.UUID;
  * Repository interface for performing CRUD operations on {@link TentativeSchedule} entities.
  */
 public interface TentativeScheduleRepository extends JpaRepository<TentativeSchedule, UUID>, TentativeScheduleRepositoryCustom {
-
     /**
      * Retrieves a list of {@link TentativeSchedule} entities based on the worker's ID and a date range.
      *

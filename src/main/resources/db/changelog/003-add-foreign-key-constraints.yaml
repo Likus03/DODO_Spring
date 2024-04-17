@@ -1,7 +1,7 @@
 databaseChangeLog:
   - preConditions:
       - runningAs:
-          username: root
+          username: postgres
           password: root
   - changeSet:
       id: 003-add-foreign-key-constraints
@@ -40,6 +40,8 @@ databaseChangeLog:
             constraintName: fk_clients_orders
             referencedTableName: CLIENTS
             referencedColumnNames: ID
+            onUpdate: cascade
+            onDelete: set null
 
         - addForeignKeyConstraint:
             baseTableName: ORDERS
@@ -47,6 +49,8 @@ databaseChangeLog:
             constraintName: fk_workers_orders
             referencedTableName: WORKERS
             referencedColumnNames: ID
+            onUpdate: cascade
+            onDelete: set null
 
         - addForeignKeyConstraint:
             baseTableName: ORDER_DESCRIBES

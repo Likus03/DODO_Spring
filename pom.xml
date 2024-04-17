@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 	<groupId>by.it.academy</groupId>
-	<artifactId>DODO</artifactId>
+	<artifactId>dodo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DODO</name>
-	<description>Demo project for Spring Boot</description>
+	<name>dodo</name>
+	<description>Dodo for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -134,5 +134,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

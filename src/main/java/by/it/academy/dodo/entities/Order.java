@@ -33,11 +33,11 @@ public class Order {
     @Column(name = "IS_COMPLETED", nullable = false)
     private Boolean isCompleted;
 
-    @ManyToOne
-    @JoinColumn(name = "CLIENT_ID", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CLIENT_ID")
     private Client client;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "WORKER_ID")
     private Worker worker;
 

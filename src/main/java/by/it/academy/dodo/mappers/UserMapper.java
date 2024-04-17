@@ -1,6 +1,7 @@
 package by.it.academy.dodo.mappers;
 
 import by.it.academy.dodo.dto.request.user.UserRequestDto;
+import by.it.academy.dodo.dto.request.user.UserRequestPutDto;
 import by.it.academy.dodo.entities.User;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -19,4 +20,5 @@ public interface UserMapper {
      * @return The corresponding {@link User} entity.
      */
     User mapToUser(UserRequestDto userRequestDTO);
+    User mapToUser(UserRequestPutDto userRequestPutDto);
 }

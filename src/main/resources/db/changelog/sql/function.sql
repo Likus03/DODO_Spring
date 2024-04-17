@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION calculate_and_insert() RETURNS TRIGGER AS
 BEGIN
 UPDATE orders
 SET total_cost = (
-    SELECT COALESCE(SUM(menus.cost), 0)
+    SELECT SUM(menus.cost)
     FROM menus
              INNER JOIN order_describes ON menus.id = order_describes.menu_id
     WHERE order_describes.order_id = NEW.order_id

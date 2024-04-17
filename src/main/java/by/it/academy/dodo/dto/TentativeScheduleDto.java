@@ -1,5 +1,6 @@
 package by.it.academy.dodo.dto;
 
+import by.it.academy.dodo.dto.response.worker.WorkerResponseScheduleDto;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +34,10 @@ public class TentativeScheduleDto {
      */
     @NotNull(message = "end time cannot be null")
     private LocalTime endTime;
+
+    /**
+     * Worker associated with the work schedule.
+     */
+    private WorkerResponseScheduleDto worker;
 }
 

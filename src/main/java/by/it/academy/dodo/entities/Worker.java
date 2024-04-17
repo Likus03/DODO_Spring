@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
@@ -40,14 +39,14 @@ public class Worker {
     @OneToOne(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
+//    private List<Order> orders;
 
-    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
-    private List<WorkSchedule> workSchedules;
+//    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
+//    private List<WorkSchedule> workSchedules;
 
-    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
-    private List<TentativeSchedule> tentativeSchedules;
+//    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
+//    private List<TentativeSchedule> tentativeSchedules;
 
     public Worker(String firstname, String surname, String phoneNumber, WorkerType workerType) {
         this.firstname = firstname;
