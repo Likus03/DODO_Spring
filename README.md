@@ -1,0 +1,1 @@
+Welcome to the DODO app! This project is a replica of the application of the Dodois pizzeria chain. It allows users to use various functions, including the client's part - ordering products, tracking orders. Also managing client and employee profiles, managing schedules, menus, etc.
