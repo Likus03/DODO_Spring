@@ -1,38 +1,30 @@
 package by.it.academy.dodo.entities;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "TENTATIVE_SCHEDULES", uniqueConstraints = @UniqueConstraint(columnNames = {"WORK_DATE", "WORKER_ID"}))
+@Document(collection = "TentativeSchedules")
+@CompoundIndex(def = "{'workDate': 1, 'workerId': 1}", unique = true)
 public class TentativeSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private UUID id;
-
-    @Column(name = "WORK_DATE", nullable = false)
+    private ObjectId id;
     private LocalDate workDate;
-
-    @Column(name = "START_TIME")
     private LocalTime startTime;
-
-    @Column(name = "END_TIME")
     private LocalTime endTime;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "WORKER_ID", nullable = false)
     private Worker worker;
 
     public TentativeSchedule(LocalDate workDate, LocalTime startTime, LocalTime endTime) {

@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.TentativeScheduleDto;
 import by.it.academy.dodo.services.tentativeSchedule.TentativeScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -48,7 +49,7 @@ public class TentativeScheduleController {
      * In case of an error, returns error message.
      */
     @PostMapping("worker/{id}/tentativeSchedule")
-    public boolean createTentativeSchedule(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO) {
+    public boolean createTentativeSchedule(@PathVariable ObjectId id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO) {
         return tentativeScheduleService.createTentativeSchedule(id, tentativeScheduleDTO);
     }
 
@@ -59,7 +60,7 @@ public class TentativeScheduleController {
      * @return A list of {@link TentativeScheduleDto} objects representing the day's tentative schedule.
      */
     @GetMapping("worker/{id}/tentativeSchedule/{workDate}")
-    public List<TentativeScheduleDto> getWeekTentativeSchedule(@PathVariable UUID id, @PathVariable LocalDate workDate) {
+    public List<TentativeScheduleDto> getWeekTentativeSchedule(@PathVariable ObjectId id, @PathVariable LocalDate workDate) {
         return tentativeScheduleService.getWeekTentativeSchedule(id, workDate);
     }
 
@@ -82,7 +83,7 @@ public class TentativeScheduleController {
      * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @PutMapping("tentativeSchedule/{id}")
-    public boolean update(@PathVariable UUID id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO){
+    public boolean update(@PathVariable ObjectId id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO){
         return tentativeScheduleService.updateTentativeSchedule(id, tentativeScheduleDTO);
     }
 
@@ -93,7 +94,7 @@ public class TentativeScheduleController {
      * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @DeleteMapping("tentativeSchedule/{id}")
-    public boolean deleteTentativeSchedule(@PathVariable UUID id){
+    public boolean deleteTentativeSchedule(@PathVariable ObjectId id){
         return tentativeScheduleService.deleteTentativeSchedule(id);
     }
 }

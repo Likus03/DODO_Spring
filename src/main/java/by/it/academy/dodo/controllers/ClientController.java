@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.ClientDto;
 import by.it.academy.dodo.services.client.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -55,7 +56,7 @@ public class ClientController {
      * @return The {@link ClientDto} containing the client information.
      */
     @GetMapping("{id}")
-    public ClientDto getClient(@PathVariable UUID id) {
+    public ClientDto getClient(@PathVariable ObjectId id) {
         return clientService.getClient(id);
     }
 
@@ -67,8 +68,8 @@ public class ClientController {
      * @return `true` if the client is successfully updated, otherwise `false`.
      */
     @PutMapping("{id}")
-    public boolean updateClient(@PathVariable UUID id, @Valid @RequestBody ClientDto clientDTO) {
-        return clientService.updateClient(id, clientDTO);
+    public void updateClient(@PathVariable ObjectId id, @Valid @RequestBody ClientDto clientDTO) {
+        clientService.updateClient(id, clientDTO);
     }
 
     /**
@@ -78,7 +79,7 @@ public class ClientController {
      * @return `true` if the client is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("{id}")
-    public boolean deleteClient(@PathVariable UUID id) {
+    public boolean deleteClient(@PathVariable ObjectId id) {
         return clientService.deleteClient(id);
     }
 }

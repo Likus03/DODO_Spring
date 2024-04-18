@@ -5,6 +5,7 @@ import by.it.academy.dodo.dto.request.user.UserRequestDto;
 import by.it.academy.dodo.dto.request.user.UserRequestPutDto;
 import by.it.academy.dodo.entities.User;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.UUID;
@@ -35,7 +36,7 @@ public interface UserService {
      * @param userRequestPutDto The updated user data.
      * @return {@code true} if the user is updated successfully, {@code false} otherwise.
      */
-    boolean updateUser(UUID workerId, UserRequestPutDto userRequestPutDto);
+    boolean updateUser(ObjectId workerId, UserRequestPutDto userRequestPutDto);
 
     /**
      * Deletes the user associated with the specified worker ID.
@@ -43,5 +44,5 @@ public interface UserService {
      * @param workerId The ID of the associated worker.
      * @return {@code true} if the user is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteUser(UUID workerId);
+    boolean deleteUser(ObjectId workerId);
 }

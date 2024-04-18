@@ -1,10 +1,17 @@
 package by.it.academy.dodo.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
@@ -12,22 +19,14 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "USERS")
+@Document(collection = "Users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private UUID id;
-
-    @Column(name = "LOGIN", nullable = false, unique = true, updatable = false)
+    private ObjectId id;
+    @Indexed(unique = true)
     private String login;
-
-    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "WORKER_ID", nullable = false, updatable = false)
     private Worker worker;
 
     public User(String login, String password) {

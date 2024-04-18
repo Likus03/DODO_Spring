@@ -1,6 +1,6 @@
 package by.it.academy.dodo.repositories.order;
 
-import java.util.UUID;
+import org.bson.types.ObjectId;
 
 public interface OrderRepositoryCustom {
 
@@ -11,7 +11,7 @@ public interface OrderRepositoryCustom {
      * @param workerId The ID of the worker to be assigned to the order.
      * @return True if the order is updated successfully, false otherwise.
      */
-    boolean getOrder(UUID orderId, UUID workerId);
+    boolean getOrder(ObjectId orderId, ObjectId workerId);
 
 
     /**
@@ -20,5 +20,5 @@ public interface OrderRepositoryCustom {
      * @param id The ID of the order to be marked as completed.
      * @return True if the order is marked as completed successfully, false otherwise.
      */
-    boolean completeOrder(UUID id);
+    boolean completeOrder(ObjectId id);
 }

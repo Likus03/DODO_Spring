@@ -12,6 +12,7 @@ import by.it.academy.dodo.mappers.WorkerMapper;
 import by.it.academy.dodo.repositories.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean saveUser(User user) throws DataIntegrityViolationException {
         try {
-            userRepository.saveAndFlush(user);
+            userRepository.save(user);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save user");
@@ -55,14 +56,14 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean updateUser(UUID workerId, UserRequestPutDto userRequestPutDto) {
+    public boolean updateUser(ObjectId workerId, UserRequestPutDto userRequestPutDto) {
         User newUser = userMapper.mapToUser(userRequestPutDto);
         return userRepository.updateUserPassword(workerId, newUser.getPassword());
     }
 
     @Transactional
     @Override
-    public boolean deleteUser(UUID workerId) {
+    public boolean deleteUser(ObjectId workerId) {
         return userRepository.deleteUser(workerId);
     }
 }

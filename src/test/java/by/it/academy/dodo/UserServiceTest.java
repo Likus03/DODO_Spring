@@ -2,6 +2,7 @@ package by.it.academy.dodo;
 
 import by.it.academy.dodo.entities.User;
 import by.it.academy.dodo.services.user.UserService;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,6 @@ public class UserServiceTest {
     @Test
     @Transactional
     public void testDeleteNonExistingUserById() {
-        assertFalse(userService.deleteUser(UUID.randomUUID()));
+        assertFalse(userService.deleteUser(ObjectId.get()));
     }
 }

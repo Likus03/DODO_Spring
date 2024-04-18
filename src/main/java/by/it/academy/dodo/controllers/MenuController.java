@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.services.menu.MenuService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,7 +69,7 @@ public class MenuController {
      * @return `true` if the menu is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("dish/{id}")
-    public boolean deleteDish(@PathVariable UUID id) {
+    public boolean deleteDish(@PathVariable ObjectId id) {
         return menuService.deleteDish(id);
     }
 
@@ -80,7 +81,7 @@ public class MenuController {
      * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("dish/{id}")
-    public boolean updateDish(@PathVariable UUID id, @Valid @RequestBody DishDto dishDTO) {
+    public boolean updateDish(@PathVariable ObjectId id, @Valid @RequestBody DishDto dishDTO) {
         return menuService.updateDish(id, dishDTO);
     }
 

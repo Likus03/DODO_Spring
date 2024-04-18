@@ -2,6 +2,7 @@ package by.it.academy.dodo;
 
 import by.it.academy.dodo.entities.Client;
 import by.it.academy.dodo.services.client.ClientService;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +26,7 @@ public class ClientServiceTest {
     @Test
     @Transactional
     public void testDeleteNonExistingClientById() {
-        assertFalse(clientService.deleteClient(UUID.randomUUID()));
+        assertFalse(clientService.deleteClient(ObjectId.get()));
     }
 
     @Test

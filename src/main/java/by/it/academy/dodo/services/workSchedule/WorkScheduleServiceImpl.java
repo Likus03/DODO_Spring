@@ -26,18 +26,19 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
     @Override
     @Transactional
     public boolean createWorkSchedule(UUID workerId, WorkScheduleRequestDto workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
-        WorkSchedule workSchedule = workScheduleMapper.mapToWorkSchedule(workScheduleRequestDTO);
-
-        workSchedule.setWorker(workerRepository.findById(workerId)
-                .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found")));
-        return saveWorkSchedule(workSchedule);
+//        WorkSchedule workSchedule = workScheduleMapper.mapToWorkSchedule(workScheduleRequestDTO);
+//
+//        workSchedule.setWorker(workerRepository.findById(workerId)
+//                .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found")));
+//        return saveWorkSchedule(workSchedule);
+        return true;
     }
 
     @Override
     @Transactional
     public boolean saveWorkSchedule(WorkSchedule workSchedule) throws DataIntegrityViolationException {
         try {
-            workScheduleRepository.saveAndFlush(workSchedule);
+            workScheduleRepository.save(workSchedule);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save work schedule");
@@ -47,19 +48,21 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
     @Override
     @Transactional(readOnly = true)
     public List<WorkScheduleResponseDto> getDayWorkSchedule(LocalDate workDate) throws ClientInvalidDataException {
-        List<WorkSchedule> workSchedules = workScheduleRepository
-                .findAllByWorkDate(workDate);
-
-        return getWorkScheduleResponseDto(workSchedules);
+//        List<WorkSchedule> workSchedules = workScheduleRepository
+//                .findAllByWorkDate(workDate);
+//
+//        return getWorkScheduleResponseDto(workSchedules);
+        return null;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<WorkScheduleResponseDto> getWeekWorkSchedule(LocalDate startWork, LocalDate endWork) throws ClientInvalidDataException {
-        List<WorkSchedule> workSchedules = workScheduleRepository
-                .findAllByWorkDateBetween(startWork, endWork);
-
-        return getWorkScheduleResponseDto(workSchedules);
+//        List<WorkSchedule> workSchedules = workScheduleRepository
+//                .findAllByWorkDateBetween(startWork, endWork);
+//
+//        return getWorkScheduleResponseDto(workSchedules);
+        return null;
     }
 
     @Override

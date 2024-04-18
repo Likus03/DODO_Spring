@@ -5,6 +5,7 @@ import by.it.academy.dodo.dto.request.user.UserRequestPutDto;
 import by.it.academy.dodo.services.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -54,7 +55,7 @@ public class UserController {
      * @return `true` if the user deletion is successful, otherwise `false`.
      */
     @DeleteMapping("{workerId}")
-    public boolean deleteUser(@PathVariable UUID workerId){
+    public boolean deleteUser(@PathVariable ObjectId workerId){
         return userService.deleteUser(workerId);
     }
 
@@ -65,7 +66,7 @@ public class UserController {
      * @return `true` if the user update is successful, otherwise `false`.
      */
     @PutMapping("{workerId}")
-    public boolean updateUser(@PathVariable UUID workerId, @Valid @RequestBody UserRequestPutDto userRequestPutDto){
+    public boolean updateUser(@PathVariable ObjectId workerId, @Valid @RequestBody UserRequestPutDto userRequestPutDto){
         return userService.updateUser(workerId, userRequestPutDto);
     }
 }

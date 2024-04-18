@@ -7,6 +7,7 @@ import by.it.academy.dodo.exceptions.ClientInvalidDataException;
 import by.it.academy.dodo.mappers.OrderMapper;
 import by.it.academy.dodo.repositories.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,20 +24,23 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<OrderResponseDto> getOrdersByStatus(UUID workerId, boolean isCompleted) throws ClientInvalidDataException {
-        List<Order> orders = orderRepository.findAllByWorker_IdAndIsCompleted(workerId, isCompleted);
+    public List<OrderResponseDto> getOrdersByStatus(ObjectId workerId, boolean isCompleted) throws ClientInvalidDataException {
+//        List<Order> orders = orderRepository.findAllByWorker_IdAndIsCompleted(workerId, isCompleted);
+//
+//        if (orders.isEmpty()) {
+//            throw new ClientInvalidDataException("Order was not found");
+//        }
+//
+//        return orderMapper.mapToOrderDtoList(orders);
+        return null;
 
-        if (orders.isEmpty()) {
-            throw new ClientInvalidDataException("Order was not found");
-        }
-
-        return orderMapper.mapToOrderDtoList(orders);
     }
 
     @Transactional
     @Override
     public List<OrderResponseDto> getAvailableOrders() throws ClientInvalidDataException {
-        List<Order> orders = orderRepository.findAllByWorker_Id(null);
+//        List<Order> orders = orderRepository.findAllByWorker_Id(null);
+        List<Order> orders = null;
 
         if (orders.isEmpty()) {
             throw new ClientInvalidDataException("Order was not found");
@@ -47,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public boolean getOrder(UUID orderId, UUID workerId) {
+    public boolean getOrder(ObjectId orderId, ObjectId workerId) {
         return orderRepository.getOrder(orderId, workerId);
     }
 
@@ -65,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public boolean saveOrder(Order order) throws DataIntegrityViolationException {
         try {
-            orderRepository.saveAndFlush(order);
+            orderRepository.save(order);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save order");
@@ -74,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public boolean completeOrder(UUID id) {
+    public boolean completeOrder(ObjectId id) {
         return orderRepository.completeOrder(id);
     }
 }

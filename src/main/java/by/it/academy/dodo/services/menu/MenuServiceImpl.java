@@ -7,6 +7,7 @@ import by.it.academy.dodo.mappers.MenuMapper;
 import by.it.academy.dodo.repositories.menu.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,7 @@ public class MenuServiceImpl implements MenuService {
     @Transactional
     public boolean saveDish(Menu dish) throws DataIntegrityViolationException {
         try {
-            menuRepository.saveAndFlush(dish);
+            menuRepository.save(dish);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save dish");
@@ -48,24 +49,26 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional(readOnly = true)
     public List<DishDto> getDishByName(String name) {
-        return getDishDto(menuRepository.findByNameContainingIgnoreCase(name));
+//        return getDishDto(menuRepository.findByNameContainingIgnoreCase(name));
+        return null;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<DishDto> getDishByDescription(String description) {
-        return getDishDto(menuRepository.findByDescriptionContainingIgnoreCase(description));
+//        return getDishDto(menuRepository.findByDescriptionContainingIgnoreCase(description));
+        return null;
     }
 
     @Override
     @Transactional
-    public boolean deleteDish(UUID id) {
+    public boolean deleteDish(ObjectId id) {
         return menuRepository.deleteDish(id);
     }
 
     @Override
     @Transactional
-    public boolean updateDish(UUID id, DishDto dishDTO) {
+    public boolean updateDish(ObjectId id, DishDto dishDTO) {
         Menu newMenu = menuMapper.mapToMenu(dishDTO);
         return menuRepository.updateDish(id, newMenu);
     }

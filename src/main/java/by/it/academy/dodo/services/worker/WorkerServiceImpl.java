@@ -22,28 +22,31 @@ public class WorkerServiceImpl implements WorkerService {
     @Transactional(readOnly = true)
     @Override
     public List<WorkerDto> getWorkersByFirstname(String firstname) throws ClientInvalidDataException {
-        List<Worker> workers = workerRepository
-                .findByFirstnameContainingIgnoreCase(firstname);
-
-        return getWorkerDto(workers);
+//        List<Worker> workers = workerRepository
+//                .findByFirstnameContainingIgnoreCase(firstname);
+//
+//        return getWorkerDto(workers);
+        return null;
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<WorkerDto> getWorkersByPhoneNumber(String phoneNumber) throws ClientInvalidDataException {
-        List<Worker> workers = workerRepository
-                .findByPhoneNumberContaining(phoneNumber);
-
-        return getWorkerDto(workers);
+//        List<Worker> workers = workerRepository
+//                .findByPhoneNumberContaining(phoneNumber);
+//
+//        return getWorkerDto(workers);
+        return null;
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<WorkerDto> getWorkersBySurname(String surname) throws ClientInvalidDataException {
-        List<Worker> workers = workerRepository
-                .findBySurnameContainingIgnoreCase(surname);
-
-        return getWorkerDto(workers);
+//        List<Worker> workers = workerRepository
+//                .findBySurnameContainingIgnoreCase(surname);
+//
+//        return getWorkerDto(workers);
+        return null;
     }
 
     @Transactional(readOnly = true)

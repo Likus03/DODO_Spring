@@ -1,14 +1,15 @@
 package by.it.academy.dodo.repositories.order;
 
 import by.it.academy.dodo.entities.Order;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 import java.util.UUID;
 /**
  * Repository interface for performing CRUD operations on {@link Order} entities.
  */
-public interface OrderRepository extends JpaRepository<Order, UUID>, OrderRepositoryCustom {
+public interface OrderRepository extends MongoRepository<Order, ObjectId>, OrderRepositoryCustom {
 
     /**
      * Retrieves a list of {@link Order} entities based on the worker's ID and completion status.
@@ -18,6 +19,6 @@ public interface OrderRepository extends JpaRepository<Order, UUID>, OrderReposi
      * @return An optional list of {@link Order} entities matching the worker's ID and completion status.
      */
 
-    List<Order> findAllByWorker_IdAndIsCompleted(UUID workerId, Boolean completed);
-    List<Order> findAllByWorker_Id(UUID workerId);
+//    List<Order> findAllByWorker_IdAndIsCompleted(UUID workerId, Boolean completed);
+//    List<Order> findAllByWorker_Id(UUID workerId);
 }

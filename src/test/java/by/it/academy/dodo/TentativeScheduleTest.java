@@ -3,6 +3,7 @@ package by.it.academy.dodo;
 import by.it.academy.dodo.entities.TentativeSchedule;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
 import by.it.academy.dodo.services.tentativeSchedule.TentativeScheduleService;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,7 +37,7 @@ public class TentativeScheduleTest {
     @Transactional
     public void testGetWeekNonExistingTentativeScheduleByWorkerId() {
         assertThrows(ClientInvalidDataException.class, () ->
-                tentativeScheduleService.getWeekTentativeSchedule(UUID.randomUUID(), LocalDate.now()));
+                tentativeScheduleService.getWeekTentativeSchedule(ObjectId.get(), LocalDate.now()));
     }
 
     @Test
@@ -49,6 +50,6 @@ public class TentativeScheduleTest {
     @Test
     @Transactional
     public void testDeleteNonExistingTentativeScheduleById() {
-        assertFalse(tentativeScheduleService.deleteTentativeSchedule(UUID.randomUUID()));
+        assertFalse(tentativeScheduleService.deleteTentativeSchedule(ObjectId.get()));
     }
 }

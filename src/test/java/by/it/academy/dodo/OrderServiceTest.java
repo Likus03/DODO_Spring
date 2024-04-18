@@ -2,6 +2,7 @@ package by.it.academy.dodo;
 
 import by.it.academy.dodo.entities.Order;
 import by.it.academy.dodo.services.order.OrderService;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,13 +27,13 @@ public class OrderServiceTest {
     @Test
     @Transactional
     public void testGetOrderWithNonExistingIds() {
-        boolean realResultWithRandomIds = orderService.getOrder(UUID.randomUUID(), UUID.randomUUID());
+        boolean realResultWithRandomIds = orderService.getOrder(ObjectId.get(), ObjectId.get());
         assertFalse(realResultWithRandomIds);
     }
     @Test
     @Transactional
     public void testCompleteOrderWithNonExistingId() {
-        assertFalse(orderService.completeOrder(UUID.randomUUID()));
+        assertFalse(orderService.completeOrder(ObjectId.get()));
     }
     @Test
     @Transactional

@@ -1,42 +1,37 @@
 package by.it.academy.dodo.repositories.menu;
 
 import by.it.academy.dodo.entities.Menu;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+@Repository
+@RequiredArgsConstructor
+public class MenuRepositoryCustomImpl implements MenuRepositoryCustom {
 
-import static by.it.academy.dodo.entities.QMenu.menu;
-/**
- * Custom implementation of additional operations for the MenuRepository.
- * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
- */
-public class MenuRepositoryCustomImpl extends QuerydslRepositorySupport implements MenuRepositoryCustom {
-    private final JPAQueryFactory jpaQueryFactory;
+    private final MongoOperations mongoTemplate;
 
-    public MenuRepositoryCustomImpl(JPAQueryFactory jpaQueryFactory) {
-        super(Menu.class);
-        this.jpaQueryFactory = jpaQueryFactory;
+    @Override
+    public boolean updateDish(ObjectId id, Menu newDish) {
+//        long updateCount = jpaQueryFactory.update(menu)
+//                .set(menu.name, newDish.getName())
+//                .set(menu.description, newDish.getDescription())
+//                .set(menu.cost, newDish.getCost())
+//                .where(menu.id.eq(id))
+//                .execute();
+//
+//        return updateCount > 0;
+        return true;
     }
 
     @Override
-    public boolean updateDish(UUID id, Menu newDish) {
-        long updateCount = jpaQueryFactory.update(menu)
-                .set(menu.name, newDish.getName())
-                .set(menu.description, newDish.getDescription())
-                .set(menu.cost, newDish.getCost())
-                .where(menu.id.eq(id))
-                .execute();
-
-        return updateCount > 0;
-    }
-
-    @Override
-    public boolean deleteDish(UUID id) {
-        long deleteCount = jpaQueryFactory.delete(menu)
-                .where(menu.id.eq(id))
-                .execute();
-
-        return deleteCount > 0;
+    public boolean deleteDish(ObjectId id) {
+//        long deleteCount = jpaQueryFactory.delete(menu)
+//                .where(menu.id.eq(id))
+//                .execute();
+//
+//        return deleteCount > 0;
+        return true;
     }
 }

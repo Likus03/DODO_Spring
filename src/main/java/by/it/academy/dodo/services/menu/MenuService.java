@@ -2,6 +2,7 @@ package by.it.academy.dodo.services.menu;
 
 import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.entities.Menu;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public interface MenuService {
      * @param id The ID of the menu to delete.
      * @return {@code true} if the menu is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteDish(UUID id);
+    boolean deleteDish(ObjectId id);
 
     /**
      * Updates the menu with the specified ID using the provided {@link DishDto}.
@@ -56,7 +57,7 @@ public interface MenuService {
      * @param dishDTO The updated menu data.
      * @return {@code true} if the menu is updated successfully, {@code false} otherwise.
      */
-    boolean updateDish(UUID id, DishDto dishDTO);
+    boolean updateDish(ObjectId id, DishDto dishDTO);
 
     /**
      * Retrieves dishes based by name.

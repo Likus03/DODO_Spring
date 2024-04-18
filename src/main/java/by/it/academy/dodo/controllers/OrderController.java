@@ -6,6 +6,7 @@ import by.it.academy.dodo.services.order.OrderService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class OrderController {
      * @return The list of {@link OrderResponseDto} containing the order's information.
      */
     @GetMapping(value = "worker/{workerId}/orders", params = "isCompleted")
-    public List<OrderResponseDto> getOrdersByStatus(@PathVariable UUID workerId, @RequestParam @NotNull boolean isCompleted) {
+    public List<OrderResponseDto> getOrdersByStatus(@PathVariable ObjectId workerId, @RequestParam @NotNull boolean isCompleted) {
         return orderService.getOrdersByStatus(workerId, isCompleted);
     }
     /**
@@ -67,7 +68,7 @@ public class OrderController {
      * @return `true` if the order is successfully updated, otherwise `false`.
      */
     @PutMapping("order/{id}")
-    public boolean completeOrder(@PathVariable UUID id) {
+    public boolean completeOrder(@PathVariable ObjectId id) {
         return orderService.completeOrder(id);
     }
 
@@ -78,7 +79,7 @@ public class OrderController {
      * @return   Result of order acceptance `true` if the order is successfully updated, otherwise `false`.
      */
     @PutMapping("worker/{workerId}/order/{orderId}")
-    public boolean getOrder(@PathVariable UUID workerId, @PathVariable UUID orderId) {
+    public boolean getOrder(@PathVariable ObjectId workerId, @PathVariable ObjectId orderId) {
         return orderService.getOrder(orderId, workerId);
     }
 

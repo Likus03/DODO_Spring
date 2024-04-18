@@ -1,49 +1,31 @@
 package by.it.academy.dodo.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "ORDERS")
+@Document(collection = "Orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private UUID id;
+    private ObjectId id;
 
     @Setter(AccessLevel.NONE)
-    @Column(name = "TOTAL_COST")
     private BigDecimal totalCost;
 
-    @Column(name = "ADDRESS", nullable = false)
     private String address;
 
-    @Column(name = "DELIVERY_TIME", nullable = false)
     private LocalDateTime deliveryTime;
 
-    @Column(name = "IS_COMPLETED", nullable = false)
     private Boolean isCompleted;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLIENT_ID")
-    private Client client;
-
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "WORKER_ID")
-    private Worker worker;
-
-    @ManyToMany
-    @JoinTable(name = "ORDER_DESCRIBES",
-            joinColumns = @JoinColumn(name = "ORDER_ID", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "MENU_ID", nullable = false))
-    private List<Menu> menus;
+    private List<Menu> menu;
 }

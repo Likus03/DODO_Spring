@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.request.order.OrderRequestDto;
 import by.it.academy.dodo.dto.response.order.OrderResponseDto;
 import by.it.academy.dodo.entities.Order;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface OrderService {
      * @return A list of order response DTOs.
      * @throws ClientInvalidDataException If the order data is invalid.
      */
-    List<OrderResponseDto> getOrdersByStatus(UUID workerId, boolean isCompleted);
+    List<OrderResponseDto> getOrdersByStatus(ObjectId workerId, boolean isCompleted);
 
     /**
      * Retrieves a list of available orders for workers.
@@ -35,7 +36,7 @@ public interface OrderService {
      * @param idWorker The ID of the worker.
      * @return {@code true} if the order is assigned successfully, {@code false} otherwise.
      */
-    boolean getOrder(UUID idOrder, UUID idWorker);
+    boolean getOrder(ObjectId idOrder, ObjectId idWorker);
 
     /**
      * Creates a new order based on the provided {@link OrderRequestDto}.
@@ -61,5 +62,5 @@ public interface OrderService {
      * @param id The ID of the order to complete.
      * @return {@code true} if the order is marked as completed successfully, {@code false} otherwise.
      */
-    boolean completeOrder(UUID id);
+    boolean completeOrder(ObjectId id);
 }

@@ -1,5 +1,7 @@
 package by.it.academy.dodo.repositories.user;
 
+import org.bson.types.ObjectId;
+
 import java.util.UUID;
 
 public interface UserRepositoryCustom {
@@ -10,7 +12,7 @@ public interface UserRepositoryCustom {
      * @param id The ID of the user to be deleted.
      * @return True if the user is deleted successfully, false otherwise.
      */
-    boolean deleteUser(UUID id);
+    boolean deleteUser(ObjectId id);
 
     /**
      * Updates a user with the specified ID.
@@ -19,5 +21,5 @@ public interface UserRepositoryCustom {
      * @param password The updated user object.
      * @return True if the user is updated successfully, false otherwise.
      */
-    boolean updateUserPassword(UUID workerId, String password);
+    boolean updateUserPassword(ObjectId workerId, String password);
 }

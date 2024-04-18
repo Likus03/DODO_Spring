@@ -1,44 +1,45 @@
 package by.it.academy.dodo.repositories.order;
 
-import by.it.academy.dodo.entities.Order;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-import static by.it.academy.dodo.entities.QOrder.order;
 /**
  * Custom implementation of additional operations for the OrderRepository.
  * This class extends QuerydslRepositorySupport to leverage Querydsl in custom repository methods.
  */
-public class OrderRepositoryCustomImpl extends QuerydslRepositorySupport implements OrderRepositoryCustom {
-    private final JPAQueryFactory jpaQueryFactory;
+@Repository
+@RequiredArgsConstructor
+public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
 
-    public OrderRepositoryCustomImpl(JPAQueryFactory jpaQueryFactory) {
-        super(Order.class);
-        this.jpaQueryFactory = jpaQueryFactory;
+    private final MongoOperations mongoTemplate;
+
+    @Override
+    public boolean getOrder(ObjectId orderId, ObjectId workerId) {
+//        mongoTemplate.update()
+//        long updateCount = jpaQueryFactory.update(order)
+//                .set(order.worker.id, workerId)
+//                .where(order.id.eq(orderId))
+//                .where(order.worker.id.isNull())
+//                .execute();
+//
+//        return updateCount > 0;
+        return true;
     }
 
     @Override
-    public boolean getOrder(UUID orderId, UUID workerId) {
-        long updateCount = jpaQueryFactory.update(order)
-                .set(order.worker.id, workerId)
-                .where(order.id.eq(orderId))
-                .where(order.worker.id.isNull())
-                .execute();
-
-        return updateCount > 0;
-    }
-
-    @Override
-    public boolean completeOrder(UUID id) {
-        long updateCount = jpaQueryFactory.update(order)
-                .set(order.isCompleted, true)
-                .where(order.id.eq(id))
-                .where(order.worker.id.isNotNull())
-                .execute();
-
-        return updateCount > 0;
+    public boolean completeOrder(ObjectId id) {
+//        long updateCount = jpaQueryFactory.update(order)
+//                .set(order.isCompleted, true)
+//                .where(order.id.eq(id))
+//                .where(order.worker.id.isNotNull())
+//                .execute();
+//
+//        return updateCount > 0;
+        return true;
     }
 
 

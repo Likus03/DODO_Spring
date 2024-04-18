@@ -7,15 +7,13 @@ import by.it.academy.dodo.mappers.TentativeScheduleMapper;
 import by.it.academy.dodo.repositories.tentativeSchedule.TentativeScheduleRepository;
 import by.it.academy.dodo.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
-
-import static by.it.academy.dodo.utils.Utility.getWeek;
 
 @Service
 @RequiredArgsConstructor
@@ -26,19 +24,20 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean createTentativeSchedule(UUID workerId, TentativeScheduleDto tentativeScheduleDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
-        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.mapToTentativeSchedule(tentativeScheduleDTO);
-
-        tentativeSchedule.setWorker(workerRepository.findById(workerId)
-                .orElseThrow(() -> new ClientInvalidDataException("Worker was not found")));
-        return saveTentativeSchedule(tentativeSchedule);
+    public boolean createTentativeSchedule(ObjectId workerId, TentativeScheduleDto tentativeScheduleDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+//        TentativeSchedule tentativeSchedule = tentativeScheduleMapper.mapToTentativeSchedule(tentativeScheduleDTO);
+//
+//        tentativeSchedule.setWorker(workerRepository.find(workerId)
+//                .orElseThrow(() -> new ClientInvalidDataException("Worker was not found")));
+//        return saveTentativeSchedule(tentativeSchedule);
+        return true;
     }
 
     @Override
     @Transactional
     public boolean saveTentativeSchedule(TentativeSchedule tentativeSchedule) throws DataIntegrityViolationException {
         try {
-            tentativeScheduleRepository.saveAndFlush(tentativeSchedule);
+            tentativeScheduleRepository.save(tentativeSchedule);
             return true;
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolationException("Unable to save tentative schedule");
@@ -47,34 +46,36 @@ public class TentativeScheduleServiceImpl implements TentativeScheduleService {
 
     @Transactional
     @Override
-    public boolean updateTentativeSchedule(UUID id, TentativeScheduleDto tentativeScheduleDTO) {
+    public boolean updateTentativeSchedule(ObjectId id, TentativeScheduleDto tentativeScheduleDTO) {
         TentativeSchedule newTentativeSchedule = tentativeScheduleMapper.mapToTentativeSchedule(tentativeScheduleDTO);
         return tentativeScheduleRepository.updateTentativeSchedule(id, newTentativeSchedule);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<TentativeScheduleDto> getWeekTentativeSchedule(UUID workerId, LocalDate date) throws ClientInvalidDataException {
-        LocalDate[] week = getWeek(date);
-
-        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
-                .findAllByWorkerIdAndWorkDateBetween(workerId, week[0], week[1]);
-
-        return getTentativeScheduleDTOS(tentativeSchedules);
+    public List<TentativeScheduleDto> getWeekTentativeSchedule(ObjectId workerId, LocalDate date) throws ClientInvalidDataException {
+//        LocalDate[] week = getWeek(date);
+//
+//        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
+//                .findAllByWorkerIdAndWorkDateBetween(workerId, week[0], week[1]);
+//
+//        return getTentativeScheduleDTOS(tentativeSchedules);
+        return null;
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<TentativeScheduleDto> getDayTentativeSchedule(LocalDate date) throws ClientInvalidDataException {
-        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
-                .findAllByWorkDate(date);
-
-        return getTentativeScheduleDTOS(tentativeSchedules);
+//        List<TentativeSchedule> tentativeSchedules = tentativeScheduleRepository
+//                .findAllByWorkDate(date);
+//
+//        return getTentativeScheduleDTOS(tentativeSchedules);
+        return null;
     }
 
     @Transactional
     @Override
-    public boolean deleteTentativeSchedule(UUID id) {
+    public boolean deleteTentativeSchedule(ObjectId id) {
         return tentativeScheduleRepository.deleteTentativeSchedule(id);
     }
 
