@@ -1,7 +1,7 @@
 databaseChangeLog:
   - preConditions:
     - runningAs:
-        username: root
+        username: postgres
         password: root
   - changeSet:
       id: 002-create-tables

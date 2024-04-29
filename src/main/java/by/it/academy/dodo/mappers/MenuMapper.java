@@ -20,6 +20,7 @@ public interface MenuMapper {
      * @return The corresponding {@link Menu} entity.
      */
     Menu mapToMenu(DishDto dishDTO);
+    DishDto mapToMenuDto(Menu dish);
 
     /**
      * Converts a list of {@link Menu} entity to a list of {@link DishDto}.

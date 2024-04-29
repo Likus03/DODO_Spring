@@ -2,7 +2,9 @@ package by.it.academy.dodo.services.menu;
 
 import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.entities.Menu;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +34,10 @@ public interface MenuService {
      * @return A list of all menu.
      */
     List<DishDto> getMenu();
+
+    @Transactional(readOnly = true)
+    @Cacheable(value = "menu", key = "#id")
+    DishDto getMenuById(UUID id);
 
     /**
      * Retrieves dishes based by name.

@@ -4,10 +4,13 @@ import by.it.academy.dodo.dto.DishDto;
 import by.it.academy.dodo.services.menu.MenuService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+
 /**
  * The `MenuController` class provides RESTful endpoints for managing menu-related operations.
  *
@@ -44,11 +47,12 @@ public class MenuController {
      *
      * @param dishDTO The menu data to be created.
      * @return `true` if the menu is successfully created.
-     *          In case of an error, returns error message.
+     * In case of an error, returns error message.
      */
     @PostMapping("dish")
-    public boolean createDish(@Valid @RequestBody DishDto dishDTO) {
-        return menuService.createDish(dishDTO);
+    @Async
+    public CompletableFuture<Boolean> createDish(@Valid @RequestBody DishDto dishDTO) {
+        return CompletableFuture.completedFuture(menuService.createDish(dishDTO));
     }
 
     /**
@@ -61,6 +65,10 @@ public class MenuController {
         return menuService.getMenu();
     }
 
+    @GetMapping("dish/{id}")
+    public DishDto getMenuById(@PathVariable UUID id) {
+        return menuService.getMenuById(id);
+    }
     /**
      * Delete a menu by ID.
      *

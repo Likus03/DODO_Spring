@@ -2,6 +2,7 @@ package by.it.academy.dodo.repositories.worker;
 
 import by.it.academy.dodo.entities.Worker;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;

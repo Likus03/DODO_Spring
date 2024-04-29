@@ -7,6 +7,9 @@ import by.it.academy.dodo.mappers.MenuMapper;
 import by.it.academy.dodo.repositories.menu.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +25,14 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
 
     @Override
-    @Transactional
     public boolean createDish(DishDto menuRequestDTO) throws DataIntegrityViolationException {
         Menu menu = menuMapper.mapToMenu(menuRequestDTO);
+        menu.setName(UUID.randomUUID().toString());
         return saveDish(menu);
     }
 
+    @CachePut(value = "menu", key = "#dish.id")
     @Override
-    @Transactional
     public boolean saveDish(Menu dish) throws DataIntegrityViolationException {
         try {
             menuRepository.saveAndFlush(dish);
@@ -47,6 +50,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "menu", key = "#id")
+    public DishDto getMenuById(UUID id) {
+        return menuMapper.mapToMenuDto(menuRepository.findById(id).get());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<DishDto> getDishByName(String name) {
         return getDishDto(menuRepository.findByNameContainingIgnoreCase(name));
     }
@@ -59,12 +69,14 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "menu", key = "#id")
     public boolean deleteDish(UUID id) {
         return menuRepository.deleteDish(id);
     }
 
     @Override
     @Transactional
+    @CachePut(value = "menu", key = "#id")
     public boolean updateDish(UUID id, DishDto dishDTO) {
         Menu newMenu = menuMapper.mapToMenu(dishDTO);
         return menuRepository.updateDish(id, newMenu);
