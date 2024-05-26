@@ -8,13 +8,12 @@ import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface OrderService {
     /**
      * Retrieves a list of orders based on the specified parameters.
      *
-     * @param workerId  The ID of the worker.
+     * @param workerId    The ID of the worker.
      * @param isCompleted Indicates whether the orders are isCompleted or not.
      * @return A list of order response DTOs.
      * @throws ClientInvalidDataException If the order data is invalid.
@@ -63,4 +62,6 @@ public interface OrderService {
      * @return {@code true} if the order is marked as completed successfully, {@code false} otherwise.
      */
     boolean completeOrder(ObjectId id);
+
+    void calculateTotalCost(Order order);
 }

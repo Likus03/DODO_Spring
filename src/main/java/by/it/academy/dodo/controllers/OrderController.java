@@ -60,7 +60,6 @@ public class OrderController {
     public List<OrderResponseDto> getAvailableOrders() {
         return orderService.getAvailableOrders();
     }
-
     /**
      * Complete an order by ID.
      *
@@ -71,7 +70,6 @@ public class OrderController {
     public boolean completeOrder(@PathVariable ObjectId id) {
         return orderService.completeOrder(id);
     }
-
     /**
      * Acceptance of an order by a worker using the ID worker and ID order.
      * @param workerId Worker's ID.
@@ -82,7 +80,6 @@ public class OrderController {
     public boolean getOrder(@PathVariable ObjectId workerId, @PathVariable ObjectId orderId) {
         return orderService.getOrder(orderId, workerId);
     }
-
     /**
      * Create a new order.
      * @param orderRequestDTO The order data to be created.

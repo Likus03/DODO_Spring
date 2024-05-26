@@ -3,6 +3,7 @@ package by.it.academy.dodo.entities;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -18,7 +19,6 @@ public class Order {
     @Id
     private ObjectId id;
 
-    @Setter(AccessLevel.NONE)
     private BigDecimal totalCost;
 
     private String address;
@@ -27,9 +27,12 @@ public class Order {
 
     private Boolean isCompleted;
 
+    @DBRef
     private Client client;
 
+    @DBRef
     private Worker worker;
 
+    @DBRef
     private List<Menu> menu;
 }

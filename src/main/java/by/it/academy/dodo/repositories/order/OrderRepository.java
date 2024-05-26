@@ -19,6 +19,6 @@ public interface OrderRepository extends MongoRepository<Order, ObjectId>, Order
      * @return An optional list of {@link Order} entities matching the worker's ID and completion status.
      */
 
-//    List<Order> findAllByWorker_IdAndIsCompleted(UUID workerId, Boolean completed);
-    List<Order> findAllByWorker_Id(UUID workerId);
+    List<Order> findAllByWorker_IdAndIsCompleted(ObjectId workerId, Boolean completed);
+    List<Order> findAllByWorkerIsNull();
 }
