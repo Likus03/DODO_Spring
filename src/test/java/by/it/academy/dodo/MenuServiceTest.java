@@ -22,11 +22,11 @@ public class MenuServiceTest {
         this.menuService = menuService;
     }
 
-    @Test
-    @Transactional
-    public void testDeleteNonExistingDishById() {
-        assertFalse(menuService.deleteDish(UUID.randomUUID()));
-    }
+//    @Test
+//    @Transactional
+//    public void testDeleteNonExistingDishById() {
+//        assertFalse(menuService.deleteDish(UUID.randomUUID()));
+//    }
 
     @Test
     @Transactional

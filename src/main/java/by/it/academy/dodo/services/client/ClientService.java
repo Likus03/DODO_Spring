@@ -30,10 +30,8 @@ public interface ClientService {
     /**
      * Deletes the client with the specified ID.
      *
-     * @param id The ID of the client to delete.
-     * @return {@code true} if the client is deleted successfully, {@code false} otherwise.
-     */
-    boolean deleteClient(ObjectId id);
+     * @param id The ID of the client to delete.*/
+    void deleteClient(ObjectId id);
 
     /**
      * Retrieves the client with the specified ID.

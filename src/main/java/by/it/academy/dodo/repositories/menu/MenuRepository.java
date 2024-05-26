@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * Repository interface for performing CRUD operations on {@link Menu} entities.
  */
-public interface MenuRepository extends MongoRepository<Menu, ObjectId>, MenuRepositoryCustom {
+public interface MenuRepository extends MongoRepository<Menu, ObjectId> {
     /**
      * Retrieves a list of {@link Menu} entities based on a search parameter that matches the 'name' or 'describe' fields.
      *
      * @param name The search parameter.
      * @return An optional list of {@link Menu} entities matching the search parameter.
      */
-//    List<Menu> findByNameContainingIgnoreCase(String name);
-//
-//    List<Menu> findByDescriptionContainingIgnoreCase(String description);
+    List<Menu> findByNameContainingIgnoreCase(String name);
+    List<Menu> findByDescriptionContainingIgnoreCase(String description);
+//    void deleteById(ObjectId id);
 }

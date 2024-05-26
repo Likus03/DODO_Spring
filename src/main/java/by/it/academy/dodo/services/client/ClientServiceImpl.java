@@ -12,8 +12,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -28,7 +26,7 @@ public class ClientServiceImpl implements ClientService {
         return saveClient(client);
     }
 
-    @Override  //todo: удалить, перенести в createClient()
+    @Override
     @Transactional
     public boolean saveClient(Client client) throws DataIntegrityViolationException {
         try {
@@ -41,9 +39,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean deleteClient(ObjectId id) {
+    public void deleteClient(ObjectId id) {
          clientRepository.deleteById(id);
-         return true;
     }
 
     @Override

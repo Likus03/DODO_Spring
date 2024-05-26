@@ -48,7 +48,7 @@ public interface MenuService {
      * @param id The ID of the menu to delete.
      * @return {@code true} if the menu is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteDish(ObjectId id);
+    void deleteDish(ObjectId id);
 
     /**
      * Updates the menu with the specified ID using the provided {@link DishDto}.

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Menu")
+@Document(collection = "menu")
 public class Menu {
     @Id
     private ObjectId id;

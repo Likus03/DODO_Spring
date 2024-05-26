@@ -65,7 +65,6 @@ public class ClientController {
      *
      * @param id         Client's ID.
      * @param clientDTO  The updated client data.
-     * @return `true` if the client is successfully updated, otherwise `false`.
      */
     @PutMapping("{id}")
     public void updateClient(@PathVariable ObjectId id, @Valid @RequestBody ClientDto clientDTO) {
@@ -76,10 +75,9 @@ public class ClientController {
      * Delete a client by ID.
      *
      * @param id Client's ID.
-     * @return `true` if the client is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("{id}")
-    public boolean deleteClient(@PathVariable ObjectId id) {
-        return clientService.deleteClient(id);
+    public void deleteClient(@PathVariable ObjectId id) {
+        clientService.deleteClient(id);
     }
 }

@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 /**
  * The `MenuController` class provides RESTful endpoints for managing menu-related operations.
  *
@@ -45,7 +45,7 @@ public class MenuController {
      *
      * @param dishDTO The menu data to be created.
      * @return `true` if the menu is successfully created.
-     *          In case of an error, returns error message.
+     * In case of an error, returns error message.
      */
     @PostMapping("dish")
     public boolean createDish(@Valid @RequestBody DishDto dishDTO) {
@@ -66,18 +66,17 @@ public class MenuController {
      * Delete a menu by ID.
      *
      * @param id Menu's ID.
-     * @return `true` if the menu is successfully deleted, otherwise `false`.
      */
     @DeleteMapping("dish/{id}")
-    public boolean deleteDish(@PathVariable ObjectId id) {
-        return menuService.deleteDish(id);
+    public void deleteDish(@PathVariable ObjectId id) {
+        menuService.deleteDish(id);
     }
 
     /**
      * Update menu information by ID.
      *
-     * @param id         Menu's ID.
-     * @param dishDTO  The updated menu data.
+     * @param id      Menu's ID.
+     * @param dishDTO The updated menu data.
      * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("dish/{id}")

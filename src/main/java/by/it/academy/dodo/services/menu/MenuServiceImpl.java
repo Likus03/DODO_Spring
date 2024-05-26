@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -23,7 +23,6 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
 
     @Override
-    @Transactional
     public boolean createDish(DishDto menuRequestDTO) throws DataIntegrityViolationException {
         Menu menu = menuMapper.mapToMenu(menuRequestDTO);
         return saveDish(menu);
@@ -49,28 +48,28 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional(readOnly = true)
     public List<DishDto> getDishByName(String name) {
-//        return getDishDto(menuRepository.findByNameContainingIgnoreCase(name));
-        return null;
+        return getDishDto(menuRepository.findByNameContainingIgnoreCase(name));
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<DishDto> getDishByDescription(String description) {
-//        return getDishDto(menuRepository.findByDescriptionContainingIgnoreCase(description));
-        return null;
+        return getDishDto(menuRepository.findByDescriptionContainingIgnoreCase(description));
     }
 
     @Override
     @Transactional
-    public boolean deleteDish(ObjectId id) {
-        return menuRepository.deleteDish(id);
+    public void deleteDish(ObjectId id) {
+        menuRepository.deleteById(id);
     }
 
     @Override
     @Transactional
     public boolean updateDish(ObjectId id, DishDto dishDTO) {
         Menu newMenu = menuMapper.mapToMenu(dishDTO);
-        return menuRepository.updateDish(id, newMenu);
+        newMenu.setId(id);
+
+        return saveDish(newMenu);
     }
 
     /**
