@@ -27,5 +27,9 @@ public class Order {
 
     private Boolean isCompleted;
 
+    private Client client;
+
+    private Worker worker;
+
     private List<Menu> menu;
 }

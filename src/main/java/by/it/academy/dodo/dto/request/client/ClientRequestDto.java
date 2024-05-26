@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 
 import java.util.UUID;
 /**
@@ -17,5 +18,5 @@ public class ClientRequestDto {
      * The unique identifier of the client.
      */
     @NotNull(message = "id cannot be null")
-    private UUID id;
+    private ObjectId id;
 }

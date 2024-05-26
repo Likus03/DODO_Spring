@@ -41,5 +41,5 @@ public class OrderRequestDto {
      * The list of menu items included in the order.
      */
     @Valid
-    private List<MenuRequestDto> menus;
+    private List<MenuRequestDto> menu;
 }

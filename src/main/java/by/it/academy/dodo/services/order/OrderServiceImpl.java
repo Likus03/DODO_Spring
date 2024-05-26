@@ -9,6 +9,9 @@ import by.it.academy.dodo.repositories.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,11 +39,17 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    private final MongoTemplate mongoTemplate;
     @Transactional
     @Override
     public List<OrderResponseDto> getAvailableOrders() throws ClientInvalidDataException {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("worker").exists(false));
+        List<Order> orders = mongoTemplate.find(query, Order.class);
+
+
 //        List<Order> orders = orderRepository.findAllByWorker_Id(null);
-        List<Order> orders = null;
+//        List<Order> orders = null;
 
         if (orders.isEmpty()) {
             throw new ClientInvalidDataException("Order was not found");

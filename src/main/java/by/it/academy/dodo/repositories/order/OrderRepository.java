@@ -20,5 +20,5 @@ public interface OrderRepository extends MongoRepository<Order, ObjectId>, Order
      */
 
 //    List<Order> findAllByWorker_IdAndIsCompleted(UUID workerId, Boolean completed);
-//    List<Order> findAllByWorker_Id(UUID workerId);
+    List<Order> findAllByWorker_Id(UUID workerId);
 }

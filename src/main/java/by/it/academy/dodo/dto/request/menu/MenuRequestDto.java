@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 
 import java.util.UUID;
 
@@ -18,5 +19,5 @@ public class MenuRequestDto {
      * The unique identifier of the menu item.
      */
     @NotNull(message = "id cannot be null")
-    private UUID id;
+    private ObjectId id;
 }
