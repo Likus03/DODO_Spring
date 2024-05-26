@@ -32,7 +32,6 @@ public class OrderServiceImpl implements OrderService {
     private final MongoTemplate mongoTemplate;
     private final MenuRepository menuRepository;
 
-
     @Transactional(readOnly = true)
     @Override
     public List<OrderResponseDto> getOrdersByStatus(ObjectId workerId, boolean isCompleted) throws ClientInvalidDataException {
@@ -43,8 +42,6 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return orderMapper.mapToOrderDtoList(orders);
-//        return null;
-
     }
 
     @Transactional

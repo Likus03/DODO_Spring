@@ -21,11 +21,4 @@ public class Worker {
     private String surname;
     private String phoneNumber;
     private WorkerType workerType;
-
-    public Worker(String firstname, String surname, String phoneNumber, WorkerType workerType) {
-        this.firstname = firstname;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.workerType = workerType;
-    }
 }
