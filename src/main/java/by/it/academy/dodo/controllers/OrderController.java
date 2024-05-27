@@ -7,10 +7,14 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.CREATED;
+
 /**
  * The `OrderController` class provides RESTful endpoints for managing order-related operations.
  *
@@ -87,7 +91,8 @@ public class OrderController {
      * In case of an error, returns error message.
      */
     @PostMapping("order")
-    public boolean createOrder(@Valid @RequestBody OrderRequestDto orderRequestDTO) {
-        return orderService.createOrder(orderRequestDTO);
+    public ResponseEntity<String> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDTO) {
+        orderService.createOrder(orderRequestDTO);
+        return new ResponseEntity<>("Order created successfully", CREATED);
     }
 }

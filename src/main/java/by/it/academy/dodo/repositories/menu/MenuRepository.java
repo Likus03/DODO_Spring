@@ -18,5 +18,4 @@ public interface MenuRepository extends MongoRepository<Menu, ObjectId> {
      */
     List<Menu> findByNameContainingIgnoreCase(String name);
     List<Menu> findByDescriptionContainingIgnoreCase(String description);
-//    void deleteById(ObjectId id);
 }

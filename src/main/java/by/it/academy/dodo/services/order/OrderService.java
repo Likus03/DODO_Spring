@@ -41,19 +41,9 @@ public interface OrderService {
      * Creates a new order based on the provided {@link OrderRequestDto}.
      *
      * @param orderRequestDTO The order data to create.
-     * @return {@code true} if the order is created successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
      */
-    boolean createOrder(OrderRequestDto orderRequestDTO);
-
-    /**
-     * Saves the provided order to the repository.
-     *
-     * @param order The order to save.
-     * @return {@code true} if the order is saved successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     */
-    boolean saveOrder(Order order);
+    void createOrder(OrderRequestDto orderRequestDTO);
 
     /**
      * Marks the order with the specified ID as completed.

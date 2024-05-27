@@ -6,9 +6,14 @@ import by.it.academy.dodo.services.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.*;
+
 /**
  * The `UserController` class provides RESTful endpoints for managing user-related operations.
  *
@@ -41,11 +46,11 @@ public class UserController {
      * Create a new user.
      *
      * @param userWorkerRequestDTO DTO containing user and worker information.
-     * @return `true` if the user creation is successful. In case of an error, returns error message.
      */
     @PostMapping
-    public boolean createUser(@Valid @RequestBody UserWorkerRequestDto userWorkerRequestDTO) {
-        return userService.createUser(userWorkerRequestDTO);
+    public ResponseEntity<String> createUser(@Valid @RequestBody UserWorkerRequestDto userWorkerRequestDTO) {
+        userService.createUser(userWorkerRequestDTO);
+        return new ResponseEntity<>("User created successfully", CREATED);
     }
 
     /**
@@ -55,8 +60,9 @@ public class UserController {
      * @return `true` if the user deletion is successful, otherwise `false`.
      */
     @DeleteMapping("{workerId}")
-    public boolean deleteUser(@PathVariable ObjectId workerId){
-        return userService.deleteUser(workerId);
+    public ResponseEntity<String> deleteUser(@PathVariable ObjectId workerId){
+        userService.deleteUser(workerId);
+        return new ResponseEntity<>("User deleted successfully", OK);
     }
 
     /**

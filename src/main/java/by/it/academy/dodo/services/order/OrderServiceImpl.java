@@ -68,25 +68,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public boolean createOrder(OrderRequestDto orderRequestDTO) throws DataIntegrityViolationException {
+    public void createOrder(OrderRequestDto orderRequestDTO) throws DataIntegrityViolationException {
         Order order = orderMapper.mapToOder(orderRequestDTO);
         if (order.getDeliveryTime() == null) {
             order.setDeliveryTime(LocalDateTime.now());
         }
 
         calculateTotalCost(order);
-        return saveOrder(order);
-    }
-
-    @Override
-    @Transactional
-    public boolean saveOrder(Order order) throws DataIntegrityViolationException {
-        try {
-            orderRepository.save(order);
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Unable to save order");
-        }
+        orderRepository.save(order);
     }
 
     @Transactional

@@ -15,20 +15,8 @@ public interface UserService {
      * Creates a new user with associated worker data.
      *
      * @param userWorkerRequestDTO The DTO containing user and worker data.
-     * @return {@code true} if the user is created successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     * @throws ClientInvalidDataException      If the user or worker data is invalid.
      */
-    boolean createUser(UserWorkerRequestDto userWorkerRequestDTO);
-    /**
-     * Saves the provided user to the repository.
-     *
-     * @param user The user to save.
-     * @return {@code true} if the user is saved successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     */
-    boolean saveUser(User user);
-
+    void createUser(UserWorkerRequestDto userWorkerRequestDTO);
     /**
      * Updates the user associated with the specified worker ID using the provided {@link UserRequestDto}.
      *
@@ -42,7 +30,6 @@ public interface UserService {
      * Deletes the user associated with the specified worker ID.
      *
      * @param workerId The ID of the associated worker.
-     * @return {@code true} if the user is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteUser(ObjectId workerId);
+    void deleteUser(ObjectId workerId);
 }
