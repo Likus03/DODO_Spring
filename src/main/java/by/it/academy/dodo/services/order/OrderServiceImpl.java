@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static java.math.BigDecimal.ZERO;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Service
@@ -100,11 +100,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void calculateTotalCost(Order order) {
-        order.setTotalCost(order.getMenu().stream()
+    public void calculateTotalCost(Order order) throws ClientInvalidDataException{
+        List<ObjectId> menuIdsFromOrder = order.getMenu().stream()
                 .map(Menu::getId)
-                .map(id -> menuRepository.findById(id).orElseThrow(ClientInvalidDataException::new))
-                .map(Menu::getCost)
-                .reduce(ZERO, BigDecimal::add));
+                .collect(Collectors.toList());
+
+        List<Menu> menuFromDb = menuRepository.findAllById(menuIdsFromOrder);
+
+        order.setTotalCost(menuIdsFromOrder.stream()
+                .map(id -> menuFromDb.stream()
+                        .filter(m -> m.getId().equals(id))
+                        .findFirst()
+                        .map(Menu::getCost)
+                        .orElseThrow(() -> new ClientInvalidDataException("Menu not found for id: " + id)))
+                .reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 }

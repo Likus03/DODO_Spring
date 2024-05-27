@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * Repository interface for performing CRUD operations on {@link Order} entities.
  */
-public interface OrderRepository extends MongoRepository<Order, ObjectId>, OrderRepositoryCustom {
+public interface OrderRepository extends MongoRepository<Order, ObjectId>{
 
     /**
      * Retrieves a list of {@link Order} entities based on the worker's ID and completion status.
