@@ -4,10 +4,12 @@ import by.it.academy.dodo.dto.WorkerDto;
 import by.it.academy.dodo.services.worker.WorkerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The `WorkerController` class provides RESTful endpoints for managing worker-related operations.
@@ -86,12 +88,13 @@ public class WorkerController {
     /**
      * Update worker by ID.
      *
-     * @param id               Worker's ID.
+     * @param id        Worker's ID.
      * @param workerDTO The updated worker data.
      * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("worker/{id}")
-    public boolean updateWorker(@PathVariable UUID id, @Valid @RequestBody WorkerDto workerDTO) {
-        return workerService.updateWorker(id, workerDTO);
+    public ResponseEntity<String> updateWorker(@PathVariable ObjectId id, @Valid @RequestBody WorkerDto workerDTO) {
+        workerService.updateWorker(id, workerDTO);
+        return new ResponseEntity<>("Worker updated successfully.", HttpStatus.OK);
     }
 }

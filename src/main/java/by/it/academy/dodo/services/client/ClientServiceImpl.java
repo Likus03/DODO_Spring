@@ -21,20 +21,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean createClient(ClientDto clientDTO) throws DataIntegrityViolationException {
+    public void createClient(ClientDto clientDTO) throws DataIntegrityViolationException {
         Client client = clientMapper.mapToClient(clientDTO);
-        return saveClient(client);
-    }
-
-    @Override
-    @Transactional
-    public boolean saveClient(Client client) throws DataIntegrityViolationException {
-        try {
-            clientRepository.save(client);
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Unable to save client");
-        }
+        clientRepository.save(client);
     }
 
     @Override

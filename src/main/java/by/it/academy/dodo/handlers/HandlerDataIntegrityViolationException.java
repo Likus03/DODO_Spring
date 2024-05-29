@@ -1,4 +1,4 @@
-package by.it.academy.dodo.controllers.handlers;
+package by.it.academy.dodo.handlers;
 
 import by.it.academy.dodo.dto.response.error.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;

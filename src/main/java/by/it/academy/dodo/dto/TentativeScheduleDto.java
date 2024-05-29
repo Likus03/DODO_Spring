@@ -38,6 +38,6 @@ public class TentativeScheduleDto {
     /**
      * Worker associated with the work schedule.
      */
-    private WorkerResponseScheduleDto worker;
+//    private WorkerResponseScheduleDto worker;
 }
 

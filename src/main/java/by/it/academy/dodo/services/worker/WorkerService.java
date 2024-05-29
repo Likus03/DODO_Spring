@@ -2,6 +2,7 @@ package by.it.academy.dodo.services.worker;
 
 import by.it.academy.dodo.dto.WorkerDto;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,7 +49,6 @@ public interface WorkerService {
      *
      * @param id        The ID of the worker to update.
      * @param workerDTO The updated worker data.
-     * @return {@code true} if the worker is updated successfully, {@code false} otherwise.
      */
-    boolean updateWorker(UUID id, WorkerDto workerDTO);
+    void updateWorker(ObjectId id, WorkerDto workerDTO);
 }

@@ -34,10 +34,8 @@ public interface TentativeScheduleService {
      * Updates the tentative schedule with the specified ID using the provided {@link TentativeScheduleDto}.
      *
      * @param id                   The ID of the tentative schedule to update.
-     * @param tentativeScheduleDTO The updated tentative schedule data.
-     * @return {@code true} if the tentative schedule is updated successfully, {@code false} otherwise.
-     */
-    boolean updateTentativeSchedule(ObjectId id, TentativeScheduleDto tentativeScheduleDTO);
+     * @param tentativeScheduleDTO The updated tentative schedule data.*/
+    void updateTentativeSchedule(ObjectId id, TentativeScheduleDto tentativeScheduleDTO);
 
     /**
      * Retrieves the tentative schedule for the specified worker for the given week.
@@ -62,7 +60,6 @@ public interface TentativeScheduleService {
      * Deletes the tentative schedule with the specified ID.
      *
      * @param id The ID of the tentative schedule to delete.
-     * @return {@code true} if the tentative schedule is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteTentativeSchedule(ObjectId id);
+    void deleteTentativeSchedule(ObjectId id);
 }

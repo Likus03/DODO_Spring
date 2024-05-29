@@ -23,20 +23,9 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
 
     @Override
-    public boolean createDish(DishDto menuRequestDTO) throws DataIntegrityViolationException {
+    public void createDish(DishDto menuRequestDTO) throws DataIntegrityViolationException {
         Menu menu = menuMapper.mapToMenu(menuRequestDTO);
-        return saveDish(menu);
-    }
-
-    @Override
-    @Transactional
-    public boolean saveDish(Menu dish) throws DataIntegrityViolationException {
-        try {
-            menuRepository.save(dish);
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            throw new DataIntegrityViolationException("Unable to save dish");
-        }
+        menuRepository.save(menu);
     }
 
     @Override
@@ -65,11 +54,11 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional
-    public boolean updateDish(ObjectId id, DishDto dishDTO) {
+    public void updateDish(ObjectId id, DishDto dishDTO) {
         Menu newMenu = menuMapper.mapToMenu(dishDTO);
         newMenu.setId(id);
 
-        return saveDish(newMenu);
+        menuRepository.save(newMenu);
     }
 
     /**

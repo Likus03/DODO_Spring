@@ -1,4 +1,4 @@
-package by.it.academy.dodo.controllers.handlers;
+package by.it.academy.dodo.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;

@@ -5,9 +5,13 @@ import by.it.academy.dodo.services.menu.MenuService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * The `MenuController` class provides RESTful endpoints for managing menu-related operations.
@@ -48,8 +52,9 @@ public class MenuController {
      * In case of an error, returns error message.
      */
     @PostMapping("dish")
-    public boolean createDish(@Valid @RequestBody DishDto dishDTO) {
-        return menuService.createDish(dishDTO);
+    public ResponseEntity<String> createDish(@Valid @RequestBody DishDto dishDTO) {
+        menuService.createDish(dishDTO);
+        return new ResponseEntity<>("Dish created successfully", CREATED);
     }
 
     /**
@@ -68,8 +73,9 @@ public class MenuController {
      * @param id Menu's ID.
      */
     @DeleteMapping("dish/{id}")
-    public void deleteDish(@PathVariable ObjectId id) {
+    public ResponseEntity<String> deleteDish(@PathVariable ObjectId id) {
         menuService.deleteDish(id);
+        return new ResponseEntity<>("Dish deleted successfully", OK);
     }
 
     /**
@@ -80,8 +86,9 @@ public class MenuController {
      * @return `true` if the menu is successfully updated, otherwise `false`.
      */
     @PutMapping("dish/{id}")
-    public boolean updateDish(@PathVariable ObjectId id, @Valid @RequestBody DishDto dishDTO) {
-        return menuService.updateDish(id, dishDTO);
+    public ResponseEntity<String> updateDish(@PathVariable ObjectId id, @Valid @RequestBody DishDto dishDTO) {
+        menuService.updateDish(id, dishDTO);
+        return new ResponseEntity<>("Dish updated successfully", OK);
     }
 
     /**

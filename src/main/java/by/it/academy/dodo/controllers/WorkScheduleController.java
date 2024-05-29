@@ -5,11 +5,15 @@ import by.it.academy.dodo.dto.response.workSchedule.WorkScheduleResponseDto;
 import by.it.academy.dodo.services.workSchedule.WorkScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * The `WorkSchedule` class provides RESTful endpoints for managing work-schedule-related operations.
@@ -48,7 +52,7 @@ public class WorkScheduleController {
      * In case of an error, returns error message.
      */
     @PostMapping("worker/{id}/workSchedule")
-    public boolean createWorkSchedule(@PathVariable UUID id, @Valid @RequestBody WorkScheduleRequestDto workScheduleRequestDTO){
+    public boolean createWorkSchedule(@PathVariable ObjectId id, @Valid @RequestBody WorkScheduleRequestDto workScheduleRequestDTO){
         return workScheduleService.createWorkSchedule(id, workScheduleRequestDTO);
     }
 
@@ -80,7 +84,8 @@ public class WorkScheduleController {
      * @return `true` if the work schedule is successfully created, otherwise `false`.
      */
     @DeleteMapping("workSchedule/{id}")
-    public boolean deleteWorkSchedule(@PathVariable UUID id){
-        return workScheduleService.deleteWorkSchedule(id);
+    public ResponseEntity<String> deleteWorkSchedule(@PathVariable ObjectId id){
+        workScheduleService.deleteWorkSchedule(id);
+        return new ResponseEntity<>("Schedule deleted successfully", OK);
     }
 }

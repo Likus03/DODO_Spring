@@ -5,9 +5,14 @@ import by.it.academy.dodo.services.client.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
+
 /**
  * The `ClientController` class provides RESTful endpoints for managing client-related operations.
  *
@@ -45,8 +50,9 @@ public class ClientController {
      *          In case of an error, returns error message.
      */
     @PostMapping
-    public boolean createClient(@Valid @RequestBody ClientDto clientDTO) {
-        return clientService.createClient(clientDTO);
+    public ResponseEntity<String> createClient(@Valid @RequestBody ClientDto clientDTO) {
+        clientService.createClient(clientDTO);
+        return new ResponseEntity<>("Client created successfully", CREATED);
     }
 
     /**
@@ -67,8 +73,9 @@ public class ClientController {
      * @param clientDTO  The updated client data.
      */
     @PutMapping("{id}")
-    public void updateClient(@PathVariable ObjectId id, @Valid @RequestBody ClientDto clientDTO) {
+    public ResponseEntity<String> updateClient(@PathVariable ObjectId id, @Valid @RequestBody ClientDto clientDTO) {
         clientService.updateClient(id, clientDTO);
+        return new ResponseEntity<>("Client updated successfully", OK);
     }
 
     /**
@@ -77,7 +84,8 @@ public class ClientController {
      * @param id Client's ID.
      */
     @DeleteMapping("{id}")
-    public void deleteClient(@PathVariable ObjectId id) {
+    public ResponseEntity<String> deleteClient(@PathVariable ObjectId id) {
         clientService.deleteClient(id);
+        return new ResponseEntity<>("Client deleted successfully", OK);
     }
 }

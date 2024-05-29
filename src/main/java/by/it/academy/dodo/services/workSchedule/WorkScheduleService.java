@@ -4,6 +4,7 @@ import by.it.academy.dodo.dto.request.workSchedule.WorkScheduleRequestDto;
 import by.it.academy.dodo.dto.response.workSchedule.WorkScheduleResponseDto;
 import by.it.academy.dodo.entities.WorkSchedule;
 import by.it.academy.dodo.exceptions.ClientInvalidDataException;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public interface WorkScheduleService {
      * @throws DataIntegrityViolationException If there is a data integrity violation.
      * @throws ClientInvalidDataException      If the work schedule data is invalid or not found.
      */
-    boolean createWorkSchedule(UUID workerId, WorkScheduleRequestDto workScheduleRequestDTO);
+    boolean createWorkSchedule(ObjectId workerId, WorkScheduleRequestDto workScheduleRequestDTO);
 
     /**
      * Saves the provided work schedule to the repository.
@@ -54,7 +55,6 @@ public interface WorkScheduleService {
      * Deletes the work schedule with the specified ID.
      *
      * @param id The ID of the work schedule to delete.
-     * @return {@code true} if the work schedule is deleted successfully, {@code false} otherwise.
      */
-    boolean deleteWorkSchedule(UUID id);
+    void deleteWorkSchedule(ObjectId id);
 }

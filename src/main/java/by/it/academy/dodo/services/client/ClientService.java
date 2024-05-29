@@ -13,20 +13,9 @@ public interface ClientService {
      * Creates a new client based on the provided {@link ClientDto}.
      *
      * @param clientDTO The client data to create.
-     * @return {@code true} if the client is created successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
      */
-    boolean createClient(ClientDto clientDTO);
-
-    /**
-     * Saves the provided client to the repository.
-     *
-     * @param client The client to save.
-     * @return {@code true} if the client is saved successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     */
-    boolean saveClient(Client client);
-
+    void createClient(ClientDto clientDTO);
     /**
      * Deletes the client with the specified ID.
      *

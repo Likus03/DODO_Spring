@@ -5,11 +5,13 @@ import by.it.academy.dodo.services.tentativeSchedule.TentativeScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.*;
 
 /**
  * The `TentativeSchedule` class provides RESTful endpoints for managing tentative-schedule-related operations.
@@ -83,8 +85,9 @@ public class TentativeScheduleController {
      * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @PutMapping("tentativeSchedule/{id}")
-    public boolean update(@PathVariable ObjectId id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO){
-        return tentativeScheduleService.updateTentativeSchedule(id, tentativeScheduleDTO);
+    public ResponseEntity<String> updateTentativeSchedule(@PathVariable ObjectId id, @Valid @RequestBody TentativeScheduleDto tentativeScheduleDTO){
+        tentativeScheduleService.updateTentativeSchedule(id, tentativeScheduleDTO);
+        return new ResponseEntity<>("Schedule updated successfully", OK);
     }
 
     /**
@@ -94,7 +97,8 @@ public class TentativeScheduleController {
      * @return `true` if the tentative schedule is successfully created, otherwise `false`.
      */
     @DeleteMapping("tentativeSchedule/{id}")
-    public boolean deleteTentativeSchedule(@PathVariable ObjectId id){
-        return tentativeScheduleService.deleteTentativeSchedule(id);
+    public ResponseEntity<String> deleteTentativeSchedule(@PathVariable ObjectId id){
+        tentativeScheduleService.deleteTentativeSchedule(id);
+        return new ResponseEntity<>("Schedule deleted successfully", OK);
     }
 }

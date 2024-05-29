@@ -20,13 +20,13 @@ public interface TentativeScheduleRepository extends MongoRepository<TentativeSc
      * @param dateEndWeek   The end date of the week.
      * @return An optional list of {@link TentativeSchedule} entities matching the worker's ID and date range.
      */
-//    List<TentativeSchedule> findAllByWorkerIdAndWorkDateBetween(UUID id, LocalDate dateStartWeek, LocalDate dateEndWeek);
-//
-//    /**
-//     * Retrieves a list of {@link TentativeSchedule} entities based on a specific date.
-//     *
-//     * @param dateWork The date to retrieve tentative schedules for.
-//     * @return A list of {@link TentativeSchedule} entities for the specified date.
-//     */
-//    List<TentativeSchedule> findAllByWorkDate(LocalDate dateWork);
+    List<TentativeSchedule> findAllByWorkerIdAndWorkDateBetween(ObjectId id, LocalDate dateStartWeek, LocalDate dateEndWeek);
+
+    /**
+     * Retrieves a list of {@link TentativeSchedule} entities based on a specific date.
+     *
+     * @param dateWork The date to retrieve tentative schedules for.
+     * @return A list of {@link TentativeSchedule} entities for the specified date.
+     */
+    List<TentativeSchedule> findAllByWorkDate(LocalDate dateWork);
 }

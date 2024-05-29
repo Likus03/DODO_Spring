@@ -8,6 +8,7 @@ import by.it.academy.dodo.mappers.WorkScheduleMapper;
 import by.it.academy.dodo.repositories.workSchedule.WorkScheduleRepository;
 import by.it.academy.dodo.repositories.worker.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,13 +26,12 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
 
     @Override
     @Transactional
-    public boolean createWorkSchedule(UUID workerId, WorkScheduleRequestDto workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
-//        WorkSchedule workSchedule = workScheduleMapper.mapToWorkSchedule(workScheduleRequestDTO);
-//
-//        workSchedule.setWorker(workerRepository.findById(workerId)
-//                .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found")));
-//        return saveWorkSchedule(workSchedule);
-        return true;
+    public boolean createWorkSchedule(ObjectId workerId, WorkScheduleRequestDto workScheduleRequestDTO) throws DataIntegrityViolationException, ClientInvalidDataException {
+        WorkSchedule workSchedule = workScheduleMapper.mapToWorkSchedule(workScheduleRequestDTO);
+
+        workSchedule.setWorker(workerRepository.findById(workerId)
+                .orElseThrow(() -> new ClientInvalidDataException("Work schedule was not found")));
+        return saveWorkSchedule(workSchedule);
     }
 
     @Override
@@ -48,27 +48,25 @@ public class WorkScheduleServiceImpl implements WorkScheduleService {
     @Override
     @Transactional(readOnly = true)
     public List<WorkScheduleResponseDto> getDayWorkSchedule(LocalDate workDate) throws ClientInvalidDataException {
-//        List<WorkSchedule> workSchedules = workScheduleRepository
-//                .findAllByWorkDate(workDate);
-//
-//        return getWorkScheduleResponseDto(workSchedules);
-        return null;
+        List<WorkSchedule> workSchedules = workScheduleRepository
+                .findAllByWorkDate(workDate);
+
+        return getWorkScheduleResponseDto(workSchedules);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<WorkScheduleResponseDto> getWeekWorkSchedule(LocalDate startWork, LocalDate endWork) throws ClientInvalidDataException {
-//        List<WorkSchedule> workSchedules = workScheduleRepository
-//                .findAllByWorkDateBetween(startWork, endWork);
-//
-//        return getWorkScheduleResponseDto(workSchedules);
-        return null;
+        List<WorkSchedule> workSchedules = workScheduleRepository
+                .findAllByWorkDateBetween(startWork, endWork);
+
+        return getWorkScheduleResponseDto(workSchedules);
     }
 
     @Override
     @Transactional
-    public boolean deleteWorkSchedule(UUID id){
-        return workScheduleRepository.deleteWorkSchedule(id);
+    public void deleteWorkSchedule(ObjectId id){
+        workScheduleRepository.deleteById(id);
     }
 
     /**

@@ -13,19 +13,9 @@ public interface MenuService {
      * Creates a new menu based on the provided {@link DishDto}.
      *
      * @param menuRequestDTO The menu data to create.
-     * @return {@code true} if the menu is created successfully, {@code false} otherwise.
      * @throws DataIntegrityViolationException If there is a data integrity violation.
      */
-    boolean createDish(DishDto menuRequestDTO);
-
-    /**
-     * Saves the provided menu to the repository.
-     *
-     * @param menu The menu to save.
-     * @return {@code true} if the menu is saved successfully, {@code false} otherwise.
-     * @throws DataIntegrityViolationException If there is a data integrity violation.
-     */
-    boolean saveDish(Menu menu);
+    void createDish(DishDto menuRequestDTO);
 
     /**
      * Retrieves all menu.
@@ -46,7 +36,6 @@ public interface MenuService {
      * Deletes the menu with the specified ID.
      *
      * @param id The ID of the menu to delete.
-     * @return {@code true} if the menu is deleted successfully, {@code false} otherwise.
      */
     void deleteDish(ObjectId id);
 
@@ -55,9 +44,8 @@ public interface MenuService {
      *
      * @param id      The ID of the menu to update.
      * @param dishDTO The updated menu data.
-     * @return {@code true} if the menu is updated successfully, {@code false} otherwise.
      */
-    boolean updateDish(ObjectId id, DishDto dishDTO);
+    void updateDish(ObjectId id, DishDto dishDTO);
 
     /**
      * Retrieves dishes based by name.
