@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * Repository interface for performing CRUD operations on {@link TentativeSchedule} entities.
  */
-public interface TentativeScheduleRepository extends MongoRepository<TentativeSchedule, ObjectId>, TentativeScheduleRepositoryCustom {
+public interface TentativeScheduleRepository extends MongoRepository<TentativeSchedule, ObjectId> {
     /**
      * Retrieves a list of {@link TentativeSchedule} entities based on the worker's ID and a date range.
      *
